@@ -1,0 +1,370 @@
+import type React from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { QueryClient } from "@tanstack/react-query";
+import {
+  continueRender,
+  delayRender,
+  Easing,
+  Interactive,
+  interpolate,
+  spring,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
+import LessonAttendanceCard from "@/features/lesson/components/LessonDetailContent/LessonAttendanceCard";
+import { AppProviders } from "./app-ui/AppProviders";
+import { PhoneViewport } from "./app-ui/PhoneViewport";
+import { DEMO_NOW, useDemoNow } from "./app-ui/frozen-clock";
+import {
+  filesKey,
+  lesson,
+  roster,
+  rosterKey,
+  STUDENT_NOTE,
+  type RowState,
+} from "./app-ui/attendance-data";
+import { colors, fontFamily } from "./theme";
+
+const PHONE_W = 390;
+const PHONE_X = 70;
+const PHONE_Y = 430;
+const BEZEL = 20;
+const S = (1080 - 2 * PHONE_X - 2 * BEZEL) / PHONE_W;
+const VIEWPORT_H = (1920 - PHONE_Y - BEZEL) / S;
+
+const TAP_STATUS = 34;
+const TAP_HOMEWORK = 72;
+const TAP_SCORE = 106;
+const TAP_NOTE = 136;
+const TYPE_START = 146;
+const SCROLL_BACK = 196;
+const HIGHLIGHT = 212;
+
+const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
+const ease = Easing.bezier(0.65, 0, 0.35, 1);
+
+const stateAt = (frame: number): RowState => ({
+  status: frame >= TAP_STATUS ? "PRESENT" : null,
+  homeworkPercent: frame >= TAP_HOMEWORK ? 90 : null,
+  score: frame >= TAP_SCORE ? 9 : null,
+  studentNote:
+    STUDENT_NOTE.slice(
+      0,
+      Math.max(0, Math.floor((frame - TYPE_START) * 1.5)),
+    ) || null,
+});
+
+const seed = (client: QueryClient, s: RowState) => {
+  client.setQueryData(rosterKey, { success: true, data: roster(s) });
+  client.setQueryData(filesKey(s), { success: true, data: [] });
+};
+
+type Box = { x: number; y: number; w: number; h: number };
+type Targets = {
+  stats: Box;
+  excused: Box;
+  status: Box;
+  homework: Box;
+  score: Box;
+  note: Box;
+};
+
+const byText = (root: HTMLElement, selector: string, text: string) =>
+  [...root.querySelectorAll<HTMLElement>(selector)].find(
+    (el) => el.textContent?.trim() === text,
+  );
+
+// positions in the component's own css px, independent of every scale applied on top
+const measure = (root: HTMLElement): Targets | null => {
+  const r = root.getBoundingClientRect();
+  const k = r.width / PHONE_W;
+  const box = (el: Element | null | undefined): Box | null => {
+    if (!el) return null;
+    const b = el.getBoundingClientRect();
+    return {
+      x: (b.left - r.left) / k,
+      y: (b.top - r.top) / k,
+      w: b.width / k,
+      h: b.height / k,
+    };
+  };
+  const grid = root.querySelector(".grid.grid-cols-3.divide-x");
+  const t = {
+    stats: box(grid?.parentElement),
+    excused: box(grid?.children[2]),
+    status: box(byText(root, "button", "Có mặt")),
+    homework: box(byText(root, "button", "90%")),
+    score: box(byText(root, "button", "9")),
+    note: box(root.querySelector("textarea")?.closest(".group")),
+  };
+  return Object.values(t).every(Boolean) ? (t as Targets) : null;
+};
+
+const center = (b: Box) => ({ x: b.x + b.w / 2, y: b.y + b.h / 2 });
+
+const Caption = ({
+  children,
+  from,
+  to,
+}: {
+  readonly children: React.ReactNode;
+  readonly from: number;
+  readonly to: number;
+}) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const enter = spring({ frame: frame - from, fps, config: { damping: 200 } });
+  const exit = interpolate(frame, [to - 8, to], [1, 0], clamp);
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 150,
+        left: 80,
+        right: 80,
+        textAlign: "center",
+        fontFamily,
+        fontSize: 92,
+        fontWeight: 800,
+        letterSpacing: "-0.035em",
+        lineHeight: 1.08,
+        color: colors.ink,
+        opacity: enter * exit,
+        translate: `0px ${(1 - enter) * 40 - (1 - exit) * 30}px`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+const AttendanceSceneInner = () => {
+  useDemoNow(DEMO_NOW);
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const state = stateAt(frame);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [targets, setTargets] = useState<Targets | null>(null);
+  const [client] = useState(() => {
+    const c = new QueryClient({
+      defaultOptions: { queries: { staleTime: Infinity, retry: false } },
+    });
+    seed(c, state);
+    return c;
+  });
+
+  // the frame is the single source of truth; pushing it into the cache is how the real component re-renders
+  useLayoutEffect(() => {
+    seed(client, state);
+  }, [
+    client,
+    state.status,
+    state.homeworkPercent,
+    state.score,
+    state.studentNote,
+  ]);
+
+  // the card mounts inside the phone iframe after the first render; hold the frame until it is measured
+  useEffect(() => {
+    const handle = delayRender("measure attendance targets");
+    let tries = 0;
+    let raf = 0;
+    const tick = () => {
+      const next = contentRef.current ? measure(contentRef.current) : null;
+      if (next || ++tries > 150) {
+        if (next) setTargets(next);
+        continueRender(handle);
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  useLayoutEffect(() => {
+    const next = contentRef.current ? measure(contentRef.current) : null;
+    if (next && JSON.stringify(next) !== JSON.stringify(targets))
+      setTargets(next);
+  });
+
+  const phoneIn = spring({ frame, fps, config: { damping: 200 } });
+  const top = targets ? targets.stats.y - 14 : 0;
+  const bottom = targets
+    ? Math.max(top, targets.note.y + targets.note.h + 24 - VIEWPORT_H)
+    : 0;
+  const scroll = interpolate(
+    frame,
+    [0, TAP_NOTE - 12, TAP_NOTE, SCROLL_BACK, SCROLL_BACK + 14],
+    [top, top, bottom, bottom, top],
+    {
+      ...clamp,
+      easing: ease,
+    },
+  );
+
+  const taps = targets
+    ? [
+        { at: TAP_STATUS, ...center(targets.status) },
+        { at: TAP_HOMEWORK, ...center(targets.homework) },
+        { at: TAP_SCORE, ...center(targets.score) },
+        { at: TAP_NOTE, ...center(targets.note) },
+      ]
+    : [];
+  const leg = taps.findIndex((tap) => frame < tap.at);
+  const to = taps[leg === -1 ? taps.length - 1 : leg];
+  const from =
+    leg > 0 ? taps[leg - 1] : leg === 0 ? { x: to.x + 80, y: to.y + 160 } : to;
+  const move = to
+    ? interpolate(frame, [to.at - 16, to.at - 2], [0, 1], {
+        ...clamp,
+        easing: ease,
+      })
+    : 0;
+  const finger = to
+    ? { x: from.x + (to.x - from.x) * move, y: from.y + (to.y - from.y) * move }
+    : null;
+  const lastTap = [...taps].reverse().find((tap) => frame >= tap.at);
+  const sinceTap = lastTap ? frame - lastTap.at : 99;
+  const fingerOpacity = interpolate(
+    frame,
+    [10, 20, TYPE_START + 30, TYPE_START + 40],
+    [0, 1, 1, 0],
+    clamp,
+  );
+  const toScreen = (p: { x: number; y: number }) => ({
+    left: PHONE_X + BEZEL + p.x * S,
+    top: PHONE_Y + BEZEL + (p.y - scroll) * S,
+  });
+  const ring = interpolate(frame, [HIGHLIGHT, HIGHLIGHT + 12], [0, 1], {
+    ...clamp,
+    easing: ease,
+  });
+
+  return (
+    <>
+      <Caption from={0} to={SCROLL_BACK}>
+        Điểm danh
+        <br />
+        <span style={{ color: colors.emerald }}>1 chạm</span>
+      </Caption>
+      <Caption from={SCROLL_BACK + 4} to={10_000}>
+        Có phép thì
+        <br />
+        <span style={{ color: "#d97706" }}>không tính tiền</span>
+      </Caption>
+
+      <div
+        style={{
+          position: "absolute",
+          left: PHONE_X,
+          top: PHONE_Y,
+          width: 1080 - 2 * PHONE_X,
+          height: 1920,
+          translate: `0px ${(1 - phoneIn) * 900}px`,
+          borderRadius: 88,
+          background: "#0f172a",
+          padding: BEZEL,
+          boxShadow: "0 40px 90px rgba(2,6,24,0.25)",
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            borderRadius: 70,
+            overflow: "hidden",
+            background: "#f8fafc",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              width: PHONE_W,
+              scale: String(S),
+              transformOrigin: "top left",
+            }}
+          >
+            <PhoneViewport width={PHONE_W} height={VIEWPORT_H}>
+              <AppProviders client={client}>
+                <div ref={contentRef} className="bg-muted/40 p-3" style={{ position: "absolute", left: 0, right: 0, top: -scroll }}>
+                  <LessonAttendanceCard lesson={lesson} />
+                </div>
+              </AppProviders>
+            </PhoneViewport>
+          </div>
+        </div>
+
+        {targets ? (
+          <div
+            style={{
+              position: "absolute",
+              left: BEZEL + (targets.excused.x - 4) * S,
+              top: BEZEL + (targets.excused.y - 4 - scroll) * S,
+              width: (targets.excused.w + 8) * S,
+              height: (targets.excused.h + 8) * S,
+              borderRadius: 28,
+              border: "8px solid #f59e0b",
+              boxShadow: "0 0 0 14px rgba(245,158,11,0.18)",
+              opacity: ring,
+              scale: String(1.15 - ring * 0.15),
+            }}
+          />
+        ) : null}
+      </div>
+
+      {finger ? (
+        <div
+          style={{
+            position: "absolute",
+            ...toScreen(finger),
+            opacity: fingerOpacity * phoneIn,
+            pointerEvents: "none",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              width: 200,
+              height: 200,
+              left: -100,
+              top: -100,
+              borderRadius: "50%",
+              border: "6px solid rgba(5,150,105,0.6)",
+              opacity: interpolate(sinceTap, [0, 16], [1, 0], clamp),
+              scale: String(interpolate(sinceTap, [0, 16], [0.3, 1.1], clamp)),
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              width: 96,
+              height: 96,
+              left: -48,
+              top: -48,
+              borderRadius: "50%",
+              background: "rgba(2,6,24,0.28)",
+              border: "4px solid rgba(255,255,255,0.9)",
+              boxShadow: "0 10px 30px rgba(2,6,24,0.25)",
+              scale: String(
+                interpolate(sinceTap, [0, 4, 10], [0.8, 0.8, 1], clamp),
+              ),
+            }}
+          />
+        </div>
+      ) : null}
+    </>
+  );
+};
+
+export const AttendanceScene = Interactive.create({
+  Component: AttendanceSceneInner,
+  layout: "absolute-fill",
+  schema: {
+    ...Interactive.backgroundSchema,
+  },
+});

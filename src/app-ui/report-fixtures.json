@@ -1,0 +1,482 @@
+{
+ "2026-09": {
+  "sessions": [
+   {
+    "lessonId": "cmuqs6oi5001hra2e4qk1fw9k",
+    "date": "2026-09-28",
+    "startTime": "2026-09-28T09:00:00.000Z",
+    "endTime": "2026-09-28T11:00:00.000Z",
+    "status": "ABSENT",
+    "reason": "Em báo muộn sau giờ học, chưa sắp xếp được buổi bù",
+    "studentNote": null,
+    "homeworkPercent": null,
+    "score": null,
+    "classColor": "#10b981",
+    "content": null,
+    "homework": null,
+    "generalNote": "Em báo muộn sau giờ học, buổi không diễn ra.",
+    "nextPlan": "Làm đề thi thử đầy đủ 90 phút ở buổi sau.",
+    "files": {}
+   },
+   {
+    "lessonId": "cmuqshwe5005rra2efbezwmxh",
+    "date": "2026-09-26",
+    "startTime": "2026-09-26T09:00:00.000Z",
+    "endTime": "2026-09-26T11:00:00.000Z",
+    "status": "PRESENT",
+    "reason": null,
+    "studentNote": "Điểm số đi lên đều, cần chú ý thời gian làm phần cuối.",
+    "homeworkPercent": 90,
+    "score": 8,
+    "classColor": "#10b981",
+    "content": "Luyện viết đoạn văn 80-100 từ, chữa bài; ôn từ vựng môi trường.",
+    "homework": "Viết đoạn văn bảo vệ môi trường và làm đề số 3.",
+    "generalNote": "Em đã tự sửa được lỗi mạo từ và giới từ.",
+    "nextPlan": "Làm đề thi thử đầy đủ 90 phút.",
+    "files": {
+     "homework": [
+      {
+       "linkId": "cmuquuzuw00n1ra2egnoezjgu",
+       "targetId": "cmuqshwe5005rra2efbezwmxh",
+       "field": "homework",
+       "url": "demo/homework.pdf",
+       "provider": "R2",
+       "originalName": "2026-09-26_BaiTapVeNha_485f.pdf",
+       "mimeType": "application/pdf",
+       "size": 589,
+       "createdAt": "2026-10-02T11:03:55.400Z"
+      }
+     ]
+    }
+   },
+   {
+    "lessonId": "cmuqshwe5005pra2egmukv8ij",
+    "date": "2026-09-21",
+    "startTime": "2026-09-21T09:00:00.000Z",
+    "endTime": "2026-09-21T11:00:00.000Z",
+    "status": "PRESENT",
+    "reason": null,
+    "studentNote": "Điểm đọc hiểu tiến bộ rõ so với buổi chẩn đoán.",
+    "homeworkPercent": 90,
+    "score": 7,
+    "classColor": "#10b981",
+    "content": "Chữa đề thi thử ở trường, phân tích lỗi theo dạng; luyện đọc hiểu.",
+    "homework": "Đề đọc hiểu số 2 và ôn 30 từ vựng chủ đề môi trường.",
+    "generalNote": "Em tập trung cao, chữa lỗi nhanh.",
+    "nextPlan": "Luyện viết đoạn văn ngắn.",
+    "files": {
+     "homework": [
+      {
+       "linkId": "cmuquuygk00mxra2ei9fw2um8",
+       "targetId": "cmuqshwe5005pra2egmukv8ij",
+       "field": "homework",
+       "url": "demo/homework.pdf",
+       "provider": "R2",
+       "originalName": "2026-09-21_BaiTapVeNha_fdd3.pdf",
+       "mimeType": "application/pdf",
+       "size": 589,
+       "createdAt": "2026-10-02T11:03:53.589Z"
+      },
+      {
+       "linkId": "cmuv5u1bq000framxej5jga9u",
+       "targetId": "cmuqshwe5005pra2egmukv8ij",
+       "field": "homework",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Quiz Unit 5 - 15 phút",
+       "mimeType": "application/vnd.google-apps.form",
+       "size": 0,
+       "createdAt": "2026-10-05T11:22:11.126Z"
+      },
+      {
+       "linkId": "cmuv5za5n000vramxei4kbbxy",
+       "targetId": "cmuqshwe5005pra2egmukv8ij",
+       "field": "homework",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Bài tập về nhà Unit 5.docx",
+       "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+       "size": 0,
+       "createdAt": "2026-10-05T11:26:15.852Z"
+      },
+      {
+       "linkId": "cmuv5za91000zramxhwne3vpc",
+       "targetId": "cmuqshwe5005pra2egmukv8ij",
+       "field": "homework",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Bảng theo dõi từ vựng",
+       "mimeType": "application/vnd.google-apps.spreadsheet",
+       "size": 0,
+       "createdAt": "2026-10-05T11:26:15.973Z"
+      }
+     ],
+     "nextPlan": [
+      {
+       "linkId": "cmuv5vbtz000jramxwr6c65n1",
+       "targetId": "cmuqshwe5005pra2egmukv8ij",
+       "field": "nextPlan",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Slide ngữ pháp Unit 5.pptx",
+       "mimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+       "size": 0,
+       "createdAt": "2026-10-05T11:23:11.400Z"
+      },
+      {
+       "linkId": "cmuv5vlhs000nramxbzxo19yg",
+       "targetId": "cmuqshwe5005pra2egmukv8ij",
+       "field": "nextPlan",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Listening Unit 5 - Track 1.mp3",
+       "mimeType": "audio/mpeg",
+       "size": 0,
+       "createdAt": "2026-10-05T11:23:23.920Z"
+      },
+      {
+       "linkId": "cmuv5zsgt0013ramx30k8zdr4",
+       "targetId": "cmuqshwe5005pra2egmukv8ij",
+       "field": "nextPlan",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Giáo án Unit 5 - Reading",
+       "mimeType": "application/vnd.google-apps.document",
+       "size": 0,
+       "createdAt": "2026-10-05T11:26:39.582Z"
+      }
+     ],
+     "studentNote": [
+      {
+       "linkId": "cmuqv5z4900n9ra2eg4fzl869",
+       "targetId": "cmuqsr60c00h3ra2e9dwwetjd",
+       "field": "studentNote",
+       "url": "demo/gia-han_2026-09-21.png",
+       "provider": "R2",
+       "originalName": "2026-09-21_NhanXetRieng_gia-han_35c9.png",
+       "mimeType": "image/png",
+       "size": 563175,
+       "createdAt": "2026-10-02T11:12:27.657Z"
+      },
+      {
+       "linkId": "cmuv5se4z0003ramxc22mz0z1",
+       "targetId": "cmuqsr60c00h3ra2e9dwwetjd",
+       "field": "studentNote",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Bảng điểm kiểm tra.xlsx",
+       "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+       "size": 0,
+       "createdAt": "2026-10-05T11:20:54.419Z"
+      },
+      {
+       "linkId": "demo-video-2",
+       "targetId": "demo",
+       "field": "studentNote",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Video chữa đề Unit 5.mp4",
+       "mimeType": "video/mp4",
+       "size": 0,
+       "createdAt": "2026-10-05T11:20:00.000Z"
+      }
+     ],
+     "content": [
+      {
+       "linkId": "demo-video-1",
+       "targetId": "demo",
+       "field": "content",
+       "url": "https://drive.google.com/",
+       "provider": "GOOGLE_DRIVE",
+       "originalName": "Video chữa đề Unit 5.mp4",
+       "mimeType": "video/mp4",
+       "size": 0,
+       "createdAt": "2026-10-05T11:20:00.000Z"
+      }
+     ]
+    }
+   },
+   {
+    "lessonId": "cmuqshwe5005nra2erhjadk3o",
+    "date": "2026-09-19",
+    "startTime": "2026-09-19T09:00:00.000Z",
+    "endTime": "2026-09-19T11:00:00.000Z",
+    "status": "EXCUSED",
+    "reason": "Em có lịch thi thử ở trường, xin nghỉ trước",
+    "studentNote": null,
+    "homeworkPercent": null,
+    "score": null,
+    "classColor": "#10b981",
+    "content": null,
+    "homework": null,
+    "generalNote": "Em có lịch thi thử ở trường, xin nghỉ trước.",
+    "nextPlan": "Buổi sau chữa đề thi thử của trường và ôn phần còn thiếu.",
+    "files": {}
+   },
+   {
+    "lessonId": "cmuqshwe5005lra2eojcxk3kz",
+    "date": "2026-09-14",
+    "startTime": "2026-09-14T09:00:00.000Z",
+    "endTime": "2026-09-14T11:00:00.000Z",
+    "status": "PRESENT",
+    "reason": null,
+    "studentNote": "Em nhầm điều kiện loại 1 và 2, cô hệ thống lại bảng so sánh.",
+    "homeworkPercent": 90,
+    "score": 6,
+    "classColor": "#10b981",
+    "content": "Câu bị động, câu điều kiện loại 1 và 2, luyện viết lại câu.",
+    "homework": "Viết lại 20 câu và làm đề đọc hiểu số 1.",
+    "generalNote": "Kiểm tra 20 phút cuối buổi.",
+    "nextPlan": "Chữa đề thi thử của trường.",
+    "files": {
+     "homework": [
+      {
+       "linkId": "cmuquuwk800mtra2emcxh139s",
+       "targetId": "cmuqshwe5005lra2eojcxk3kz",
+       "field": "homework",
+       "url": "demo/homework.pdf",
+       "provider": "R2",
+       "originalName": "2026-09-14_BaiTapVeNha_2200.pdf",
+       "mimeType": "application/pdf",
+       "size": 589,
+       "createdAt": "2026-10-02T11:03:51.129Z"
+      }
+     ],
+     "studentNote": [
+      {
+       "linkId": "cmuqv5whv00n5ra2ee1y4zhyp",
+       "targetId": "cmuqsqq1500epra2ezmek6vi0",
+       "field": "studentNote",
+       "url": "demo/gia-han_2026-09-14.png",
+       "provider": "R2",
+       "originalName": "2026-09-14_NhanXetRieng_gia-han_7f0f.png",
+       "mimeType": "image/png",
+       "size": 329997,
+       "createdAt": "2026-10-02T11:12:24.259Z"
+      }
+     ]
+    }
+   },
+   {
+    "lessonId": "cmuqshwe5005hra2e6q7qkm3s",
+    "date": "2026-09-07",
+    "startTime": "2026-09-07T09:00:00.000Z",
+    "endTime": "2026-09-07T11:00:00.000Z",
+    "status": "PRESENT",
+    "reason": null,
+    "studentNote": "Em làm bài đều nhưng chưa ôn kỹ cụm giới từ.",
+    "homeworkPercent": 70,
+    "score": null,
+    "classColor": "#10b981",
+    "content": "Ôn các thì hiện tại và quá khứ, trắc nghiệm theo dạng đề thi.",
+    "homework": "Đề ngữ pháp số 1 (30 câu).",
+    "generalNote": null,
+    "nextPlan": null,
+    "files": {}
+   },
+   {
+    "lessonId": "cmuqshwe5005fra2eje4d9n95",
+    "date": "2026-09-05",
+    "startTime": "2026-09-05T09:00:00.000Z",
+    "endTime": "2026-09-05T11:00:00.000Z",
+    "status": "PRESENT",
+    "reason": null,
+    "studentNote": "Em chủ động nêu điểm yếu của mình, thái độ học rất tốt.",
+    "homeworkPercent": null,
+    "score": null,
+    "classColor": "#10b981",
+    "content": "Làm đề chẩn đoán 40 câu, phân tích điểm yếu (thì, giới từ, đọc hiểu).",
+    "homework": "Ôn 20 cụm giới từ thường gặp, bài ngữ pháp 1-2.",
+    "generalNote": "Nền tảng khá nhưng yếu đọc hiểu và viết lại câu.",
+    "nextPlan": "Ôn thì và cấu trúc câu, bắt đầu luyện đọc hiểu.",
+    "files": {}
+   }
+  ],
+  "lessons": [
+   {
+    "lessonId": "cmuqshwe5005fra2eje4d9n95",
+    "date": "2026-09-05",
+    "startTime": "2026-09-05T09:00:00.000Z",
+    "endTime": "2026-09-05T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe5005hra2e6q7qkm3s",
+    "date": "2026-09-07",
+    "startTime": "2026-09-07T09:00:00.000Z",
+    "endTime": "2026-09-07T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe5005lra2eojcxk3kz",
+    "date": "2026-09-14",
+    "startTime": "2026-09-14T09:00:00.000Z",
+    "endTime": "2026-09-14T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe5005nra2erhjadk3o",
+    "date": "2026-09-19",
+    "startTime": "2026-09-19T09:00:00.000Z",
+    "endTime": "2026-09-19T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe5005pra2egmukv8ij",
+    "date": "2026-09-21",
+    "startTime": "2026-09-21T09:00:00.000Z",
+    "endTime": "2026-09-21T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe5005rra2efbezwmxh",
+    "date": "2026-09-26",
+    "startTime": "2026-09-26T09:00:00.000Z",
+    "endTime": "2026-09-26T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqs6oi5001hra2e4qk1fw9k",
+    "date": "2026-09-28",
+    "startTime": "2026-09-28T09:00:00.000Z",
+    "endTime": "2026-09-28T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   }
+  ]
+ },
+ "2026-10": {
+  "sessions": [
+   {
+    "lessonId": "cmuqshwe6005tra2ecxls8fod",
+    "date": "2026-10-05",
+    "startTime": "2026-10-05T09:00:00.000Z",
+    "endTime": "2026-10-05T11:00:00.000Z",
+    "status": "PRESENT",
+    "reason": null,
+    "studentNote": "Nhớ cụm động từ tốt, cần luyện thêm cách dùng giới từ đi kèm.",
+    "homeworkPercent": 90,
+    "score": 9,
+    "classColor": "#10b981",
+    "content": "Chữa lỗi đề thi thử, ôn cụm động từ thường gặp.",
+    "homework": "Làm đề số 4 và học 10 cụm động từ.",
+    "generalNote": "Em chủ động hỏi lại các câu sai.",
+    "nextPlan": "Luyện viết thư và đoạn văn nghị luận ngắn.",
+    "files": {}
+   },
+   {
+    "lessonId": "cmuqs6oi5001jra2ex4rk9mvn",
+    "date": "2026-10-03",
+    "startTime": "2026-10-03T09:00:00.000Z",
+    "endTime": "2026-10-03T11:00:00.000Z",
+    "status": "PRESENT",
+    "reason": null,
+    "studentNote": "Ngữ pháp chắc hơn, còn sai vài câu đọc hiểu do đọc lướt.",
+    "homeworkPercent": 80,
+    "score": 9,
+    "classColor": "#10b981",
+    "content": "Làm đề thi thử đầy đủ 90 phút và chữa lỗi sai phần đọc hiểu.",
+    "homework": "Làm lại các câu sai và học 15 từ vựng chủ đề giáo dục.",
+    "generalNote": "Em quản lý thời gian tốt hơn, kịp làm hết bài.",
+    "nextPlan": "Ôn ngữ pháp hay sai, làm đề số 4.",
+    "files": {}
+   }
+  ],
+  "lessons": [
+   {
+    "lessonId": "cmuqs6oi5001jra2ex4rk9mvn",
+    "date": "2026-10-03",
+    "startTime": "2026-10-03T09:00:00.000Z",
+    "endTime": "2026-10-03T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe6005tra2ecxls8fod",
+    "date": "2026-10-05",
+    "startTime": "2026-10-05T09:00:00.000Z",
+    "endTime": "2026-10-05T11:00:00.000Z",
+    "status": "COMPLETED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe6005vra2ecg96rnb5",
+    "date": "2026-10-10",
+    "startTime": "2026-10-10T09:00:00.000Z",
+    "endTime": "2026-10-10T11:00:00.000Z",
+    "status": "SCHEDULED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe6005xra2ezx5gzblv",
+    "date": "2026-10-12",
+    "startTime": "2026-10-12T09:00:00.000Z",
+    "endTime": "2026-10-12T11:00:00.000Z",
+    "status": "SCHEDULED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe6005zra2e9e7i705u",
+    "date": "2026-10-17",
+    "startTime": "2026-10-17T09:00:00.000Z",
+    "endTime": "2026-10-17T11:00:00.000Z",
+    "status": "SCHEDULED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "cmuqshwe60061ra2e5fgol64v",
+    "date": "2026-10-19",
+    "startTime": "2026-10-19T09:00:00.000Z",
+    "endTime": "2026-10-19T11:00:00.000Z",
+    "status": "SCHEDULED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "demo-2026-10-24",
+    "date": "2026-10-24",
+    "startTime": "2026-10-24T09:00:00.000Z",
+    "endTime": "2026-10-24T11:00:00.000Z",
+    "status": "SCHEDULED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "demo-2026-10-26",
+    "date": "2026-10-26",
+    "startTime": "2026-10-26T09:00:00.000Z",
+    "endTime": "2026-10-26T11:00:00.000Z",
+    "status": "SCHEDULED",
+    "classColor": "#10b981",
+    "isOnline": false
+   },
+   {
+    "lessonId": "demo-2026-10-31",
+    "date": "2026-10-31",
+    "startTime": "2026-10-31T09:00:00.000Z",
+    "endTime": "2026-10-31T11:00:00.000Z",
+    "status": "SCHEDULED",
+    "classColor": "#10b981",
+    "isOnline": false
+   }
+  ]
+ }
+}

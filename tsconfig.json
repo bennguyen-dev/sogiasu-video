@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": [
+        "./../studying-report/src/*"
+      ],
+      "@tanstack/react-query": [
+        "./../studying-report/node_modules/@tanstack/react-query"
+      ],
+      "next-intl": [
+        "./../studying-report/node_modules/next-intl"
+      ],
+      "@prisma/client": [
+        "./../studying-report/node_modules/@prisma/client"
+      ],
+      "lucide-react": [
+        "./../studying-report/node_modules/lucide-react"
+      ],
+      "next-auth/react": [
+        "./../studying-report/node_modules/next-auth/react"
+      ]
+    },
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src"
+  ]
+}
