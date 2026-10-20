@@ -8,6 +8,7 @@ import { FeeScene } from "./videos/intro/scenes/FeeScene";
 import { GridScene } from "./videos/intro/scenes/GridScene";
 import { HookScene } from "./videos/intro/scenes/HookScene";
 import { Intro } from "./videos/intro/Intro";
+import { INTRO_DURATION, SCENES } from "./videos/intro/timeline";
 import { LogoScene } from "./videos/intro/scenes/LogoScene";
 import { ReportScene } from "./videos/intro/scenes/ReportScene";
 import { VoucherScene } from "./videos/intro/scenes/VoucherScene";
@@ -15,7 +16,7 @@ import { ZaloScene } from "./videos/intro/scenes/ZaloScene";
 
 export const RemotionRoot = () => (
   <>
-    <Composition id="Intro" component={Intro} width={1080} height={1920} fps={30} durationInFrames={1770} />
+    <Composition id="Intro" component={Intro} width={1080} height={1920} fps={30} durationInFrames={INTRO_DURATION} />
     <Folder name="Scenes">
       <Composition
         id="Hook"
@@ -23,8 +24,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={120}
-        defaultProps={{ style: { backgroundColor: "#f8fafc" } }}
+        durationInFrames={SCENES.hook.durationInFrames}
+        defaultProps={{ style: SCENES.hook.style }}
       />
       <Composition
         id="Logo"
@@ -32,8 +33,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={90}
-        defaultProps={{ style: { backgroundColor: "#f8fafc" } }}
+        durationInFrames={SCENES.logo.durationInFrames}
+        defaultProps={{ style: SCENES.logo.style }}
       />
       <Composition
         id="Calendar"
@@ -41,8 +42,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={150}
-        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+        durationInFrames={SCENES.calendar.durationInFrames}
+        defaultProps={{ style: SCENES.calendar.style }}
       />
       <Composition
         id="Attendance"
@@ -50,8 +51,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={240}
-        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+        durationInFrames={SCENES.attendance.durationInFrames}
+        defaultProps={{ style: SCENES.attendance.style }}
       />
       <Composition
         id="Report"
@@ -59,8 +60,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={210}
-        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+        durationInFrames={SCENES.report.durationInFrames}
+        defaultProps={{ style: SCENES.report.style }}
       />
       <Composition
         id="Chapter"
@@ -68,8 +69,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={45}
-        defaultProps={{ style: { backgroundColor: "#f8fafc" } }}
+        durationInFrames={SCENES.chapter.durationInFrames}
+        defaultProps={{ style: SCENES.chapter.style }}
       />
       <Composition
         id="Grid"
@@ -77,8 +78,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={135}
-        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+        durationInFrames={SCENES.grid.durationInFrames}
+        defaultProps={{ style: SCENES.grid.style }}
       />
       <Composition
         id="Fee"
@@ -86,8 +87,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={150}
-        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+        durationInFrames={SCENES.fee.durationInFrames}
+        defaultProps={{ style: SCENES.fee.style }}
       />
       <Composition
         id="Analytics"
@@ -95,8 +96,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={150}
-        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+        durationInFrames={SCENES.analytics.durationInFrames}
+        defaultProps={{ style: SCENES.analytics.style }}
       />
       <Composition
         id="Cta"
@@ -104,8 +105,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={120}
-        defaultProps={{ style: { backgroundColor: "#020618" } }}
+        durationInFrames={SCENES.cta.durationInFrames}
+        defaultProps={{ style: SCENES.cta.style }}
       />
       <Composition
         id="Voucher"
@@ -113,8 +114,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={150}
-        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+        durationInFrames={SCENES.voucher.durationInFrames}
+        defaultProps={{ style: SCENES.voucher.style }}
       />
       <Composition
         id="Zalo"
@@ -122,8 +123,8 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={210}
-        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+        durationInFrames={SCENES.zalo.durationInFrames}
+        defaultProps={{ style: SCENES.zalo.style }}
       />
     </Folder>
   </>
