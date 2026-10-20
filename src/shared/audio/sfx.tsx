@@ -8,6 +8,7 @@ const LIB = {
   tick: { peakMs: [1, 1] },
   key: { peakMs: [5, 7, 26, 17] },
   pop: { peakMs: [0, 0] },
+  select: { peakMs: [2, 2] },
   drop: { peakMs: [0, 0, 1] },
   confirm: { peakMs: [1, 0] },
   open: { peakMs: [240, 154] },

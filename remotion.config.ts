@@ -7,9 +7,8 @@ import { createRequire } from "node:module";
 const APP = path.resolve(process.cwd(), "../studying-report");
 const local = (p: string) => path.resolve(process.cwd(), p);
 // the bundler's own webpack copy; a second instance can't parse its modules
-const { ProvidePlugin } = createRequire(local("package.json"))(
-  local("node_modules/@remotion/bundler/node_modules/webpack"),
-) as typeof import("webpack");
+const fromBundler = createRequire(createRequire(local("package.json")).resolve("@remotion/bundler/package.json"));
+const { ProvidePlugin } = fromBundler("webpack") as typeof import("webpack");
 
 Config.setVideoImageFormat("jpeg");
 // each tab renders the full app UI; the default (half the cores) ran this machine out of memory
@@ -24,6 +23,7 @@ Config.overrideWebpackConfig((config) =>
       alias: {
         ...(config.resolve?.alias ?? {}),
         "@/shared/components/BrandIcon$": local("src/shared/app/stubs/brand-icon.tsx"),
+        "@/shared/components/ui/popover$": local("src/shared/app/stubs/popover.tsx"),
         "@": path.join(APP, "src"),
         // one React for Remotion and the app's components, or hooks break
         react: local("node_modules/react"),

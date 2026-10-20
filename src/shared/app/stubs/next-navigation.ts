@@ -8,7 +8,14 @@ const router = {
 };
 
 export const useRouter = () => router;
-export const usePathname = () => "/dashboard";
+let pathname = "/dashboard";
+
+// the page a scene stands on (the bottom nav highlights it); set before its app mounts
+export const setDemoPathname = (p: string) => {
+  pathname = p;
+};
+
+export const usePathname = () => pathname;
 export const useSearchParams = () => new URLSearchParams();
 export const useParams = () => ({});
 export const notFound = () => {

@@ -1,3 +1,17 @@
 @import "../../../../studying-report/src/shared/styles/globals.css";
 
 @source "../../../../studying-report/src";
+
+.still *,
+.still *::before,
+.still *::after {
+  animation: none !important;
+  transition: none !important;
+  caret-color: transparent !important;
+}
+
+/* radix focuses a popover's first item on open; on a still frame that reads as a selection */
+.still [data-slot="popover-content"] :focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

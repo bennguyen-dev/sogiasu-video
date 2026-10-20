@@ -10,6 +10,35 @@ import { calendarLessons } from "../demo/calendar-data";
 import { classesList, pendingFeesResponse, septemberGrid } from "../demo/september-data";
 import "./app.css";
 
+type MockRoutes = Record<string, () => unknown>;
+// mounted scenes' answers, newest last: the scene being cut to mounts before the one it replaces unmounts
+const sceneRoutes: { routes: MockRoutes }[] = [];
+
+// a scene's own api answers, matched by url prefix ahead of the defaults below; set before its app mounts
+export const useMockApi = (routes: MockRoutes) => {
+  const [entry] = useState(() => {
+    const e = { routes };
+    sceneRoutes.push(e);
+    return e;
+  });
+  // re-registers after a strict-mode remount, which runs this cleanup once without unmounting
+  useEffect(() => {
+    if (!sceneRoutes.includes(entry)) sceneRoutes.push(entry);
+    return () => {
+      const i = sceneRoutes.indexOf(entry);
+      if (i !== -1) sceneRoutes.splice(i, 1);
+    };
+  }, [entry]);
+};
+
+const sceneAnswer = (url: string) => {
+  for (let i = sceneRoutes.length - 1; i >= 0; i--) {
+    const prefix = Object.keys(sceneRoutes[i].routes).find((p) => url.startsWith(p));
+    if (prefix) return sceneRoutes[i].routes[prefix];
+  }
+  return null;
+};
+
 // a component never reaches the network in a render: unknown requests get an empty payload and are logged
 if (
   typeof window !== "undefined" &&
@@ -26,7 +55,10 @@ if (
           : input.url;
     if (url.startsWith("/api/")) {
       console.log("[mock-fetch]", init?.method ?? "GET", url);
-      const body = url.startsWith("/api/calendar?")
+      const own = sceneAnswer(url);
+      const body = own
+        ? own()
+        : url.startsWith("/api/calendar?")
         ? { success: true, data: calendarLessons() }
         : url.startsWith("/api/attendance/monthly-grid")
           ? { success: true, data: septemberGrid() }

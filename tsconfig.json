@@ -26,6 +26,12 @@
       ],
       "next-auth/react": [
         "./../studying-report/node_modules/next-auth/react"
+      ],
+      "react-hook-form": [
+        "./../studying-report/node_modules/react-hook-form"
+      ],
+      "radix-ui": [
+        "./../studying-report/node_modules/radix-ui"
       ]
     },
     "resolveJsonModule": true

@@ -10,12 +10,14 @@ export const Caption = ({
   to,
   fontSize = 84,
   inset = 70,
+  top = 150,
 }: {
   readonly children: React.ReactNode;
   readonly from: number;
   readonly to: number;
   readonly fontSize?: number;
   readonly inset?: number;
+  readonly top?: number;
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -26,7 +28,7 @@ export const Caption = ({
     <div
       style={{
         position: "absolute",
-        top: 150,
+        top,
         left: inset,
         right: inset,
         textAlign: "center",
