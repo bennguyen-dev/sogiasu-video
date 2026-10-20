@@ -16,7 +16,8 @@ import { ZaloScene } from "./videos/intro/scenes/ZaloScene";
 
 export const RemotionRoot = () => (
   <>
-    <Composition id="Intro" component={Intro} width={1080} height={1920} fps={30} durationInFrames={INTRO_DURATION} />
+    <Composition id="Intro" component={Intro} width={1080} height={1920} fps={30} durationInFrames={INTRO_DURATION} defaultProps={{ music: false }} />
+    <Composition id="IntroWithMusic" component={Intro} width={1080} height={1920} fps={30} durationInFrames={INTRO_DURATION} defaultProps={{ music: true }} />
     <Folder name="Scenes">
       <Composition
         id="Hook"

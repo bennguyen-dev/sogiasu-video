@@ -12,6 +12,8 @@ const { ProvidePlugin } = createRequire(local("package.json"))(
 ) as typeof import("webpack");
 
 Config.setVideoImageFormat("jpeg");
+// each tab renders the full app UI; the default (half the cores) ran this machine out of memory
+Config.setConcurrency(2);
 Config.overrideWebpackConfig((config) =>
   enableTailwind({
     ...config,

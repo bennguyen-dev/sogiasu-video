@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "remotion studio",
-    "render": "remotion render Intro out/intro.mp4",
+    "render": "node scripts/render.mjs Intro intro-sfx",
+    "render:music": "node scripts/render.mjs IntroWithMusic intro-music",
     "typecheck": "tsc"
   },
   "keywords": [],

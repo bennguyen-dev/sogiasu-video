@@ -14,10 +14,13 @@ import { ReportScene } from "./scenes/ReportScene";
 import { VoucherScene } from "./scenes/VoucherScene";
 import { ZaloScene } from "./scenes/ZaloScene";
 
-export const Intro = () => (
+// music is opt-in: the default cut carries only sound effects, so a track can be added in the platform's own editor
+export const Intro = ({ music }: { readonly music: boolean }) => (
   <>
   {/* "Happy Upbeat" by DELOSound (Pixabay, no Content ID): 117.845 bpm (librosa fit), first beat at 2.12s */}
-  <MusicBed src="music/happy-upbeat-delosound.mp3" bpm={117.845} targetBpm={120} firstBeatFrame={64} volume={0.3} duckAt={[CTA_IMPACT]} />
+  {music ? (
+    <MusicBed src="music/happy-upbeat-delosound.mp3" bpm={117.845} targetBpm={120} firstBeatFrame={64} volume={0.3} duckAt={[CTA_IMPACT]} />
+  ) : null}
   <Track name="Scenes">
     <HookScene name="Hook" {...SCENES.hook} />
     <LogoScene name="Logo" {...SCENES.logo} />
