@@ -1,11 +1,9 @@
-import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { QueryClient } from "@tanstack/react-query";
 import { Lock } from "lucide-react";
 import {
   continueRender,
   delayRender,
-  Easing,
   Interactive,
   interpolate,
   spring,
@@ -17,17 +15,16 @@ import ReportLayout from "@/shared/components/layouts/report/layout";
 import { AppProviders } from "../../../shared/app/AppProviders";
 import { PhoneViewport } from "../../../shared/app/PhoneViewport";
 import { DEMO_NOW, useDemoNow } from "../../../shared/app/frozen-clock";
-import { octoberReport, SHARE_MESSAGE } from "../../../shared/demo/report-data";
-import { colors, fontFamily } from "../../../shared/theme";
 import { Sfx } from "../../../shared/audio/sfx";
-import { Bubble, ChatHeader } from "../../../shared/components/zalo-chat";
+import { Caption } from "../../../shared/components/Caption";
+import { Finger } from "../../../shared/components/Finger";
+import { BEZEL, PHONE_SCALE as S, PHONE_W, PHONE_X, PHONE_Y, PhoneFrame, SCREEN_H } from "../../../shared/components/Phone";
+import { Bubble, ChatHeader } from "../../../shared/components/ZaloChat";
+import { SHARE_MESSAGE } from "../../../shared/demo/report-data";
+import { clamp, ease } from "../../../shared/motion";
+import { colors, fontFamily } from "../../../shared/theme";
+import { reportScreen } from "../data";
 
-const PHONE_W = 390;
-const PHONE_X = 70;
-const PHONE_Y = 430;
-const BEZEL = 20;
-const S = (1080 - 2 * PHONE_X - 2 * BEZEL) / PHONE_W;
-const SCREEN_H = (1920 - PHONE_Y - BEZEL) / S;
 const BAR_H = 56;
 
 const MSG_IN = 8;
@@ -37,8 +34,6 @@ const OPEN = [66, 84] as const;
 const TO_LATEST = [96, 122] as const;
 const TO_FILES = 140;
 
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const ease = Easing.bezier(0.65, 0, 0.35, 1);
 
 type Pt = { x: number; y: number };
 type Targets = { link: Pt; latest: number };
@@ -75,7 +70,7 @@ const Chat = ({
       fontFamily,
     }}
   >
-    <ChatHeader />
+    <ChatHeader name="Mẹ Gia Hân" initials="MH" />
     <div
       style={{
         display: "flex",
@@ -146,90 +141,6 @@ const BrowserBar = () => (
     </div>
   </div>
 );
-
-const Caption = ({
-  children,
-  from,
-  to,
-}: {
-  readonly children: React.ReactNode;
-  readonly from: number;
-  readonly to: number;
-}) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const enter = spring({ frame: frame - from, fps, config: { damping: 200 } });
-  const exit = interpolate(frame, [to - 8, to], [1, 0], clamp);
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 150,
-        left: 70,
-        right: 70,
-        textAlign: "center",
-        fontFamily,
-        fontSize: 84,
-        fontWeight: 800,
-        letterSpacing: "-0.035em",
-        lineHeight: 1.08,
-        color: colors.ink,
-        opacity: enter * exit,
-        translate: `0px ${(1 - enter) * 40 - (1 - exit) * 30}px`,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
-const Finger = ({
-  at,
-  left,
-  top,
-  opacity,
-}: {
-  readonly at: number;
-  readonly left: number;
-  readonly top: number;
-  readonly opacity: number;
-}) => {
-  const frame = useCurrentFrame();
-  const since = frame - at;
-
-  return (
-    <div style={{ position: "absolute", left, top, opacity }}>
-      <div
-        style={{
-          position: "absolute",
-          width: 200,
-          height: 200,
-          left: -100,
-          top: -100,
-          borderRadius: "50%",
-          border: "6px solid rgba(5,150,105,0.6)",
-          opacity: since < 0 ? 0 : interpolate(since, [0, 16], [1, 0], clamp),
-          scale: String(interpolate(since, [0, 16], [0.3, 1.1], clamp)),
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          width: 96,
-          height: 96,
-          left: -48,
-          top: -48,
-          borderRadius: "50%",
-          background: "rgba(2,6,24,0.28)",
-          border: "4px solid rgba(255,255,255,0.9)",
-          boxShadow: "0 10px 30px rgba(2,6,24,0.25)",
-          scale: String(interpolate(since, [0, 4, 10], [0.8, 0.8, 1], clamp)),
-        }}
-      />
-    </div>
-  );
-};
 
 const ReportSceneInner = () => {
   useDemoNow(DEMO_NOW);
@@ -330,30 +241,7 @@ const ReportSceneInner = () => {
         <span style={{ color: colors.emerald }}>video, tài liệu</span>
       </Caption>
 
-      <div
-        style={{
-          position: "absolute",
-          left: PHONE_X,
-          top: PHONE_Y,
-          width: 1080 - 2 * PHONE_X,
-          height: 1920,
-          translate: `0px ${(1 - phoneIn) * 900}px`,
-          borderRadius: 88,
-          background: "#0f172a",
-          padding: BEZEL,
-          boxShadow: "0 40px 90px rgba(2,6,24,0.25)",
-        }}
-      >
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            borderRadius: 70,
-            overflow: "hidden",
-            background: "#f8fafc",
-          }}
-        >
+      <PhoneFrame enter={phoneIn}>
           <div
             style={{
               position: "absolute",
@@ -408,7 +296,7 @@ const ReportSceneInner = () => {
                     }}
                   >
                     <ReportLayout>
-                      <PublicReport report={octoberReport} />
+                      <PublicReport report={reportScreen} />
                     </ReportLayout>
                   </div>
                 </AppProviders>
@@ -427,13 +315,12 @@ const ReportSceneInner = () => {
             </div>
             </PhoneViewport>
           </div>
-        </div>
-      </div>
+      </PhoneFrame>
 
       {fingers.map((f) => (
         <Finger
           key={f.at}
-          at={f.at}
+          since={frame - f.at}
           left={f.left}
           top={f.top}
           opacity={interpolate(

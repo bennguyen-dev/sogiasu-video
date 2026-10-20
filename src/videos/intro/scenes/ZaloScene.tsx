@@ -1,17 +1,12 @@
-import type React from "react";
 import { useLayoutEffect, useRef, useState } from "react";
-import { Interactive, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { colors, fontFamily } from "../../../shared/theme";
+import { Interactive, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { Sfx } from "../../../shared/audio/sfx";
-import { REPORT_HTML, VOUCHER_W, ZALO_VOUCHER_HTML } from "../../../shared/demo/voucher-data";
-import { Bubble, ChatHeader } from "../../../shared/components/zalo-chat";
-
-const PHONE_W = 390;
-const PHONE_X = 70;
-const PHONE_Y = 430;
-const BEZEL = 20;
-const S = (1080 - 2 * PHONE_X - 2 * BEZEL) / PHONE_W;
-const SCREEN_H = (1920 - PHONE_Y - BEZEL) / S;
+import { Caption } from "../../../shared/components/Caption";
+import { PHONE_SCALE, PHONE_W, PhoneFrame, SCREEN_H } from "../../../shared/components/Phone";
+import { Bubble, ChatHeader } from "../../../shared/components/ZaloChat";
+import { VOUCHER_W } from "../../../shared/demo/voucher-data";
+import { colors, fontFamily } from "../../../shared/theme";
+import { ZALO_REPORT_HTML, ZALO_VOUCHER_HTML } from "../data";
 
 const VOUCHER_IN = 8;
 const REPORT_IN = 14;
@@ -23,37 +18,6 @@ const THUMB_W = 170;
 const THUMB_H = 240;
 // the app renders the report table at this width (ReportTablePreview REPORT_TABLE_W)
 const REPORT_W = 1100;
-
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-
-const Caption = ({ children, from, to }: { readonly children: React.ReactNode; readonly from: number; readonly to: number }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const enter = spring({ frame: frame - from, fps, config: { damping: 200 } });
-  const exit = interpolate(frame, [to - 8, to], [1, 0], clamp);
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 150,
-        left: 70,
-        right: 70,
-        textAlign: "center",
-        fontFamily,
-        fontSize: 84,
-        fontWeight: 800,
-        letterSpacing: "-0.035em",
-        lineHeight: 1.08,
-        color: colors.ink,
-        opacity: enter * exit,
-        translate: `0px ${(1 - enter) * 40 - (1 - exit) * 30}px`,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
 
 // a Zalo image thumbnail of the full-size export: the voucher fits whole (its QR is the point),
 // the wide report table fills the tile and crops on the right, like Zalo's image grid
@@ -111,21 +75,7 @@ const ZaloSceneInner = () => {
         <span style={{ color: colors.emerald }}>chuyển khoản luôn</span>
       </Caption>
 
-      <div
-        style={{
-          position: "absolute",
-          left: PHONE_X,
-          top: PHONE_Y,
-          width: 1080 - 2 * PHONE_X,
-          height: 1920,
-          translate: `0px ${(1 - phoneIn) * 900}px`,
-          borderRadius: 88,
-          background: "#0f172a",
-          padding: BEZEL,
-          boxShadow: "0 40px 90px rgba(2,6,24,0.25)",
-        }}
-      >
-        <div style={{ position: "relative", width: "100%", height: "100%", borderRadius: 70, overflow: "hidden", background: "#eef2f7" }}>
+      <PhoneFrame enter={phoneIn} background="#eef2f7">
           <div
             style={{
               position: "absolute",
@@ -133,19 +83,19 @@ const ZaloSceneInner = () => {
               top: 0,
               width: PHONE_W,
               height: SCREEN_H,
-              scale: String(S),
+              scale: String(PHONE_SCALE),
               transformOrigin: "top left",
               display: "flex",
               flexDirection: "column",
               fontFamily,
             }}
           >
-            <ChatHeader />
+            <ChatHeader name="Mẹ Gia Hân" initials="MH" />
             <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "18px 12px" }}>
               <div style={{ alignSelf: "center", fontSize: 11, color: colors.muted }}>20:15</div>
               <div style={{ alignSelf: "flex-end", display: "flex", gap: 6 }}>
                 <Thumb html={ZALO_VOUCHER_HTML} width={VOUCHER_W} at={VOUCHER_IN} fit="contain" />
-                <Thumb html={REPORT_HTML} width={REPORT_W} at={REPORT_IN} fit="cover" />
+                <Thumb html={ZALO_REPORT_HTML} width={REPORT_W} at={REPORT_IN} fit="cover" />
               </div>
               <Bubble mine at={TEXT_IN}>
                 Em gửi học phí kèm báo cáo T9 của Gia Hân ạ, chị quét mã giúp em nha
@@ -156,8 +106,7 @@ const ZaloSceneInner = () => {
               </Bubble>
             </div>
           </div>
-        </div>
-      </div>
+      </PhoneFrame>
     </>
   );
 };

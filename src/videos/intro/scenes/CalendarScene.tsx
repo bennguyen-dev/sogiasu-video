@@ -7,8 +7,9 @@ import { AppProviders } from "../../../shared/app/AppProviders";
 import { DEMO_NOW, useDemoNow } from "../../../shared/app/frozen-clock";
 import { calendarKey, calendarLessons } from "../../../shared/demo/calendar-data";
 import { rawRect } from "../../../shared/app/fc-measure-patch";
-import { colors, fontFamily } from "../../../shared/theme";
 import { Sfx } from "../../../shared/audio/sfx";
+import { clamp, ease } from "../../../shared/motion";
+import { colors, fontFamily } from "../../../shared/theme";
 
 const UI_W = 780;
 const UI_X = 40;
@@ -20,8 +21,6 @@ const ZOOM = [78, 108] as const;
 const TAP = 124;
 const ZOOM_SCALE = 2.3;
 
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const ease = Easing.bezier(0.65, 0, 0.35, 1);
 
 type Box = { x: number; y: number; w: number; h: number };
 

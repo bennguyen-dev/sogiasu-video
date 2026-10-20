@@ -3,8 +3,7 @@ import type { StudentReport } from "@/features/report/types";
 import fixtures from "./report-fixtures.json";
 
 // Gia Hân's public report as the demo account serves it, frozen at the evening of 05/10
-// (October) and for September, whose 21/09 lesson carries every kind of attachment;
-// the video lends those files to 05/10 so the latest lesson shows them without leaving the month
+// (October) and for September, whose 21/09 lesson carries every kind of attachment
 const withLocalFiles = (
   month: keyof typeof fixtures,
 ): StudentReport["sessions"] =>
@@ -30,11 +29,7 @@ export const octoberReport: StudentReport = {
   nextMonth: "2026-11",
   isCurrentMonth: true,
   lessons: fixtures["2026-10"].lessons as StudentReport["lessons"],
-  sessions: withLocalFiles("2026-10").map((s) =>
-    s.date === "2026-10-05"
-      ? { ...s, files: withLocalFiles("2026-09").find((x) => x.date === "2026-09-21")!.files }
-      : s,
-  ),
+  sessions: withLocalFiles("2026-10"),
 };
 
 export const septemberReport: StudentReport = {

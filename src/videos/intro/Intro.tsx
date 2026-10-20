@@ -1,5 +1,5 @@
-import { Audio } from "@remotion/media";
-import { interpolate, staticFile, Track } from "remotion";
+import { Track } from "remotion";
+import { MusicBed } from "../../shared/audio/MusicBed";
 import { AnalyticsScene } from "./scenes/AnalyticsScene";
 import { AttendanceScene } from "./scenes/AttendanceScene";
 import { CalendarScene } from "./scenes/CalendarScene";
@@ -13,30 +13,13 @@ import { ReportScene } from "./scenes/ReportScene";
 import { VoucherScene } from "./scenes/VoucherScene";
 import { ZaloScene } from "./scenes/ZaloScene";
 
-const DURATION = 1770;
 // the CTA's impact hit (Cta from + 18); the bed dips just before it
 const IMPACT = 1668;
-// "Happy Upbeat" by DELOSound (Pixabay, no Content ID): 117.845 bpm (librosa fit), first beat at 2.12s
-const MUSIC_RATE = 120 / 117.845;
-const MUSIC_FIRST_BEAT = 64;
-const MUSIC_VOLUME = 0.3;
-
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-
-const musicVolume = (f: number) =>
-  MUSIC_VOLUME *
-  Math.min(interpolate(f, [0, 8], [0, 1], clamp), interpolate(f, [DURATION - 60, DURATION], [1, 0], clamp)) *
-  interpolate(f, [IMPACT - 8, IMPACT - 2, IMPACT + 10, IMPACT + 30], [1, 0.35, 0.35, 1], clamp);
 
 export const Intro = () => (
   <>
-  <Audio
-    name="Music"
-    src={staticFile("music/happy-upbeat-delosound.mp3")}
-    trimBefore={MUSIC_FIRST_BEAT}
-    playbackRate={MUSIC_RATE}
-    volume={musicVolume}
-  />
+  {/* "Happy Upbeat" by DELOSound (Pixabay, no Content ID): 117.845 bpm (librosa fit), first beat at 2.12s */}
+  <MusicBed src="music/happy-upbeat-delosound.mp3" bpm={117.845} targetBpm={120} firstBeatFrame={64} volume={0.3} duckAt={[IMPACT]} />
   <Track name="Scenes">
     <HookScene name="Hook" from={0} durationInFrames={120} style={{ backgroundColor: "#f8fafc" }} />
     <LogoScene name="Logo" from={120} durationInFrames={90} style={{ backgroundColor: "#f8fafc" }} />

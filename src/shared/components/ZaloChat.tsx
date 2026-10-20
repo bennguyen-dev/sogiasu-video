@@ -1,8 +1,7 @@
 import type React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { clamp } from "../motion";
 import { colors } from "../theme";
-
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 export const Bubble = ({
   children,
@@ -46,7 +45,7 @@ export const Bubble = ({
   );
 };
 
-export const ChatHeader = () => (
+export const ChatHeader = ({ name, initials }: { readonly name: string; readonly initials: string }) => (
   <div
     style={{
       display: "flex",
@@ -71,11 +70,11 @@ export const ChatHeader = () => (
         color: "#92400e",
       }}
     >
-      MH
+      {initials}
     </div>
     <div>
       <div style={{ fontSize: 15, fontWeight: 700, color: colors.ink }}>
-        Mẹ Gia Hân
+        {name}
       </div>
       <div style={{ fontSize: 12, color: colors.muted }}>Vừa truy cập</div>
     </div>

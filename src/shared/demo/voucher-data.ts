@@ -45,16 +45,11 @@ export const VOUCHERS = QR_TEMPLATES.map((tpl) => ({
   html: tpl.render(view),
 }));
 
-// the colourful, compact templates the carousel flips through; the grid after it shows all of them
-export const SHOWCASE: QrTemplateId[] = ["summer", "kid", "autumn", "midautumn", "dark"];
-
-// the template the Zalo scene sends (paid voucher from the Sept fees, sent just after Mid-Autumn)
-const ZALO_TEMPLATE: QrTemplateId = "midautumn";
-
-// the "Kèm phiếu báo cáo" image the QR dialog shares next to the voucher: the same fees, with each lesson's notes
+// the "Kèm phiếu báo cáo" image the QR dialog shares next to the voucher: the same fees, with each
+// lesson's notes, its header coloured to match the voucher template it is sent with
 const notes = new Map(fixtures["2026-09"].sessions.map((s) => [s.date, s]));
 
-export const REPORT_HTML = renderReportCard(
+export const reportHtml = (templateId: QrTemplateId) => renderReportCard(
   toReportStudents(
     [
       {
@@ -81,7 +76,7 @@ export const REPORT_HTML = renderReportCard(
     [STUDENT_NAME],
     { [STUDENT_NAME]: STUDENT_NAME },
   )[0],
-  getReportAccent(ZALO_TEMPLATE),
+  getReportAccent(templateId),
 );
 
-export const ZALO_VOUCHER_HTML = VOUCHERS.find((v) => v.id === ZALO_TEMPLATE)!.html;
+export const voucherHtml = (templateId: QrTemplateId) => VOUCHERS.find((v) => v.id === templateId)!.html;

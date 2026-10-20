@@ -1,10 +1,8 @@
-import type React from "react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { QueryClient } from "@tanstack/react-query";
 import {
   continueRender,
   delayRender,
-  Easing,
   Interactive,
   interpolate,
   spring,
@@ -23,15 +21,12 @@ import {
   STUDENT_NOTE,
   type RowState,
 } from "../../../shared/demo/attendance-data";
-import { colors, fontFamily } from "../../../shared/theme";
 import { Sfx, typingCues } from "../../../shared/audio/sfx";
-
-const PHONE_W = 390;
-const PHONE_X = 70;
-const PHONE_Y = 430;
-const BEZEL = 20;
-const S = (1080 - 2 * PHONE_X - 2 * BEZEL) / PHONE_W;
-const VIEWPORT_H = (1920 - PHONE_Y - BEZEL) / S;
+import { Caption } from "../../../shared/components/Caption";
+import { Finger } from "../../../shared/components/Finger";
+import { BEZEL, PHONE_SCALE as S, PHONE_W, PHONE_X, PHONE_Y, PhoneFrame, SCREEN_H as VIEWPORT_H } from "../../../shared/components/Phone";
+import { clamp, ease } from "../../../shared/motion";
+import { colors } from "../../../shared/theme";
 
 const TAP_STATUS = 34;
 const TAP_HOMEWORK = 72;
@@ -41,8 +36,6 @@ const TYPE_START = 146;
 const SCROLL_BACK = 196;
 const HIGHLIGHT = 212;
 
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const ease = Easing.bezier(0.65, 0, 0.35, 1);
 
 const stateAt = (frame: number): RowState => ({
   status: frame >= TAP_STATUS ? "PRESENT" : null,
@@ -102,43 +95,6 @@ const measure = (root: HTMLElement): Targets | null => {
 };
 
 const center = (b: Box) => ({ x: b.x + b.w / 2, y: b.y + b.h / 2 });
-
-const Caption = ({
-  children,
-  from,
-  to,
-}: {
-  readonly children: React.ReactNode;
-  readonly from: number;
-  readonly to: number;
-}) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const enter = spring({ frame: frame - from, fps, config: { damping: 200 } });
-  const exit = interpolate(frame, [to - 8, to], [1, 0], clamp);
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 150,
-        left: 80,
-        right: 80,
-        textAlign: "center",
-        fontFamily,
-        fontSize: 92,
-        fontWeight: 800,
-        letterSpacing: "-0.035em",
-        lineHeight: 1.08,
-        color: colors.ink,
-        opacity: enter * exit,
-        translate: `0px ${(1 - enter) * 40 - (1 - exit) * 30}px`,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
 
 const AttendanceSceneInner = () => {
   useDemoNow(DEMO_NOW);
@@ -253,41 +209,38 @@ const AttendanceSceneInner = () => {
         <Sfx key={f} role="key" at={f} volume={0.6} />
       ))}
       <Sfx role="pop" at={HIGHLIGHT} volume={0.7} />
-      <Caption from={0} to={SCROLL_BACK}>
+      <Caption from={0} to={SCROLL_BACK} fontSize={92} inset={80}>
         Điểm danh
         <br />
         <span style={{ color: colors.emerald }}>1 chạm</span>
       </Caption>
-      <Caption from={SCROLL_BACK + 4} to={10_000}>
+      <Caption from={SCROLL_BACK + 4} to={10_000} fontSize={92} inset={80}>
         Có phép thì
         <br />
         <span style={{ color: "#d97706" }}>không tính tiền</span>
       </Caption>
 
-      <div
-        style={{
-          position: "absolute",
-          left: PHONE_X,
-          top: PHONE_Y,
-          width: 1080 - 2 * PHONE_X,
-          height: 1920,
-          translate: `0px ${(1 - phoneIn) * 900}px`,
-          borderRadius: 88,
-          background: "#0f172a",
-          padding: BEZEL,
-          boxShadow: "0 40px 90px rgba(2,6,24,0.25)",
-        }}
+      <PhoneFrame
+        enter={phoneIn}
+        overlay={
+          targets ? (
+          <div
+            style={{
+              position: "absolute",
+              left: BEZEL + (targets.excused.x - 4) * S,
+              top: BEZEL + (targets.excused.y - 4 - scroll) * S,
+              width: (targets.excused.w + 8) * S,
+              height: (targets.excused.h + 8) * S,
+              borderRadius: 28,
+              border: "8px solid #f59e0b",
+              boxShadow: "0 0 0 14px rgba(245,158,11,0.18)",
+              opacity: ring,
+              scale: String(1.15 - ring * 0.15),
+            }}
+          />
+        ) : null
+        }
       >
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            borderRadius: 70,
-            overflow: "hidden",
-            background: "#f8fafc",
-          }}
-        >
           <div
             style={{
               position: "absolute",
@@ -306,65 +259,10 @@ const AttendanceSceneInner = () => {
               </AppProviders>
             </PhoneViewport>
           </div>
-        </div>
-
-        {targets ? (
-          <div
-            style={{
-              position: "absolute",
-              left: BEZEL + (targets.excused.x - 4) * S,
-              top: BEZEL + (targets.excused.y - 4 - scroll) * S,
-              width: (targets.excused.w + 8) * S,
-              height: (targets.excused.h + 8) * S,
-              borderRadius: 28,
-              border: "8px solid #f59e0b",
-              boxShadow: "0 0 0 14px rgba(245,158,11,0.18)",
-              opacity: ring,
-              scale: String(1.15 - ring * 0.15),
-            }}
-          />
-        ) : null}
-      </div>
+      </PhoneFrame>
 
       {finger ? (
-        <div
-          style={{
-            position: "absolute",
-            ...toScreen(finger),
-            opacity: fingerOpacity * phoneIn,
-            pointerEvents: "none",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              width: 200,
-              height: 200,
-              left: -100,
-              top: -100,
-              borderRadius: "50%",
-              border: "6px solid rgba(5,150,105,0.6)",
-              opacity: interpolate(sinceTap, [0, 16], [1, 0], clamp),
-              scale: String(interpolate(sinceTap, [0, 16], [0.3, 1.1], clamp)),
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              width: 96,
-              height: 96,
-              left: -48,
-              top: -48,
-              borderRadius: "50%",
-              background: "rgba(2,6,24,0.28)",
-              border: "4px solid rgba(255,255,255,0.9)",
-              boxShadow: "0 10px 30px rgba(2,6,24,0.25)",
-              scale: String(
-                interpolate(sinceTap, [0, 4, 10], [0.8, 0.8, 1], clamp),
-              ),
-            }}
-          />
-        </div>
+        <Finger {...toScreen(finger)} opacity={fingerOpacity * phoneIn} since={sinceTap} />
       ) : null}
     </>
   );

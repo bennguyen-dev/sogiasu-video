@@ -1,10 +1,8 @@
-import type React from "react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { QueryClient } from "@tanstack/react-query";
 import {
   continueRender,
   delayRender,
-  Easing,
   Interactive,
   interpolate,
   spring,
@@ -17,8 +15,10 @@ import { AppProviders } from "../../../shared/app/AppProviders";
 import { PhoneViewport } from "../../../shared/app/PhoneViewport";
 import { useDemoNow } from "../../../shared/app/frozen-clock";
 import { lessonActivity, potentialByClass, SEPT_END, septemberClassIds } from "../../../shared/demo/september-data";
-import { colors, fontFamily } from "../../../shared/theme";
 import { Sfx } from "../../../shared/audio/sfx";
+import { Caption } from "../../../shared/components/Caption";
+import { clamp, ease } from "../../../shared/motion";
+import { colors } from "../../../shared/theme";
 
 // a tablet-width viewport: below lg the app lays the KPIs out 2×2, so amounts fit on one line
 const UI_W = 768;
@@ -30,8 +30,6 @@ const VIEW_H = (1920 - UI_Y) / S;
 const COLLECT = [14, 96] as const;
 const PAN = [58, 96] as const;
 
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const ease = Easing.bezier(0.65, 0, 0.35, 1);
 
 const MONTH = "2026-09";
 const potentialKey = analyticsKeys.list({ resource: "revenue", chart: "potential", month: MONTH, classIds: septemberClassIds() });
@@ -40,35 +38,6 @@ const activityKey = analyticsKeys.list({ resource: "lesson", chart: "activity", 
 const seed = (client: QueryClient, progress: number) => {
   client.setQueryData(potentialKey, { success: true, data: potentialByClass(progress) });
   client.setQueryData(activityKey, { success: true, data: lessonActivity() });
-};
-
-const Caption = ({ children, from, to }: { readonly children: React.ReactNode; readonly from: number; readonly to: number }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const enter = spring({ frame: frame - from, fps, config: { damping: 200 } });
-  const exit = interpolate(frame, [to - 8, to], [1, 0], clamp);
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 150,
-        left: 70,
-        right: 70,
-        textAlign: "center",
-        fontFamily,
-        fontSize: 84,
-        fontWeight: 800,
-        letterSpacing: "-0.035em",
-        lineHeight: 1.08,
-        color: colors.ink,
-        opacity: enter * exit,
-        translate: `0px ${(1 - enter) * 40 - (1 - exit) * 30}px`,
-      }}
-    >
-      {children}
-    </div>
-  );
 };
 
 const AnalyticsSceneInner = () => {

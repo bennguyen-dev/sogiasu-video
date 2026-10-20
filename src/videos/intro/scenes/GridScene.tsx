@@ -3,7 +3,6 @@ import { QueryClient } from "@tanstack/react-query";
 import {
   continueRender,
   delayRender,
-  Easing,
   Interactive,
   interpolate,
   spring,
@@ -14,8 +13,9 @@ import MonthlyAttendanceGrid from "@/features/attendance/components/MonthlyAtten
 import { AppProviders } from "../../../shared/app/AppProviders";
 import { useDemoNow } from "../../../shared/app/frozen-clock";
 import { SEPT_END } from "../../../shared/demo/september-data";
-import { colors, fontFamily } from "../../../shared/theme";
 import { Sfx } from "../../../shared/audio/sfx";
+import { clamp, ease } from "../../../shared/motion";
+import { colors, fontFamily } from "../../../shared/theme";
 
 const UI_W = 920;
 const UI_X = 40;
@@ -29,8 +29,6 @@ const MARK_ABSENT = 90;
 const SOLVED = 108;
 
 
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const ease = Easing.bezier(0.65, 0, 0.35, 1);
 
 type Box = { x: number; y: number; w: number; h: number };
 type Targets = { excused: Box; absent: Box };

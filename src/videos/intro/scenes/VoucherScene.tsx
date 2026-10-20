@@ -1,6 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import {
-  Easing,
   Interactive,
   interpolate,
   spring,
@@ -9,9 +8,11 @@ import {
 } from "remotion";
 import paymentVi from "@/features/payment/i18n/vi.json";
 import { PLAN_ENTITLEMENTS } from "@/features/billing/lib/plan-entitlements";
-import { colors, fontFamily } from "../../../shared/theme";
-import { SHOWCASE, VOUCHER_W, VOUCHERS } from "../../../shared/demo/voucher-data";
 import { Sfx } from "../../../shared/audio/sfx";
+import { VOUCHER_W, VOUCHERS } from "../../../shared/demo/voucher-data";
+import { clamp, ease } from "../../../shared/motion";
+import { colors, fontFamily } from "../../../shared/theme";
+import { SHOWCASE } from "../data";
 
 // the free plan's templates, straight from the app, so the video never implies all ten are free
 const FREE_TEMPLATES = new Set<string>(PLAN_ENTITLEMENTS.FREE.qrTemplateIds);
@@ -29,8 +30,6 @@ const CAROUSEL_MAX_H = 1200;
 const GRID_SCALE = 0.36;
 const GRID_COLS = 5;
 
-const ease = Easing.bezier(0.65, 0, 0.35, 1);
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 const VoucherSceneInner = () => {
   const frame = useCurrentFrame();
