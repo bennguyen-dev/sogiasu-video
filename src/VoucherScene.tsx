@@ -10,16 +10,19 @@ import {
 import paymentVi from "@/features/payment/i18n/vi.json";
 import { PLAN_ENTITLEMENTS } from "@/features/billing/lib/plan-entitlements";
 import { colors, fontFamily } from "./theme";
-import { VOUCHER_W, VOUCHERS } from "./voucher-data";
+import { SHOWCASE, VOUCHER_W, VOUCHERS } from "./voucher-data";
 import { Sfx } from "./sfx";
 
 // the free plan's templates, straight from the app, so the video never implies all ten are free
 const FREE_TEMPLATES = new Set<string>(PLAN_ENTITLEMENTS.FREE.qrTemplateIds);
 
+// carousel slot → index in VOUCHERS
+const SLOTS = SHOWCASE.map((id) => VOUCHERS.findIndex((v) => v.id === id));
+
 const INTRO = 15;
-const STEP = 18;
-const MOVE = 8;
-const GRID_START = INTRO + STEP * VOUCHERS.length;
+const STEP = 14;
+const MOVE = 7;
+const GRID_START = INTRO + STEP * SLOTS.length;
 const CAROUSEL_SCALE = 1.55;
 // room between the headline and the template chip; tall templates shrink to fit it
 const CAROUSEL_MAX_H = 1200;
@@ -41,9 +44,9 @@ const VoucherSceneInner = () => {
 
   // step-and-hold: slide for MOVE frames, rest on each template for the remainder
   const t = Math.max(0, frame - INTRO);
-  const step = Math.min(Math.floor(t / STEP), VOUCHERS.length - 1);
-  const pos = frame >= GRID_START ? VOUCHERS.length - 1 : step - 1 + ease(Math.min(1, (t - step * STEP) / MOVE));
-  const active = Math.round(Math.max(0, pos));
+  const step = Math.min(Math.floor(t / STEP), SLOTS.length - 1);
+  const pos = frame >= GRID_START ? SLOTS.length - 1 : step - 1 + ease(Math.min(1, (t - step * STEP) / MOVE));
+  const active = SLOTS[Math.round(Math.max(0, pos))];
   const titleIn = spring({ frame, fps, config: { damping: 200 } });
   const toGrid = (i: number) =>
     interpolate(frame, [GRID_START + i * 2, GRID_START + i * 2 + 24], [0, 1], {
@@ -58,8 +61,8 @@ const VoucherSceneInner = () => {
 
   return (
     <>
-      {VOUCHERS.map((v, i) => (
-        <Sfx key={v.id} role="tick" at={INTRO + i * STEP} volume={0.5} />
+      {SLOTS.map((v, slot) => (
+        <Sfx key={v} role="tick" at={INTRO + slot * STEP} volume={0.5} />
       ))}
       <Sfx role="whoosh" at={GRID_START + 14} volume={0.8} />
       <div
@@ -90,7 +93,9 @@ const VoucherSceneInner = () => {
       </div>
 
       {VOUCHERS.map((v, i) => {
-        const d = i - pos;
+        const slot = SLOTS.indexOf(i);
+        // templates outside the carousel wait unseen at its centre and only join the grid
+        const d = slot === -1 ? 0 : slot - pos;
         const q = toGrid(i);
         const col = i % GRID_COLS;
         const row = Math.floor(i / GRID_COLS);
@@ -98,7 +103,7 @@ const VoucherSceneInner = () => {
           x: d * 640,
           y: 1000,
           s: Math.min(CAROUSEL_SCALE, CAROUSEL_MAX_H / (heights[i] || 1)) * (1 - Math.min(Math.abs(d), 2) * 0.2),
-          o: 1 - Math.min(Math.abs(d), 1.6) * 0.55,
+          o: slot === -1 ? 0 : 1 - Math.min(Math.abs(d), 1.6) * 0.55,
         };
         const grid = {
           x: (col - (GRID_COLS - 1) / 2) * 186,
@@ -122,7 +127,7 @@ const VoucherSceneInner = () => {
               scale: String(carousel.s + (grid.s - carousel.s) * q),
               opacity:
                 Math.max(0, carousel.o + (grid.o - carousel.o) * q) * titleIn,
-              zIndex: Math.round(100 - Math.abs(d) * 10),
+              zIndex: slot === -1 ? 0 : Math.round(100 - Math.abs(d) * 10),
               filter: `drop-shadow(0 ${30 - q * 20}px ${60 - q * 40}px rgba(2,6,24,0.18))`,
               ["--font-inter" as string]: fontFamily,
             }}

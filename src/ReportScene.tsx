@@ -14,17 +14,13 @@ import {
 } from "remotion";
 import PublicReport from "@/features/report/components/PublicReport";
 import ReportLayout from "@/shared/components/layouts/report/layout";
-import { sessionAnchor } from "@/features/report/lib/session-anchor";
 import { AppProviders } from "./app-ui/AppProviders";
 import { PhoneViewport } from "./app-ui/PhoneViewport";
 import { DEMO_NOW, useDemoNow } from "./app-ui/frozen-clock";
-import {
-  octoberReport,
-  septemberReport,
-  SHARE_MESSAGE,
-} from "./app-ui/report-data";
+import { octoberReport, SHARE_MESSAGE } from "./app-ui/report-data";
 import { colors, fontFamily } from "./theme";
 import { Sfx } from "./sfx";
+import { Bubble, ChatHeader } from "./zalo-chat";
 
 const PHONE_W = 390;
 const PHONE_X = 70;
@@ -39,20 +35,13 @@ const REPLY_IN = 40;
 const TAP_LINK = 60;
 const OPEN = [66, 84] as const;
 const TO_LATEST = [96, 122] as const;
-const TO_PICKER = [150, 164] as const;
-const TAP_PREV = 172;
-const TAP_DAY = 194;
-const TO_DAY = [200, 226] as const;
+const TO_FILES = 140;
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ease = Easing.bezier(0.65, 0, 0.35, 1);
 
-const SEPT_TARGET = septemberReport.sessions.find(
-  (s) => s.date === "2026-09-21",
-)!.lessonId;
-
 type Pt = { x: number; y: number };
-type Targets = { link: Pt; latest: number; prev: Pt; day: Pt; dayCard: number };
+type Targets = { link: Pt; latest: number };
 
 // centre of el, in the css px of the 390-wide layer that contains it
 const pointIn = (layer: HTMLElement, el: Element | null): Pt | null => {
@@ -71,46 +60,6 @@ const topIn = (layer: HTMLElement, el: Element | null) => {
   return (el.getBoundingClientRect().top - r.top) / (r.width / PHONE_W);
 };
 
-const Bubble = ({
-  children,
-  mine,
-  at,
-}: {
-  readonly children: React.ReactNode;
-  readonly mine?: boolean;
-  readonly at: number;
-}) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const p = spring({
-    frame: frame - at,
-    fps,
-    config: { damping: 14, mass: 0.6 },
-  });
-
-  return (
-    <div
-      style={{
-        alignSelf: mine ? "flex-end" : "flex-start",
-        maxWidth: "82%",
-        padding: "10px 13px",
-        borderRadius: mine ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-        background: mine ? "#dbeafe" : "white",
-        color: colors.ink,
-        fontSize: 14,
-        lineHeight: 1.45,
-        whiteSpace: "pre-line",
-        boxShadow: "0 1px 2px rgba(2,6,24,0.08)",
-        opacity: interpolate(p, [0, 0.3], [0, 1], clamp),
-        scale: String(0.6 + p * 0.4),
-        transformOrigin: mine ? "bottom right" : "bottom left",
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
 const Chat = ({
   linkRef,
 }: {
@@ -126,39 +75,7 @@ const Chat = ({
       fontFamily,
     }}
   >
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        padding: "14px 16px",
-        background: "white",
-        borderBottom: "1px solid #e2e8f0",
-      }}
-    >
-      <div
-        style={{
-          width: 36,
-          height: 36,
-          borderRadius: "50%",
-          background: "#fde68a",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 14,
-          fontWeight: 700,
-          color: "#92400e",
-        }}
-      >
-        MH
-      </div>
-      <div>
-        <div style={{ fontSize: 15, fontWeight: 700, color: colors.ink }}>
-          Mẹ Gia Hân
-        </div>
-        <div style={{ fontSize: 12, color: colors.muted }}>Vừa truy cập</div>
-      </div>
-    </div>
+    <ChatHeader />
     <div
       style={{
         display: "flex",
@@ -191,7 +108,7 @@ const Chat = ({
           ),
         )}
       </Bubble>
-      <Bubble at={REPLY_IN}>Dạ em cảm ơn cô ạ, để em lưu lại link.</Bubble>
+      <Bubble at={REPLY_IN}>Ok cô, chị lưu link rồi nha 👍</Bubble>
     </div>
   </div>
 );
@@ -321,7 +238,6 @@ const ReportSceneInner = () => {
   const chatRef = useRef<HTMLDivElement>(null);
   const linkRef = useRef<HTMLSpanElement>(null);
   const octRef = useRef<HTMLDivElement>(null);
-  const sepRef = useRef<HTMLDivElement>(null);
   const [t, setT] = useState<Targets | null>(null);
   const [client] = useState(
     () =>
@@ -330,7 +246,7 @@ const ReportSceneInner = () => {
       }),
   );
 
-  // both months stay mounted, so every target is measured once, after layout and images settle
+  // every target is measured once, after layout and images settle
   useEffect(() => {
     const handle = delayRender("measure report targets");
     let last = "";
@@ -338,25 +254,12 @@ const ReportSceneInner = () => {
     let raf = 0;
     const tick = () => {
       const oct = octRef.current;
-      const sep = sepRef.current;
       const chat = chatRef.current;
       const next =
-        oct && sep && chat
+        oct && chat
           ? {
               link: pointIn(chat, linkRef.current),
               latest: topIn(oct, oct.querySelector('[id^="buoi-"]')),
-              prev: pointIn(
-                oct,
-                oct.querySelector('[aria-label="Tháng trước"]'),
-              ),
-              day: pointIn(
-                sep,
-                sep.querySelector(`a[href="#${sessionAnchor(SEPT_TARGET)}"]`),
-              ),
-              dayCard: topIn(
-                sep,
-                sep.querySelector(`#${sessionAnchor(SEPT_TARGET)}`),
-              ),
             }
           : null;
       const ok = next && Object.values(next).every((v) => v !== null);
@@ -378,26 +281,17 @@ const ReportSceneInner = () => {
     ...clamp,
     easing: ease,
   });
-  const viewH = SCREEN_H - BAR_H;
   const latestScroll = t ? Math.max(0, t.latest - 12) : 0;
-  const pickerScroll = t ? Math.max(0, t.prev.y - viewH * 0.35) : 0;
+  // land on 05/10, then drift on through its photo and files
   const octScroll = interpolate(
     frame,
-    [TO_LATEST[0], TO_LATEST[1], TO_PICKER[0], TO_PICKER[1]],
-    [0, latestScroll, latestScroll, pickerScroll],
+    [TO_LATEST[0], TO_LATEST[1], TO_FILES, TO_FILES + 70],
+    [0, latestScroll, latestScroll, latestScroll + 520],
     {
       ...clamp,
       easing: ease,
     },
   );
-  const showSep = frame >= TAP_PREV + 4;
-  const sepStart = pickerScroll;
-  const dayScroll = t ? Math.max(0, t.dayCard - 12) : 0;
-  // after landing on 21/09, drift on through the photo and the next-lesson files
-  const sepScroll = interpolate(frame, [TO_DAY[0], TO_DAY[1], TO_DAY[1] + 8, 300], [sepStart, dayScroll, dayScroll, dayScroll + 520], {
-    ...clamp,
-    easing: ease,
-  });
 
   const toScreen = (p: Pt, scroll: number, inReport: boolean) => ({
     left: PHONE_X + BEZEL + p.x * S,
@@ -410,16 +304,6 @@ const ReportSceneInner = () => {
           ...toScreen(t.link, 0, false),
           show: [TAP_LINK - 18, OPEN[0] + 4],
         },
-        {
-          at: TAP_PREV,
-          ...toScreen(t.prev, pickerScroll, true),
-          show: [TAP_PREV - 14, TAP_PREV + 10],
-        },
-        {
-          at: TAP_DAY,
-          ...toScreen(t.day, sepStart, true),
-          show: [TAP_DAY - 14, TAP_DAY + 10],
-        },
       ]
     : [];
 
@@ -429,19 +313,18 @@ const ReportSceneInner = () => {
       <Sfx role="pop" at={REPLY_IN} volume={0.7} />
       <Sfx role="click-soft" at={TAP_LINK} volume={0.8} />
       <Sfx role="open" at={(OPEN[0] + OPEN[1]) / 2} volume={0.8} />
-      <Sfx role="click-soft" at={TAP_PREV} volume={0.8} />
-      <Sfx role="click-soft" at={TAP_DAY} volume={0.8} />
+      <Sfx role="whoosh" at={(TO_LATEST[0] + TO_LATEST[1]) / 2} volume={0.5} />
       <Caption from={0} to={OPEN[1]}>
         Gửi link cho
         <br />
         <span style={{ color: colors.sky }}>phụ huynh qua Zalo</span>
       </Caption>
-      <Caption from={OPEN[1]} to={TO_DAY[0]}>
+      <Caption from={OPEN[1]} to={TO_FILES}>
         Phụ huynh mở là thấy
         <br />
         <span style={{ color: colors.emerald }}>con học gì</span>
       </Caption>
-      <Caption from={TO_DAY[0]} to={10_000}>
+      <Caption from={TO_FILES} to={10_000}>
         Kèm cả bài tập,
         <br />
         <span style={{ color: colors.emerald }}>video, tài liệu</span>
@@ -522,25 +405,10 @@ const ReportSceneInner = () => {
                       left: 0,
                       top: -octScroll,
                       width: PHONE_W,
-                      opacity: showSep ? 0 : 1,
                     }}
                   >
                     <ReportLayout>
                       <PublicReport report={octoberReport} />
-                    </ReportLayout>
-                  </div>
-                  <div
-                    ref={sepRef}
-                    style={{
-                      position: "absolute",
-                      left: 0,
-                      top: -sepScroll,
-                      width: PHONE_W,
-                      opacity: showSep ? 1 : 0,
-                    }}
-                  >
-                    <ReportLayout>
-                      <PublicReport report={septemberReport} />
                     </ReportLayout>
                   </div>
                 </AppProviders>

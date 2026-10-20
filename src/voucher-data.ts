@@ -2,8 +2,14 @@ import {
   buildTransferReference,
   ddmm,
 } from "@/features/payment/lib/transfer-ref";
-import { QR_TEMPLATES } from "@/features/payment/lib/voucher-v2/registry";
+import { QR_TEMPLATES, type QrTemplateId } from "@/features/payment/lib/voucher-v2/registry";
 import { toVoucherView } from "@/features/payment/lib/voucher-v2/to-view";
+import {
+  getReportAccent,
+  renderReportCard,
+  toReportStudents,
+} from "@/features/payment/lib/report-table";
+import fixtures from "./app-ui/report-fixtures.json";
 import { giaHanFees } from "./app-ui/september-data";
 
 // Gia Hân's September fees (same data as the fee scene), with an obviously-fake bank number
@@ -38,3 +44,44 @@ export const VOUCHERS = QR_TEMPLATES.map((tpl) => ({
   id: tpl.id,
   html: tpl.render(view),
 }));
+
+// the colourful, compact templates the carousel flips through; the grid after it shows all of them
+export const SHOWCASE: QrTemplateId[] = ["summer", "kid", "autumn", "midautumn", "dark"];
+
+// the template the Zalo scene sends (paid voucher from the Sept fees, sent just after Mid-Autumn)
+const ZALO_TEMPLATE: QrTemplateId = "midautumn";
+
+// the "Kèm phiếu báo cáo" image the QR dialog shares next to the voucher: the same fees, with each lesson's notes
+const notes = new Map(fixtures["2026-09"].sessions.map((s) => [s.date, s]));
+
+export const REPORT_HTML = renderReportCard(
+  toReportStudents(
+    [
+      {
+        studentId: STUDENT_NAME,
+        items: giaHanFees().sessions.map((f) => {
+          const n = notes.get(f.date);
+          return {
+            id: f.id,
+            amount: f.amount,
+            overrideReason: f.overrideReason,
+            date: f.date,
+            startTime: f.startTime,
+            endTime: f.endTime,
+            content: n?.content ?? null,
+            homework: n?.homework ?? null,
+            generalNote: n?.generalNote ?? null,
+            studentNote: n?.studentNote ?? null,
+            homeworkPercent: n?.homeworkPercent ?? null,
+            score: n?.score ?? null,
+          };
+        }),
+      },
+    ],
+    [STUDENT_NAME],
+    { [STUDENT_NAME]: STUDENT_NAME },
+  )[0],
+  getReportAccent(ZALO_TEMPLATE),
+);
+
+export const ZALO_VOUCHER_HTML = VOUCHERS.find((v) => v.id === ZALO_TEMPLATE)!.html;

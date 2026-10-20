@@ -11,10 +11,11 @@ import { Intro } from "./Intro";
 import { LogoScene } from "./LogoScene";
 import { ReportScene } from "./ReportScene";
 import { VoucherScene } from "./VoucherScene";
+import { ZaloScene } from "./ZaloScene";
 
 export const RemotionRoot = () => (
   <>
-    <Composition id="Intro" component={Intro} width={1080} height={1920} fps={30} durationInFrames={1761} />
+    <Composition id="Intro" component={Intro} width={1080} height={1920} fps={30} durationInFrames={1770} />
     <Folder name="Scenes">
       <Composition
         id="Hook"
@@ -58,7 +59,7 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={300}
+        durationInFrames={210}
         defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
       />
       <Composition
@@ -67,7 +68,7 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={36}
+        durationInFrames={45}
         defaultProps={{ style: { backgroundColor: "#f8fafc" } }}
       />
       <Composition
@@ -112,7 +113,16 @@ export const RemotionRoot = () => (
         width={1080}
         height={1920}
         fps={30}
-        durationInFrames={270}
+        durationInFrames={150}
+        defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
+      />
+      <Composition
+        id="Zalo"
+        component={ZaloScene}
+        width={1080}
+        height={1920}
+        fps={30}
+        durationInFrames={210}
         defaultProps={{ style: { backgroundColor: "#f1f5f9" } }}
       />
     </Folder>

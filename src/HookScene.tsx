@@ -13,15 +13,16 @@ type ClutterItem = {
   delay: number;
 };
 
-// the mess a tutor scrolls through at month end; positions keep the centre clear for the headline
+// the mess a tutor scrolls through at month end; positions keep the centre clear for the headline.
+// negative delays are already settled on frame 0, so the first frame (the video thumbnail) is never blank
 const CLUTTER: ClutterItem[] = [
-  { kind: "note", text: "T9: Bảo 8 buổi\n× 120k = ???", x: 90, y: 170, rotate: -8, delay: 4 },
-  { kind: "chat", sender: "Mẹ bé Mít", text: "Cô ơi em chuyển khoản rồi nha", x: 560, y: 230, rotate: 4, delay: 10 },
-  { kind: "chat", sender: "Chị Lan", text: "STK của cô là gì ạ?", x: 620, y: 520, rotate: -3, delay: 16 },
-  { kind: "note", text: "Gia Hân nghỉ\n19/9 hay 28/9?", x: 70, y: 1300, rotate: 6, delay: 22 },
-  { kind: "chat", sender: "Anh Tuấn", text: "Tháng này con học mấy buổi ạ?", x: 520, y: 1380, rotate: 3, delay: 28 },
+  { kind: "note", text: "T9: Bảo 8 buổi\n× 120k = ???", x: 90, y: 170, rotate: -8, delay: -40 },
+  { kind: "chat", sender: "Mẹ bé Mít", text: "Cô ơi chị chuyển khoản rồi nha", x: 560, y: 230, rotate: 4, delay: -34 },
+  { kind: "chat", sender: "Chị Lan", text: "Cô gửi chị STK nhé", x: 620, y: 520, rotate: -3, delay: -28 },
+  { kind: "note", text: "Gia Hân nghỉ\n19/9 hay 28/9?", x: 70, y: 1300, rotate: 6, delay: -22 },
+  { kind: "chat", sender: "Anh Tuấn", text: "Tháng này con học mấy buổi vậy cô?", x: 520, y: 1380, rotate: 3, delay: -16 },
   { kind: "note", text: "1.440.000?\n1.320.000??", x: 600, y: 1640, rotate: -7, delay: 34 },
-  { kind: "note", text: "Thứ 3 - 18h\nBảo hay Bơ?", x: 110, y: 1610, rotate: -4, delay: 40 },
+  { kind: "note", text: "Thứ 3 - 18h\nBảo hay Bơ?", x: 110, y: 1610, rotate: -4, delay: 46 },
 ];
 
 const COLLAPSE_START = 96;
@@ -127,12 +128,10 @@ const HookSceneInner = () => {
 
   return (
     <>
-      {CLUTTER.map((item) => (
+      {CLUTTER.filter((item) => item.delay >= 0).map((item) => (
         <Sfx key={item.delay} role={item.kind === "chat" ? "pop" : "drop"} at={item.delay} volume={0.6} />
       ))}
-      <Sfx role="impact-soft" at={6} volume={0.8} />
-      <Sfx role="impact-soft" at={30} volume={0.8} />
-      <Sfx role="impact-soft" at={58} volume={1} />
+      <Sfx role="impact-soft" at={20} volume={1} />
       <Sfx role="whoosh" at={COLLAPSE_START + 16} volume={0.8} />
       <div
         style={{
@@ -166,9 +165,9 @@ const HookSceneInner = () => {
           })),
         }}
       >
-        <HeadlineLine at={6}>Cuối tháng.</HeadlineLine>
-        <HeadlineLine at={30}>{"Ai đóng\nhọc phí rồi?"}</HeadlineLine>
-        <HeadlineLine at={58} color={colors.rose} shake>
+        <HeadlineLine at={-40}>Cuối tháng.</HeadlineLine>
+        <HeadlineLine at={-24}>{"Ai đóng\nhọc phí rồi?"}</HeadlineLine>
+        <HeadlineLine at={20} color={colors.rose} shake>
           Ai chưa?
         </HeadlineLine>
       </div>
