@@ -8,6 +8,8 @@
     "dev": "remotion studio",
     "render": "node scripts/render.mjs Intro intro-sfx",
     "render:music": "node scripts/render.mjs IntroWithMusic intro-music",
+    "render:create-class": "node scripts/render.mjs CreateClass create-class-sfx",
+    "render:create-class:music": "node scripts/render.mjs CreateClassWithMusic create-class-music",
     "typecheck": "tsc"
   },
   "keywords": [],
