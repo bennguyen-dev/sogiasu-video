@@ -11,6 +11,7 @@ import paymentVi from "@/features/payment/i18n/vi.json";
 import { PLAN_ENTITLEMENTS } from "@/features/billing/lib/plan-entitlements";
 import { colors, fontFamily } from "./theme";
 import { VOUCHER_W, VOUCHERS } from "./voucher-data";
+import { Sfx } from "./sfx";
 
 // the free plan's templates, straight from the app, so the video never implies all ten are free
 const FREE_TEMPLATES = new Set<string>(PLAN_ENTITLEMENTS.FREE.qrTemplateIds);
@@ -57,6 +58,10 @@ const VoucherSceneInner = () => {
 
   return (
     <>
+      {VOUCHERS.map((v, i) => (
+        <Sfx key={v.id} role="tick" at={INTRO + i * STEP} volume={0.5} />
+      ))}
+      <Sfx role="whoosh" at={GRID_START + 14} volume={0.8} />
       <div
         style={{
           position: "absolute",

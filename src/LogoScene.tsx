@@ -1,6 +1,7 @@
 import type React from "react";
 import { Easing, Img, Interactive, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 const Rise = ({ children, at, style }: { readonly children: React.ReactNode; readonly at: number; readonly style?: React.CSSProperties }) => {
   const frame = useCurrentFrame();
@@ -22,6 +23,8 @@ const LogoSceneInner = () => {
 
   return (
     <>
+      <Sfx role="whoosh" at={8} volume={0.8} />
+      <Sfx role="impact-soft" at={10} volume={0.9} />
       <div
         style={{
           position: "absolute",

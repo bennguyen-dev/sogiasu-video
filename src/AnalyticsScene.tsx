@@ -18,6 +18,7 @@ import { PhoneViewport } from "./app-ui/PhoneViewport";
 import { useDemoNow } from "./app-ui/frozen-clock";
 import { lessonActivity, potentialByClass, SEPT_END, septemberClassIds } from "./app-ui/september-data";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 // a tablet-width viewport: below lg the app lays the KPIs out 2×2, so amounts fit on one line
 const UI_W = 768;
@@ -115,6 +116,8 @@ const AnalyticsSceneInner = () => {
 
   return (
     <>
+      <Sfx role="whoosh" at={(PAN[0] + PAN[1]) / 2} volume={0.7} />
+      <Sfx role="confirm" at={COLLECT[1]} />
       <div style={{ position: "absolute", inset: 0, overflow: "clip" }}>
         <div
           style={{

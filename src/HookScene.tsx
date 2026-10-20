@@ -1,6 +1,7 @@
 import type React from "react";
 import { Easing, Interactive, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 type ClutterItem = {
   kind: "note" | "chat";
@@ -126,6 +127,13 @@ const HookSceneInner = () => {
 
   return (
     <>
+      {CLUTTER.map((item) => (
+        <Sfx key={item.delay} role={item.kind === "chat" ? "pop" : "drop"} at={item.delay} volume={0.6} />
+      ))}
+      <Sfx role="impact-soft" at={6} volume={0.8} />
+      <Sfx role="impact-soft" at={30} volume={0.8} />
+      <Sfx role="impact-soft" at={58} volume={1} />
+      <Sfx role="whoosh" at={COLLAPSE_START + 16} volume={0.8} />
       <div
         style={{
           position: "absolute",

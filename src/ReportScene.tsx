@@ -24,6 +24,7 @@ import {
   SHARE_MESSAGE,
 } from "./app-ui/report-data";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 const PHONE_W = 390;
 const PHONE_X = 70;
@@ -424,6 +425,12 @@ const ReportSceneInner = () => {
 
   return (
     <>
+      <Sfx role="pop" at={MSG_IN} volume={0.7} />
+      <Sfx role="pop" at={REPLY_IN} volume={0.7} />
+      <Sfx role="click-soft" at={TAP_LINK} volume={0.8} />
+      <Sfx role="open" at={(OPEN[0] + OPEN[1]) / 2} volume={0.8} />
+      <Sfx role="click-soft" at={TAP_PREV} volume={0.8} />
+      <Sfx role="click-soft" at={TAP_DAY} volume={0.8} />
       <Caption from={0} to={OPEN[1]}>
         Gửi link cho
         <br />

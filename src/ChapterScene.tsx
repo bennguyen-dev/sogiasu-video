@@ -1,5 +1,6 @@
 import { Interactive, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 // echoes the hook's first line, now as the turn into the month-end half of the video
 const ChapterSceneInner = () => {
@@ -11,6 +12,7 @@ const ChapterSceneInner = () => {
 
   return (
     <>
+      <Sfx role="impact-soft" at={4} volume={0.9} />
       <div
         style={{
           position: "absolute",

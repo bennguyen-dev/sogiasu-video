@@ -24,6 +24,7 @@ import {
   type RowState,
 } from "./app-ui/attendance-data";
 import { colors, fontFamily } from "./theme";
+import { Sfx, typingCues } from "./sfx";
 
 const PHONE_W = 390;
 const PHONE_X = 70;
@@ -244,6 +245,14 @@ const AttendanceSceneInner = () => {
 
   return (
     <>
+      <Sfx role="click-soft" at={TAP_STATUS} volume={0.8} />
+      <Sfx role="click-soft" at={TAP_HOMEWORK} volume={0.8} />
+      <Sfx role="click-soft" at={TAP_SCORE} volume={0.8} />
+      <Sfx role="click-soft" at={TAP_NOTE} volume={0.8} />
+      {typingCues(TYPE_START, TYPE_START + Math.ceil(STUDENT_NOTE.length / 1.5), STUDENT_NOTE.length).map((f) => (
+        <Sfx key={f} role="key" at={f} volume={0.6} />
+      ))}
+      <Sfx role="pop" at={HIGHLIGHT} volume={0.7} />
       <Caption from={0} to={SCROLL_BACK}>
         Điểm danh
         <br />

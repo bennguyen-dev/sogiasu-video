@@ -8,6 +8,7 @@ import { DEMO_NOW, useDemoNow } from "./app-ui/frozen-clock";
 import { calendarKey, calendarLessons } from "./app-ui/calendar-data";
 import { rawRect } from "./app-ui/fc-measure-patch";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 const UI_W = 780;
 const UI_X = 40;
@@ -105,6 +106,9 @@ const CalendarSceneInner = () => {
 
   return (
     <>
+      <Sfx role="whoosh" at={REVEAL[0] + 4} volume={0.6} />
+      <Sfx role="whoosh" at={(ZOOM[0] + ZOOM[1]) / 2} volume={0.8} />
+      <Sfx role="click-soft" at={TAP} volume={0.8} />
       <div
         style={{
           position: "absolute",

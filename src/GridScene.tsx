@@ -15,6 +15,7 @@ import { AppProviders } from "./app-ui/AppProviders";
 import { useDemoNow } from "./app-ui/frozen-clock";
 import { SEPT_END } from "./app-ui/september-data";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 const UI_W = 920;
 const UI_X = 40;
@@ -165,6 +166,11 @@ const GridSceneInner = () => {
 
   return (
     <>
+      <Sfx role="drop" at={NOTE_IN} volume={0.7} />
+      <Sfx role="whoosh" at={(ZOOM[0] + ZOOM[1]) / 2} volume={0.8} />
+      <Sfx role="pop" at={MARK_EXCUSED} volume={0.7} />
+      <Sfx role="pop" at={MARK_ABSENT} volume={0.7} />
+      <Sfx role="confirm" at={SOLVED} />
       <div style={{ position: "absolute", inset: 0, overflow: "clip" }}>
         <div style={{ position: "absolute", inset: 0, translate: `${shift.x}px ${shift.y}px`, scale: String(scale), transformOrigin: `${focus.x}px ${focus.y}px` }}>
           <div

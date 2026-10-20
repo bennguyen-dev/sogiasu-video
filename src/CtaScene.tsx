@@ -1,6 +1,7 @@
 import type React from "react";
 import { Img, Interactive, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 const Pop = ({ children, at, style }: { readonly children: React.ReactNode; readonly at: number; readonly style?: React.CSSProperties }) => {
   const frame = useCurrentFrame();
@@ -35,6 +36,9 @@ const CtaSceneInner = () => {
 
   return (
     <>
+      <Sfx role="pop" at={2} volume={0.7} />
+      <Sfx role="impact" at={18} />
+      <Sfx role="pop" at={38} volume={0.7} />
       <div style={{ position: "absolute", inset: 0, background: colors.ink }}>
         <div
           style={{

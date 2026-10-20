@@ -17,6 +17,7 @@ import { PhoneViewport } from "./app-ui/PhoneViewport";
 import { useDemoNow } from "./app-ui/frozen-clock";
 import { SEPT_END } from "./app-ui/september-data";
 import { colors, fontFamily } from "./theme";
+import { Sfx } from "./sfx";
 
 const PHONE_W = 390;
 const PHONE_X = 70;
@@ -127,6 +128,9 @@ const FeeSceneInner = () => {
 
   return (
     <>
+      <Sfx role="pop" at={RING_TOTAL} volume={0.7} />
+      <Sfx role="pop" at={RING_CARD} volume={0.7} />
+      <Sfx role="click-firm" at={TAP_VOUCHER} />
       <Caption from={0} to={TO_CARD[1]}>
         Học phí
         <br />

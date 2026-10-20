@@ -16,6 +16,7 @@
   "dependencies": {
     "@remotion/cli": "^4.0.536",
     "@remotion/google-fonts": "^4.0.536",
+    "@remotion/media": "4.0.536",
     "@remotion/tailwind-v4": "^4.0.536",
     "@tailwindcss/postcss": "^4.3.1",
     "react": "^19.2.7",
