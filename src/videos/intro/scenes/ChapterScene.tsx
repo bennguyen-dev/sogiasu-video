@@ -1,6 +1,6 @@
 import { Interactive, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
 
 // echoes the hook's first line, now as the turn into the month-end half of the video
 const ChapterSceneInner = () => {

@@ -12,9 +12,9 @@ import {
   useVideoConfig,
 } from "remotion";
 import LessonAttendanceCard from "@/features/lesson/components/LessonDetailContent/LessonAttendanceCard";
-import { AppProviders } from "./app-ui/AppProviders";
-import { PhoneViewport } from "./app-ui/PhoneViewport";
-import { DEMO_NOW, useDemoNow } from "./app-ui/frozen-clock";
+import { AppProviders } from "../../../shared/app/AppProviders";
+import { PhoneViewport } from "../../../shared/app/PhoneViewport";
+import { DEMO_NOW, useDemoNow } from "../../../shared/app/frozen-clock";
 import {
   filesKey,
   lesson,
@@ -22,9 +22,9 @@ import {
   rosterKey,
   STUDENT_NOTE,
   type RowState,
-} from "./app-ui/attendance-data";
-import { colors, fontFamily } from "./theme";
-import { Sfx, typingCues } from "./sfx";
+} from "../../../shared/demo/attendance-data";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx, typingCues } from "../../../shared/audio/sfx";
 
 const PHONE_W = 390;
 const PHONE_X = 70;

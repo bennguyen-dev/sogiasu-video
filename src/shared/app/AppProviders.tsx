@@ -6,8 +6,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { SessionProvider } from "next-auth/react";
 import { messages } from "@/shared/i18n/messages.generated";
 import { fontFamily } from "../theme";
-import { calendarLessons } from "./calendar-data";
-import { classesList, pendingFeesResponse, septemberGrid } from "./september-data";
+import { calendarLessons } from "../demo/calendar-data";
+import { classesList, pendingFeesResponse, septemberGrid } from "../demo/september-data";
 import "./app.css";
 
 // a component never reaches the network in a render: unknown requests get an empty payload and are logged

@@ -11,11 +11,11 @@ import {
   useVideoConfig,
 } from "remotion";
 import MonthlyAttendanceGrid from "@/features/attendance/components/MonthlyAttendanceGrid";
-import { AppProviders } from "./app-ui/AppProviders";
-import { useDemoNow } from "./app-ui/frozen-clock";
-import { SEPT_END } from "./app-ui/september-data";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
+import { AppProviders } from "../../../shared/app/AppProviders";
+import { useDemoNow } from "../../../shared/app/frozen-clock";
+import { SEPT_END } from "../../../shared/demo/september-data";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
 
 const UI_W = 920;
 const UI_X = 40;

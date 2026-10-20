@@ -1,17 +1,17 @@
 import { Composition, Folder } from "remotion";
-import { AnalyticsScene } from "./AnalyticsScene";
-import { AttendanceScene } from "./AttendanceScene";
-import { CalendarScene } from "./CalendarScene";
-import { ChapterScene } from "./ChapterScene";
-import { CtaScene } from "./CtaScene";
-import { FeeScene } from "./FeeScene";
-import { GridScene } from "./GridScene";
-import { HookScene } from "./HookScene";
-import { Intro } from "./Intro";
-import { LogoScene } from "./LogoScene";
-import { ReportScene } from "./ReportScene";
-import { VoucherScene } from "./VoucherScene";
-import { ZaloScene } from "./ZaloScene";
+import { AnalyticsScene } from "./videos/intro/scenes/AnalyticsScene";
+import { AttendanceScene } from "./videos/intro/scenes/AttendanceScene";
+import { CalendarScene } from "./videos/intro/scenes/CalendarScene";
+import { ChapterScene } from "./videos/intro/scenes/ChapterScene";
+import { CtaScene } from "./videos/intro/scenes/CtaScene";
+import { FeeScene } from "./videos/intro/scenes/FeeScene";
+import { GridScene } from "./videos/intro/scenes/GridScene";
+import { HookScene } from "./videos/intro/scenes/HookScene";
+import { Intro } from "./videos/intro/Intro";
+import { LogoScene } from "./videos/intro/scenes/LogoScene";
+import { ReportScene } from "./videos/intro/scenes/ReportScene";
+import { VoucherScene } from "./videos/intro/scenes/VoucherScene";
+import { ZaloScene } from "./videos/intro/scenes/ZaloScene";
 
 export const RemotionRoot = () => (
   <>

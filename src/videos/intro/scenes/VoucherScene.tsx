@@ -9,9 +9,9 @@ import {
 } from "remotion";
 import paymentVi from "@/features/payment/i18n/vi.json";
 import { PLAN_ENTITLEMENTS } from "@/features/billing/lib/plan-entitlements";
-import { colors, fontFamily } from "./theme";
-import { SHOWCASE, VOUCHER_W, VOUCHERS } from "./voucher-data";
-import { Sfx } from "./sfx";
+import { colors, fontFamily } from "../../../shared/theme";
+import { SHOWCASE, VOUCHER_W, VOUCHERS } from "../../../shared/demo/voucher-data";
+import { Sfx } from "../../../shared/audio/sfx";
 
 // the free plan's templates, straight from the app, so the video never implies all ten are free
 const FREE_TEMPLATES = new Set<string>(PLAN_ENTITLEMENTS.FREE.qrTemplateIds);

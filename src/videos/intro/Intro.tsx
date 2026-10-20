@@ -1,17 +1,17 @@
 import { Audio } from "@remotion/media";
 import { interpolate, staticFile, Track } from "remotion";
-import { AnalyticsScene } from "./AnalyticsScene";
-import { AttendanceScene } from "./AttendanceScene";
-import { CalendarScene } from "./CalendarScene";
-import { ChapterScene } from "./ChapterScene";
-import { CtaScene } from "./CtaScene";
-import { FeeScene } from "./FeeScene";
-import { GridScene } from "./GridScene";
-import { HookScene } from "./HookScene";
-import { LogoScene } from "./LogoScene";
-import { ReportScene } from "./ReportScene";
-import { VoucherScene } from "./VoucherScene";
-import { ZaloScene } from "./ZaloScene";
+import { AnalyticsScene } from "./scenes/AnalyticsScene";
+import { AttendanceScene } from "./scenes/AttendanceScene";
+import { CalendarScene } from "./scenes/CalendarScene";
+import { ChapterScene } from "./scenes/ChapterScene";
+import { CtaScene } from "./scenes/CtaScene";
+import { FeeScene } from "./scenes/FeeScene";
+import { GridScene } from "./scenes/GridScene";
+import { HookScene } from "./scenes/HookScene";
+import { LogoScene } from "./scenes/LogoScene";
+import { ReportScene } from "./scenes/ReportScene";
+import { VoucherScene } from "./scenes/VoucherScene";
+import { ZaloScene } from "./scenes/ZaloScene";
 
 const DURATION = 1770;
 // the CTA's impact hit (Cta from + 18); the bed dips just before it

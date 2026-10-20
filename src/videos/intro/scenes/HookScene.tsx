@@ -1,7 +1,7 @@
 import type React from "react";
 import { Easing, Interactive, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
 
 type ClutterItem = {
   kind: "note" | "chat";

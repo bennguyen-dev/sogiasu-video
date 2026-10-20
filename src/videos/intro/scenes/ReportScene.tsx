@@ -14,13 +14,13 @@ import {
 } from "remotion";
 import PublicReport from "@/features/report/components/PublicReport";
 import ReportLayout from "@/shared/components/layouts/report/layout";
-import { AppProviders } from "./app-ui/AppProviders";
-import { PhoneViewport } from "./app-ui/PhoneViewport";
-import { DEMO_NOW, useDemoNow } from "./app-ui/frozen-clock";
-import { octoberReport, SHARE_MESSAGE } from "./app-ui/report-data";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
-import { Bubble, ChatHeader } from "./zalo-chat";
+import { AppProviders } from "../../../shared/app/AppProviders";
+import { PhoneViewport } from "../../../shared/app/PhoneViewport";
+import { DEMO_NOW, useDemoNow } from "../../../shared/app/frozen-clock";
+import { octoberReport, SHARE_MESSAGE } from "../../../shared/demo/report-data";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
+import { Bubble, ChatHeader } from "../../../shared/components/zalo-chat";
 
 const PHONE_W = 390;
 const PHONE_X = 70;

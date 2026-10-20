@@ -1,10 +1,10 @@
 import type React from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { Interactive, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
-import { REPORT_HTML, VOUCHER_W, ZALO_VOUCHER_HTML } from "./voucher-data";
-import { Bubble, ChatHeader } from "./zalo-chat";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
+import { REPORT_HTML, VOUCHER_W, ZALO_VOUCHER_HTML } from "../../../shared/demo/voucher-data";
+import { Bubble, ChatHeader } from "../../../shared/components/zalo-chat";
 
 const PHONE_W = 390;
 const PHONE_X = 70;

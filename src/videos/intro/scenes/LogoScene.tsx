@@ -1,7 +1,7 @@
 import type React from "react";
 import { Easing, Img, Interactive, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
 
 const Rise = ({ children, at, style }: { readonly children: React.ReactNode; readonly at: number; readonly style?: React.CSSProperties }) => {
   const frame = useCurrentFrame();

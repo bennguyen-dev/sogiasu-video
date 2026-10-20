@@ -12,12 +12,12 @@ import {
   useVideoConfig,
 } from "remotion";
 import FeeList from "@/features/fee/components/FeeList";
-import { AppProviders } from "./app-ui/AppProviders";
-import { PhoneViewport } from "./app-ui/PhoneViewport";
-import { useDemoNow } from "./app-ui/frozen-clock";
-import { SEPT_END } from "./app-ui/september-data";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
+import { AppProviders } from "../../../shared/app/AppProviders";
+import { PhoneViewport } from "../../../shared/app/PhoneViewport";
+import { useDemoNow } from "../../../shared/app/frozen-clock";
+import { SEPT_END } from "../../../shared/demo/september-data";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
 
 const PHONE_W = 390;
 const PHONE_X = 70;

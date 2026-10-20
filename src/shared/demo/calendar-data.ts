@@ -1,6 +1,6 @@
 import type { CalendarLesson } from "@/features/calendar/types";
 import { calendarKeys } from "@/features/calendar/hooks/calendar-keys";
-import { DEMO_NOW } from "./frozen-clock";
+import { DEMO_NOW } from "../app/frozen-clock";
 
 // the demo account's weekly timetable (docs/demo-seed/RESULT-2026-10-02-thu-huong.md), colors from APP_COLORS
 type DemoClass = {

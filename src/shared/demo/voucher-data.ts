@@ -9,8 +9,8 @@ import {
   renderReportCard,
   toReportStudents,
 } from "@/features/payment/lib/report-table";
-import fixtures from "./app-ui/report-fixtures.json";
-import { giaHanFees } from "./app-ui/september-data";
+import fixtures from "./report-fixtures.json";
+import { giaHanFees } from "./september-data";
 
 // Gia Hân's September fees (same data as the fee scene), with an obviously-fake bank number
 const STUDENT_NAME = "Gia Hân";

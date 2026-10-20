@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { QueryClient } from "@tanstack/react-query";
 import { continueRender, delayRender, Easing, Interactive, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { CalendarView } from "@/features/calendar/components/CalendarView";
-import { AppProviders } from "./app-ui/AppProviders";
-import { DEMO_NOW, useDemoNow } from "./app-ui/frozen-clock";
-import { calendarKey, calendarLessons } from "./app-ui/calendar-data";
-import { rawRect } from "./app-ui/fc-measure-patch";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
+import { AppProviders } from "../../../shared/app/AppProviders";
+import { DEMO_NOW, useDemoNow } from "../../../shared/app/frozen-clock";
+import { calendarKey, calendarLessons } from "../../../shared/demo/calendar-data";
+import { rawRect } from "../../../shared/app/fc-measure-patch";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
 
 const UI_W = 780;
 const UI_X = 40;

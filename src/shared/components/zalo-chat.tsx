@@ -1,6 +1,6 @@
 import type React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { colors } from "./theme";
+import { colors } from "../theme";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 

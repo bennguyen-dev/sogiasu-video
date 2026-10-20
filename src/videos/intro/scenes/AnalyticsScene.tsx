@@ -13,12 +13,12 @@ import {
 } from "remotion";
 import RevenueSection from "@/features/analytics/components/RevenueSection";
 import { analyticsKeys } from "@/features/analytics/hooks/analytics-keys";
-import { AppProviders } from "./app-ui/AppProviders";
-import { PhoneViewport } from "./app-ui/PhoneViewport";
-import { useDemoNow } from "./app-ui/frozen-clock";
-import { lessonActivity, potentialByClass, SEPT_END, septemberClassIds } from "./app-ui/september-data";
-import { colors, fontFamily } from "./theme";
-import { Sfx } from "./sfx";
+import { AppProviders } from "../../../shared/app/AppProviders";
+import { PhoneViewport } from "../../../shared/app/PhoneViewport";
+import { useDemoNow } from "../../../shared/app/frozen-clock";
+import { lessonActivity, potentialByClass, SEPT_END, septemberClassIds } from "../../../shared/demo/september-data";
+import { colors, fontFamily } from "../../../shared/theme";
+import { Sfx } from "../../../shared/audio/sfx";
 
 // a tablet-width viewport: below lg the app lays the KPIs out 2×2, so amounts fit on one line
 const UI_W = 768;

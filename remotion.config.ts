@@ -21,15 +21,15 @@ Config.overrideWebpackConfig((config) =>
       ...config.resolve,
       alias: {
         ...(config.resolve?.alias ?? {}),
-        "@/shared/components/BrandIcon$": local("src/app-ui/stubs/brand-icon.tsx"),
+        "@/shared/components/BrandIcon$": local("src/shared/app/stubs/brand-icon.tsx"),
         "@": path.join(APP, "src"),
         // one React for Remotion and the app's components, or hooks break
         react: local("node_modules/react"),
         "react-dom": local("node_modules/react-dom"),
-        "next/link": local("src/app-ui/stubs/next-link.tsx"),
-        "next/image": local("src/app-ui/stubs/next-image.tsx"),
-        "next/navigation": local("src/app-ui/stubs/next-navigation.ts"),
-        "@sentry/nextjs": local("src/app-ui/stubs/sentry.ts"),
+        "next/link": local("src/shared/app/stubs/next-link.tsx"),
+        "next/image": local("src/shared/app/stubs/next-image.tsx"),
+        "next/navigation": local("src/shared/app/stubs/next-navigation.ts"),
+        "@sentry/nextjs": local("src/shared/app/stubs/sentry.ts"),
       },
       modules: [
         ...(config.resolve?.modules ?? ["node_modules"]),
