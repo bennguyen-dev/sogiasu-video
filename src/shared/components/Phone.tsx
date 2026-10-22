@@ -4,6 +4,8 @@ import type React from "react";
 export const PHONE_W = 390;
 
 export type PhoneLayout = {
+  // the screen's width in css px
+  readonly width: number;
   readonly x: number;
   readonly y: number;
   readonly bezel: number;
@@ -17,17 +19,19 @@ export type PhoneLayout = {
   readonly screenRadius: number;
 };
 
-const layout = (x: number, y: number, bezel: number, [radius, screenRadius]: [number, number], screenH?: number): PhoneLayout => {
-  const scale = (1080 - 2 * x - 2 * bezel) / PHONE_W;
+const layout = (x: number, y: number, bezel: number, [radius, screenRadius]: [number, number], screenH?: number, width = PHONE_W): PhoneLayout => {
+  const scale = (1080 - 2 * x - 2 * bezel) / width;
   const h = screenH ?? (1920 - y - bezel) / scale;
-  return { x, y, bezel, scale, screenH: h, height: screenH ? h * scale + 2 * bezel : 1920, radius, screenRadius };
+  return { width, x, y, bezel, scale, screenH: h, height: screenH ? h * scale + 2 * bezel : 1920, radius, screenRadius };
 };
 
 // the promo: a big phone rising out of the bottom edge, cropped there
 export const INTRO_PHONE = layout(70, 430, 20, [88, 70]);
 
-// the tutorial series: the whole phone at a real phone's proportions, under a compact caption
-export const TUTORIAL_PHONE = layout(150, 285, 18, [74, 58], 780);
+// the tutorial series: the whole phone at a real phone's proportions, under a compact caption; a 411 px screen
+// (big Android), wide enough that the attendance stats don't wrap. Same body on the frame as at 390 (780 css tall)
+const TUTORIAL_W = 411;
+export const TUTORIAL_PHONE = layout(150, 285, 18, [74, 58], (780 * TUTORIAL_W) / PHONE_W, TUTORIAL_W);
 
 export const PHONE_X = INTRO_PHONE.x;
 export const PHONE_Y = INTRO_PHONE.y;

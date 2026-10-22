@@ -10,10 +10,11 @@ import { AppProviders } from "../app/AppProviders";
 import { PhoneViewport } from "../app/PhoneViewport";
 import { setDemoPathname } from "../app/stubs/next-navigation";
 import { Finger } from "../components/Finger";
-import { PHONE_W, PhoneFrame, TUTORIAL_PHONE as L } from "../components/Phone";
+import { PhoneFrame, TUTORIAL_PHONE as L } from "../components/Phone";
 
-// the tutorial series' app screen: L.screenH css px tall, no bottom nav unless a scene asks for it
+// the tutorial series' app screen: L.width × L.screenH css px, no bottom nav unless a scene asks for it
 export const SCREEN_H = L.screenH;
+const PHONE_W = L.width;
 const S = L.scale;
 import { clamp, ease } from "../motion";
 import { fontFamily } from "../theme";

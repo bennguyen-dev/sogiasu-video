@@ -15,7 +15,7 @@ export const PHONE: PhoneLayout = (() => {
   const x = 110;
   const bezel = 18;
   const scale = (WIDTH - 2 * x - 2 * bezel) / PHONE_W;
-  return { x, y: 300, bezel, scale, screenH: SCREEN_H, height: SCREEN_H * scale + 2 * bezel, radius: 74, screenRadius: 58 };
+  return { width: PHONE_W, x, y: 300, bezel, scale, screenH: SCREEN_H, height: SCREEN_H * scale + 2 * bezel, radius: 74, screenRadius: 58 };
 })();
 export const S = PHONE.scale;
 const SCREEN_TOP = PHONE.y + PHONE.bezel;
