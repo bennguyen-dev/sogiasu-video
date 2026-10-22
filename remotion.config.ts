@@ -24,6 +24,7 @@ Config.overrideWebpackConfig((config) =>
         ...(config.resolve?.alias ?? {}),
         "@/shared/components/BrandIcon$": local("src/shared/app/stubs/brand-icon.tsx"),
         "@/shared/components/ui/popover$": local("src/shared/app/stubs/popover.tsx"),
+        "@/shared/components/ui/dialog$": local("src/shared/app/stubs/dialog.tsx"),
         "@": path.join(APP, "src"),
         // one React for Remotion and the app's components, or hooks break
         react: local("node_modules/react"),
