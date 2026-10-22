@@ -23,6 +23,10 @@ import { CreateClass } from "./videos/create-class/CreateClass";
 import { CREATE_CLASS_DURATION, SCENES as CC } from "./videos/create-class/timeline";
 import { EssayPhoto } from "./videos/attendance/EssayPhoto";
 import { Report } from "./videos/report/Report";
+import { Fees } from "./videos/fees/Fees";
+import { FEES_DURATION, SCENES as FE } from "./videos/fees/timeline";
+import { CollectScene as FECollectScene, FeesScene as FEFeesScene, HistoryScene as FEHistoryScene, VoucherScene as FEVoucherScene } from "./videos/fees/scenes/FeeScenes";
+import { HookScene as FEHookScene, ZaloScene as FEZaloScene } from "./videos/fees/scenes/SendScenes";
 import { REPORT_DURATION, SCENES as RP } from "./videos/report/timeline";
 import { ClassScene as RPClassScene, StudentsScene as RPStudentsScene } from "./videos/report/scenes/LinkScenes";
 import { ExportScene as RPExportScene, ZaloScene as RPZaloScene } from "./videos/report/scenes/PhotoScenes";
@@ -175,6 +179,16 @@ export const RemotionRoot = () => (
       <Composition id="RP-Report" component={RPReportScene} width={1080} height={1920} fps={30} durationInFrames={RP.report.durationInFrames} defaultProps={{ style: RP.report.style }} />
       <Composition id="RP-Class" component={RPClassScene} width={1080} height={1920} fps={30} durationInFrames={RP.class.durationInFrames} defaultProps={{ style: RP.class.style }} />
       <Composition id="RP-Students" component={RPStudentsScene} width={1080} height={1920} fps={30} durationInFrames={RP.students.durationInFrames} defaultProps={{ style: RP.students.style }} />
+    </Folder>
+    <Composition id="MonthEndFees" component={Fees} width={1080} height={1920} fps={30} durationInFrames={FEES_DURATION} defaultProps={{ music: false }} />
+    <Composition id="MonthEndFeesWithMusic" component={Fees} width={1080} height={1920} fps={30} durationInFrames={FEES_DURATION} defaultProps={{ music: true }} />
+    <Folder name="MonthEndFeesScenes">
+      <Composition id="FE-Hook" component={FEHookScene} width={1080} height={1920} fps={30} durationInFrames={FE.hook.durationInFrames} defaultProps={{ style: FE.hook.style }} />
+      <Composition id="FE-Fees" component={FEFeesScene} width={1080} height={1920} fps={30} durationInFrames={FE.fees.durationInFrames} defaultProps={{ style: FE.fees.style }} />
+      <Composition id="FE-Voucher" component={FEVoucherScene} width={1080} height={1920} fps={30} durationInFrames={FE.voucher.durationInFrames} defaultProps={{ style: FE.voucher.style }} />
+      <Composition id="FE-Zalo" component={FEZaloScene} width={1080} height={1920} fps={30} durationInFrames={FE.zalo.durationInFrames} defaultProps={{ style: FE.zalo.style }} />
+      <Composition id="FE-Collect" component={FECollectScene} width={1080} height={1920} fps={30} durationInFrames={FE.collect.durationInFrames} defaultProps={{ style: FE.collect.style }} />
+      <Composition id="FE-History" component={FEHistoryScene} width={1080} height={1920} fps={30} durationInFrames={FE.history.durationInFrames} defaultProps={{ style: FE.history.style }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />

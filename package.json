@@ -14,6 +14,8 @@
     "render:attendance:music": "node scripts/render.mjs FirstAttendanceWithMusic attendance-music",
     "render:report": "node scripts/render.mjs ParentReport report-sfx",
     "render:report:music": "node scripts/render.mjs ParentReportWithMusic report-music",
+    "render:fees": "node scripts/render.mjs MonthEndFees fees-sfx",
+    "render:fees:music": "node scripts/render.mjs MonthEndFeesWithMusic fees-music",
     "typecheck": "tsc"
   },
   "keywords": [],
