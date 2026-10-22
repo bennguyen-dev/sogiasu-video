@@ -49,9 +49,11 @@ const studentFees = (): StudentFeeSummary[] => {
         otherFees: [],
         pendingAmount: 0,
       };
-      const common = { className: c.name, classColor: c.color, classDeleted: false, overrideReason: null };
+      // demo tutor gives no discounts: fees are at full price
+      const noDiscount = { discountPercent: null, discountAmount: 0 };
+      const common = { className: c.name, classColor: c.color, classDeleted: false, overrideReason: null, ...noDiscount };
       if (c.billing === "PER_COURSE") {
-        row.courseFees.push({ id: `${c.id}-course-09`, className: c.name, classColor: c.color, classDeleted: false, amount: s.price, periodStart: "2026-09-01", periodEnd: "2026-09-30", label: "Học phí tháng 9" });
+        row.courseFees.push({ id: `${c.id}-course-09`, className: c.name, classColor: c.color, classDeleted: false, amount: s.price, ...noDiscount, periodStart: "2026-09-01", periodEnd: "2026-09-30", label: "Học phí tháng 9" });
         row.otherFees.push({ id: `${c.id}-book`, className: c.name, classColor: c.color, classDeleted: false, amount: 180_000, label: "Sách" });
       }
       for (const l of septemberLessons(c)) {

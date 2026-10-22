@@ -20,7 +20,7 @@ const view = toVoucherView({
   students: [
     {
       name: STUDENT_NAME,
-      sessions: giaHanFees().sessions.map(({ date, startTime, endTime, className, amount, overrideReason }) => ({ date, startTime, endTime, className, amount, overrideReason })),
+      sessions: giaHanFees().sessions.map(({ date, startTime, endTime, className, amount, discountPercent, discountAmount, overrideReason }) => ({ date, startTime, endTime, className, amount, discountPercent, discountAmount, overrideReason })),
       hourFees: [],
       courseFees: [],
       otherFees: [],
@@ -59,6 +59,7 @@ export const reportHtml = (templateId: QrTemplateId) => renderReportCard(
           return {
             id: f.id,
             amount: f.amount,
+            discountPercent: f.discountPercent,
             overrideReason: f.overrideReason,
             date: f.date,
             startTime: f.startTime,
