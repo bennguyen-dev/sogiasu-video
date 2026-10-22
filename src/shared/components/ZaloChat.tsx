@@ -1,7 +1,8 @@
 import type React from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { clamp } from "../motion";
-import { colors } from "../theme";
+import { colors, fontFamily } from "../theme";
 
 export const Bubble = ({
   children,
@@ -80,3 +81,88 @@ export const ChatHeader = ({ name, initials }: { readonly name: string; readonly
     </div>
   </div>
 );
+
+export const ChatTime = ({ children }: { readonly children: string }) => (
+  <div
+    style={{
+      alignSelf: "center",
+      fontSize: 11,
+      color: colors.muted,
+      background: "rgba(255,255,255,0.7)",
+      borderRadius: 999,
+      padding: "2px 10px",
+    }}
+  >
+    {children}
+  </div>
+);
+
+// a Zalo thread filling its (positioned) parent: header, then the messages top-down
+export const ZaloThread = ({
+  name,
+  initials,
+  children,
+}: {
+  readonly name: string;
+  readonly initials: string;
+  readonly children: React.ReactNode;
+}) => (
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      background: "#e2e8f0",
+      display: "flex",
+      flexDirection: "column",
+      fontFamily,
+    }}
+  >
+    <ChatHeader name={name} initials={initials} />
+    <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "16px 12px" }}>{children}</div>
+  </div>
+);
+
+const THUMB_W = 175;
+const THUMB_MAX_H = 330;
+
+// a chat photo at its own proportions: the html laid out at `width`, shrunk to the thumb, capped in height
+export const HtmlThumb = ({ html, width, at }: { readonly html: string; readonly width: number; readonly at: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [h, setH] = useState(0);
+  useLayoutEffect(() => {
+    const next = ref.current?.offsetHeight ?? 0;
+    if (next !== h) setH(next);
+  });
+  const k = THUMB_W / width;
+  return (
+    <Bubble mine bare at={at}>
+      <div
+        style={{
+          position: "relative",
+          width: THUMB_W,
+          height: Math.min(h * k, THUMB_MAX_H),
+          overflow: "hidden",
+          borderRadius: 12,
+          background: "white",
+          boxShadow: "0 1px 3px rgba(2,6,24,0.14)",
+        }}
+      >
+        <div
+          ref={ref}
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width,
+            scale: String(k),
+            transformOrigin: "top left",
+            whiteSpace: "normal",
+            lineHeight: 1.5,
+            ["--font-inter" as string]: fontFamily,
+          }}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </div>
+    </Bubble>
+  );
+};

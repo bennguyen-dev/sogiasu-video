@@ -5,7 +5,7 @@ import { messages } from "@/shared/i18n/messages.generated";
 import { useMockApi } from "../../../shared/app/AppProviders";
 import { DEMO_NOW, useDemoNow } from "../../../shared/app/frozen-clock";
 import { Sfx } from "../../../shared/audio/sfx";
-import { Bubble, ChatHeader } from "../../../shared/components/ZaloChat";
+import { Bubble, ChatTime, ZaloThread } from "../../../shared/components/ZaloChat";
 import { StepCaption } from "../../../shared/tutorial/StepCaption";
 import { clamp, ease } from "../../../shared/motion";
 import { colors, fontFamily } from "../../../shared/theme";
@@ -107,10 +107,6 @@ const THUMB_CSS = `
 .export-thumb img[src="/logo.svg"] { content: url("${staticFile("logo.svg")}"); }
 `;
 
-const TIME = ({ children }: { readonly children: string }) => (
-  <div style={{ alignSelf: "center", fontSize: 11, color: colors.muted, background: "rgba(255,255,255,0.7)", borderRadius: 999, padding: "2px 10px" }}>{children}</div>
-);
-
 const Chat = ({
   parent,
   day,
@@ -124,17 +120,14 @@ const Chat = ({
   readonly at: number;
   readonly reply?: number;
 }) => (
-  <div style={{ position: "absolute", inset: 0, background: "#e2e8f0", display: "flex", flexDirection: "column", fontFamily }}>
-    <ChatHeader name={parent} initials={parent.split(" ").map((w) => w[0]).join("").slice(0, 2)} />
-    <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "16px 12px" }}>
-      <TIME>{day}</TIME>
+  <ZaloThread name={parent} initials={parent.split(" ").map((w) => w[0]).join("").slice(0, 2)}>
+      <ChatTime>{day}</ChatTime>
       <ExportThumb data={data} at={at} />
       <Bubble mine at={at + 12}>
         Chị xem nhận xét buổi hôm nay của {data.studentName} nha
       </Bubble>
       {reply !== undefined ? <Bubble at={reply}>Dạ cảm ơn cô</Bubble> : null}
-    </div>
-  </div>
+  </ZaloThread>
 );
 
 const REPLY = 58;

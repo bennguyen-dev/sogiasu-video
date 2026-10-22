@@ -6,7 +6,7 @@ import { QR_TEMPLATES } from "@/features/payment/lib/voucher-v2/registry";
 import { useMockApi } from "../../../shared/app/AppProviders";
 import { useDemoNow } from "../../../shared/app/frozen-clock";
 import { Sfx } from "../../../shared/audio/sfx";
-import { Bubble, ChatHeader } from "../../../shared/components/ZaloChat";
+import { Bubble, ChatTime, HtmlThumb, ZaloThread } from "../../../shared/components/ZaloChat";
 import { StepCaption } from "../../../shared/tutorial/StepCaption";
 import { clamp, ease } from "../../../shared/motion";
 import { colors, fontFamily } from "../../../shared/theme";
@@ -80,59 +80,6 @@ const HookSceneInner = () => {
   );
 };
 
-const THUMB_W = 175;
-const THUMB_MAX_H = 330;
-
-// a chat photo at its own proportions: the html laid out at `width`, shrunk to the thumb, capped in height
-const HtmlThumb = ({
-  html,
-  width,
-  at,
-}: {
-  readonly html: string;
-  readonly width: number;
-  readonly at: number;
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [h, setH] = useState(0);
-  useLayoutEffect(() => {
-    const next = ref.current?.offsetHeight ?? 0;
-    if (next !== h) setH(next);
-  });
-  const k = THUMB_W / width;
-  return (
-    <Bubble mine bare at={at}>
-      <div
-        style={{
-          position: "relative",
-          width: THUMB_W,
-          height: Math.min(h * k, THUMB_MAX_H),
-          overflow: "hidden",
-          borderRadius: 12,
-          background: "white",
-          boxShadow: "0 1px 3px rgba(2,6,24,0.14)",
-        }}
-      >
-        <div
-          ref={ref}
-          style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            width,
-            scale: String(k),
-            transformOrigin: "top left",
-            whiteSpace: "normal",
-            lineHeight: 1.5,
-            ["--font-inter" as string]: fontFamily,
-          }}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </div>
-    </Bubble>
-  );
-};
-
 const VOUCHER_HTML = QR_TEMPLATES.find((t) => t.id === "autumn")!.render(
   voucherView(FINAL_OPTIONS),
 );
@@ -168,58 +115,18 @@ const ZaloSceneInner = () => {
         scroll={0}
         pageRef={pageRef}
       >
-        <div
-          style={{
-            position: "relative",
-            width: SCREEN_W,
-            height: SCREEN_H,
-            background: "#e2e8f0",
-            display: "flex",
-            flexDirection: "column",
-            fontFamily,
-          }}
-        >
-          <ChatHeader name="Mẹ Minh Anh" initials="MM" />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 10,
-              padding: "16px 12px",
-            }}
-          >
-            <div
-              style={{
-                alignSelf: "center",
-                fontSize: 11,
-                color: colors.muted,
-                background: "rgba(255,255,255,0.7)",
-                borderRadius: 999,
-                padding: "2px 10px",
-              }}
-            >
-              20:05 · Thứ Bảy 31/10
-            </div>
-            <div
-              style={{
-                alignSelf: "flex-end",
-                display: "flex",
-                gap: 6,
-                alignItems: "flex-start",
-              }}
-            >
+        <div style={{ position: "relative", width: SCREEN_W, height: SCREEN_H }}>
+          <ZaloThread name="Mẹ Minh Anh" initials="MM">
+            <ChatTime>20:05 · Thứ Bảy 31/10</ChatTime>
+            <div style={{ alignSelf: "flex-end", display: "flex", gap: 6, alignItems: "flex-start" }}>
               <HtmlThumb html={VOUCHER_HTML} width={VOUCHER_W} at={8} />
-              <HtmlThumb
-                html={reportImageHtml("autumn")}
-                width={REPORT_W}
-                at={14}
-              />
+              <HtmlThumb html={reportImageHtml("autumn")} width={REPORT_W} at={14} />
             </div>
             <Bubble mine at={26}>
               Em gửi học phí tháng 10 của Minh Anh ạ, chị quét mã giúp em nha
             </Bubble>
             <Bubble at={REPLY}>Chị chuyển rồi nha cô</Bubble>
-          </div>
+          </ZaloThread>
         </div>
       </AppScreen>
     </>

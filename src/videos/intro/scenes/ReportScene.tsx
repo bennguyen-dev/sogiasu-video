@@ -20,7 +20,7 @@ import { Caption } from "../../../shared/components/Caption";
 import { IntegrationCard } from "../../../shared/components/IntegrationCard";
 import { Finger } from "../../../shared/components/Finger";
 import { BEZEL, PHONE_SCALE as S, PHONE_W, PHONE_X, PHONE_Y, PhoneFrame, SCREEN_H } from "../../../shared/components/Phone";
-import { Bubble, ChatHeader } from "../../../shared/components/ZaloChat";
+import { Bubble, ChatTime, ZaloThread } from "../../../shared/components/ZaloChat";
 import { SHARE_MESSAGE } from "../../../shared/demo/report-data";
 import { clamp, ease } from "../../../shared/motion";
 import { colors, fontFamily } from "../../../shared/theme";
@@ -61,28 +61,8 @@ const Chat = ({
 }: {
   readonly linkRef: React.Ref<HTMLSpanElement>;
 }) => (
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      display: "flex",
-      flexDirection: "column",
-      background: "#eef2f7",
-      fontFamily,
-    }}
-  >
-    <ChatHeader name="Mẹ Gia Hân" initials="MH" />
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 10,
-        padding: "18px 12px",
-      }}
-    >
-      <div style={{ alignSelf: "center", fontSize: 11, color: colors.muted }}>
-        18:05
-      </div>
+  <ZaloThread name="Mẹ Gia Hân" initials="MH">
+      <ChatTime>18:05 · Thứ Hai 05/10</ChatTime>
       <Bubble mine at={MSG_IN}>
         {SHARE_MESSAGE.map((line, i) =>
           line.startsWith("- Gia Hân: ") ? (
@@ -105,8 +85,7 @@ const Chat = ({
         )}
       </Bubble>
       <Bubble at={REPLY_IN}>Ok cô, chị lưu link rồi nha 👍</Bubble>
-    </div>
-  </div>
+  </ZaloThread>
 );
 
 const BrowserBar = () => (
