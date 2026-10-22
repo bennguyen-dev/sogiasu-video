@@ -1,6 +1,6 @@
 # Tập 3 - Gửi báo cáo cho phụ huynh
 
-> Kịch bản nháp (22/10/2026), chưa dựng. Nối tiếp tập 2: buổi 01/10 đã chốt, Minh Anh có nhận xét + ảnh bài làm, Gia Hân nghỉ có phép.
+> Kịch bản đã dựng (22/10/2026). Code: `src/videos/report/`, timeline: `timeline.ts` + mốc trong từng file `scenes/`. Nối tiếp tập 2: buổi 01/10 đã chốt, Minh Anh có nhận xét + ảnh bài làm, Gia Hân nghỉ có phép.
 
 |            |                                                                                                                   |
 | ---------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -100,3 +100,10 @@ Chữ: **Không muốn chia sẻ nữa?** / _Tắt 1 chạm_
 - Cảnh 0:13 (chat nhân bản nhiều ảnh) là phần dựng thêm, không phải UI của app: giữ ngắn, đừng để giống tính năng.
 - Trang báo cáo công khai là trang ngoài dashboard (không có thanh dashboard), cần dữ liệu `report-fixtures`-kiểu cho lớp IELTS.
 - Trang lớp: nút **Tổng hợp link báo cáo** nằm ở `EnrollmentByClassList`; trang Học sinh: `StudentTable`.
+
+## Lưu ý khi sửa
+
+- Hai hộp chia sẻ (`ShareDialogs.tsx`) dựng lại markup của `ShareClassMessageButton` và `StudentShareContent`: app ghép link từ `window.location.origin`, trong lúc render là localhost, nên scene tự ghép link `sogiasu.com`. App sửa 2 hộp này thì cập nhật theo.
+- Trang lớp mở đúng tab Học sinh nhờ `setDemoSearch("tab=students")` (stub `next/navigation`).
+- Ảnh "Xuất ảnh" trong Zalo là chính thẻ ẩn của `LessonReportExport`, kéo ra màn hình bằng CSS (`.export-thumb`).
+- Mốc thời gian thật ngắn hơn bảng trên (~58s): các cột "Lúc" chỉ là mốc xấp xỉ.
