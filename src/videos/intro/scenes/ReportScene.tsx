@@ -17,6 +17,7 @@ import { PhoneViewport } from "../../../shared/app/PhoneViewport";
 import { DEMO_NOW, useDemoNow } from "../../../shared/app/frozen-clock";
 import { Sfx } from "../../../shared/audio/sfx";
 import { Caption } from "../../../shared/components/Caption";
+import { IntegrationCard } from "../../../shared/components/IntegrationCard";
 import { Finger } from "../../../shared/components/Finger";
 import { BEZEL, PHONE_SCALE as S, PHONE_W, PHONE_X, PHONE_Y, PhoneFrame, SCREEN_H } from "../../../shared/components/Phone";
 import { Bubble, ChatHeader } from "../../../shared/components/ZaloChat";
@@ -235,10 +236,13 @@ const ReportSceneInner = () => {
         <br />
         <span style={{ color: colors.emerald }}>con học gì</span>
       </Caption>
-      <Caption from={TO_FILES} to={10_000}>
+      <Caption from={TO_FILES} to={10_000} top={105}>
         Kèm cả bài tập,
         <br />
         <span style={{ color: colors.emerald }}>video, tài liệu</span>
+        <div style={{ marginTop: 10 }}>
+          <IntegrationCard rows={[{ icon: "google-drive.svg", text: "Lấy thẳng từ Google Drive" }]} />
+        </div>
       </Caption>
 
       <PhoneFrame enter={phoneIn}>

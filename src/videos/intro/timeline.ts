@@ -15,7 +15,7 @@ const SCENE_LIST = [
   ["voucher", 150, MIST],
   ["zalo", 210, MIST],
   ["analytics", 150, MIST],
-  ["cta", 120, INK],
+  ["cta", 150, INK],
 ] as const;
 
 type SceneKey = (typeof SCENE_LIST)[number][0];

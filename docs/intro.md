@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | Nền tảng | TikTok, Reels, YouTube Shorts |
-| Khung | Dọc 1080×1920, 30fps, ~59 giây (1770 frame); nhịp cắt theo beat 120 bpm (15 frame/beat) |
+| Khung | Dọc 1080×1920, 30fps, ~60 giây (1800 frame); nhịp cắt theo beat 120 bpm (15 frame/beat) |
 | Âm thanh | Không lời thoại. SFX cho mọi thao tác; bản có nhạc dùng "Happy Upbeat" (DELOSound, Pixabay), nhạc hạ xuống trước cú nhấn ở CTA |
 | Thông điệp | Sổ tay, Excel, tin nhắn chồng chất? Để Sổ Gia Sư lo |
 | Render | `yarn render` (chỉ SFX) · `yarn render:music` (có nhạc) → `out/` |
@@ -45,7 +45,7 @@ Frame đầu đã có sẵn giấy nhớ và tin nhắn để làm thumbnail.
 
 | Hình | Chữ | Âm |
 |---|---|---|
-| Lịch tuần 05-11/10 (desktop) quét mở từ trái sang, kín 10 lớp nhiều màu. Camera zoom vào buổi Gia Hân thứ Hai, tay chạm vào buổi đó | **Lịch dạy** *cả tuần* / Đồng bộ Google Calendar + Meet → **Sắp tới giờ dạy?** *Chạm vào buổi học* | whoosh ×2, click |
+| Lịch tuần 05-11/10 (desktop) quét mở từ trái sang, kín 10 lớp nhiều màu. Camera zoom vào buổi Gia Hân thứ Hai, tay chạm vào buổi đó | **Lịch dạy** *cả tuần* (1 dòng) / thẻ trắng có logo: "Đồng bộ Google Calendar" + "Tự tạo link Google Meet" → **Sắp tới giờ dạy?** *Chạm vào buổi học* | whoosh ×2, click |
 
 ### 4. Điểm danh (0:12 - 0:20)
 
@@ -57,7 +57,7 @@ Frame đầu đã có sẵn giấy nhớ và tin nhắn để làm thumbnail.
 
 | Hình | Chữ | Âm |
 |---|---|---|
-| Chat Zalo: cô gửi tin "Tổng hợp link nhận báo cáo…" kèm link của Gia Hân; phụ huynh trả lời "Ok cô, chị lưu link rồi nha 👍". Tay chạm link → mở trang báo cáo công khai trong trình duyệt, cuộn tới buổi mới nhất, rồi tới phần file đính kèm | **Gửi link cho** *phụ huynh qua Zalo* → **Phụ huynh mở là thấy** *con học gì* → **Kèm cả bài tập,** *video, tài liệu* | pop, click, whoosh |
+| Chat Zalo: cô gửi tin "Tổng hợp link nhận báo cáo…" kèm link của Gia Hân; phụ huynh trả lời "Ok cô, chị lưu link rồi nha 👍". Tay chạm link → mở trang báo cáo công khai trong trình duyệt, cuộn tới buổi mới nhất, rồi tới phần file đính kèm | **Gửi link cho** *phụ huynh qua Zalo* → **Phụ huynh mở là thấy** *con học gì* → **Kèm cả bài tập,** *video, tài liệu* + thẻ logo Drive "Lấy thẳng từ Google Drive" (các file đính kèm trong cảnh có sẵn icon Drive) | pop, click, whoosh |
 
 ### 6. Chuyển chương (0:27 - 0:28)
 
@@ -97,11 +97,13 @@ Mẫu nào thuộc gói miễn phí lấy thẳng từ `PLAN_ENTITLEMENTS` của
 |---|---|---|
 | Trang thống kê (tablet) tháng 9: các khoản "Đã thu tiền" được tick dần, biểu đồ tăng theo; camera lia xuống bảng theo lớp | **Ai đóng, ai chưa -** *nhìn là biết* → **Lớp nào thu** *nhiều nhất* | whoosh, confirm |
 
-### 12. CTA (0:55 - 0:59)
+### 12. CTA (0:55 - 1:00)
 
 | Hình | Chữ | Âm |
 |---|---|---|
-| Nền tối, logo | Sổ tay, Excel, tin nhắn chồng chất? / ***Để Sổ Gia Sư lo.*** / Tập trung vào giảng dạy - quản lý nhẹ nhàng / **sogiasu.com** / chip "Sử dụng và đồng bộ dữ liệu trên mọi thiết bị" / Hơn 4.000 giáo viên đã sử dụng, quản lý hơn 100.000 buổi học | pop, impact (nhạc hạ xuống ngay trước), pop |
+| Nền tối, logo | Sổ tay, Excel, tin nhắn chồng chất? / ***Để Sổ Gia Sư lo.*** / khung ưu đãi: "8 học sinh đầu *miễn phí*" + "Đăng ký mới *tặng Pro 30 ngày*" / **sogiasu.com** / "Hơn 4.000 giáo viên · 100.000+ buổi học" | pop, impact (nhạc hạ xuống ngay trước), pop ×2 |
+
+Ưu đãi lấy theo app: gói Free giới hạn 8 học sinh (`PLAN_ENTITLEMENTS`), dùng thử Pro `TRIAL_DAYS` = 30 ngày cho người đăng ký mới (`plan-policy.ts`). Đổi chính sách thì sửa chữ ở đây.
 
 ## Lưu ý khi sửa
 

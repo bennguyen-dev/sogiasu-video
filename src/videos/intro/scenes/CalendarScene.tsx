@@ -8,6 +8,7 @@ import { DEMO_NOW, useDemoNow } from "../../../shared/app/frozen-clock";
 import { calendarKey, calendarLessons } from "../../../shared/demo/calendar-data";
 import { rawRect } from "../../../shared/app/fc-measure-patch";
 import { Sfx } from "../../../shared/audio/sfx";
+import { IntegrationCard } from "../../../shared/components/IntegrationCard";
 import { clamp, ease } from "../../../shared/motion";
 import { colors, fontFamily } from "../../../shared/theme";
 
@@ -150,11 +151,16 @@ const CalendarSceneInner = () => {
       />
       <Caption style={{ top: 150, opacity: captionOut }}>
         <div style={{ fontSize: 92, fontWeight: 800, letterSpacing: "-0.035em", lineHeight: 1.08, color: colors.ink }}>
-          Lịch dạy
-          <br />
-          <span style={{ color: colors.sky }}>cả tuần</span>
+          Lịch dạy <span style={{ color: colors.sky }}>cả tuần</span>
         </div>
-        <div style={{ marginTop: 22, fontSize: 44, fontWeight: 600, color: colors.muted }}>Đồng bộ Google Calendar + Meet</div>
+        <div style={{ marginTop: 26 }}>
+          <IntegrationCard
+            rows={[
+              { icon: "google-calendar.svg", text: "Đồng bộ Google Calendar" },
+              { icon: "google-meet.svg", text: "Tự tạo link Google Meet" },
+            ]}
+          />
+        </div>
       </Caption>
 
       <div
