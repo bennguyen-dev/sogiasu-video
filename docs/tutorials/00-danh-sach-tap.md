@@ -10,13 +10,13 @@
 | 1 | Tạo lớp đầu tiên | Nhập 1 lần, app tự xếp lịch cả tháng | ✅ Đã dựng | [01-tao-lop-dau-tien.md](01-tao-lop-dau-tien.md) |
 | 2 | Điểm danh buổi đầu tiên | Điểm danh, nhận xét, đính kèm, bấm "Đã dạy xong" → học phí tự tính | ✅ Đã dựng | [02-diem-danh-buoi-dau-tien.md](02-diem-danh-buoi-dau-tien.md) |
 | 3 | Gửi báo cáo cho phụ huynh | Xuất ảnh mỗi buổi thì ngày nào cũng phải gửi → gửi link 1 lần, phụ huynh tự xem nhận xét, bài tập, lịch học → lấy link trong lớp / từng học sinh → tắt chia sẻ | ✅ Đã dựng | [03-gui-bao-cao-phu-huynh.md](03-gui-bao-cao-phu-huynh.md) |
-| 4 | Thu học phí cuối tháng | Trang Học phí: ai còn nợ → gộp phí nhiều buổi → tạo phiếu thu QR đúng số tiền → gửi phụ huynh → đánh dấu đã thu (khoản đã thu bị khoá) | 📝 Ý tưởng | - |
+| 4 | Thu học phí cuối tháng | Trang Học phí cộng sẵn → tạo phiếu QR (giới thiệu 5 tuỳ chọn, mẫu Mùa thu) → gửi phụ huynh → Đã thu tiền → Lịch sử thu, hoàn tác | ✅ Đã dựng | [04-thu-hoc-phi-cuoi-thang.md](04-thu-hoc-phi-cuoi-thang.md) |
 | 5 | Đọc lịch dạy | Màu, trạng thái (đồng hồ cam = chưa chốt), bấm buổi, thêm buổi lẻ, đổi kiểu xem, vào Meet | 📝 Ý tưởng | - |
 | 6 | Đổi học phí giữa chừng | Tăng giá từ 1 ngày, buổi cũ giữ giá cũ, phí đã thu không bị đổi | 📝 Ý tưởng | - |
 
 Tập 4 gộp cả phiếu thu QR (trước tách 2 tập): thu tiền là một luồng liền mạch. Gắn tài khoản ngân hàng chỉ nhắc bằng 1 bong bóng; không quay lại băng chuyền mẫu phiếu và chat Zalo của intro.
 
-Thứ tự làm: 4 → 5 → 6. Tập 2 + tập 5 là điều kiện để bỏ tour (thay tour chi tiết buổi học và nút hướng dẫn ở lịch). Tập 3 + 4 là việc gia sư làm hằng tháng.
+Thứ tự làm: 5 → 6. Tập 2 + tập 5 là điều kiện để bỏ tour (thay tour chi tiết buổi học và nút hướng dẫn ở lịch). Tập 3 + 4 là việc gia sư làm hằng tháng.
 
 ## Video ngắn "Làm sao để…" (sau 6 tập chính)
 
@@ -29,6 +29,7 @@ Thứ tự làm: 4 → 5 → 6. Tập 2 + tập 5 là điều kiện để bỏ 
 | Mở lại buổi đã chốt | Khoá khi phí đã thu |
 | Gắn tài khoản ngân hàng | Làm 1 lần trước khi tạo phiếu thu QR (tập 4) |
 | Phiếu thu hàng loạt | BulkVoucher, cho lớp đông học sinh |
+| Gộp phiếu anh chị em | Nhiều học sinh cùng nhà vào 1 phiếu (MergeDock) |
 | Kết nối Google | Meet tự động, mời học sinh qua Calendar, Google Drive |
 | Lưu tài liệu buổi học | Trang Lưu trữ, đính kèm vào buổi |
 | Xem điểm danh cả tháng | Bảng điểm danh tháng |
