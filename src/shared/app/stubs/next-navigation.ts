@@ -16,7 +16,14 @@ export const setDemoPathname = (p: string) => {
 };
 
 export const usePathname = () => pathname;
-export const useSearchParams = () => new URLSearchParams();
+let search = "";
+
+// the query string a scene's page reads (e.g. a tab), set before its app mounts
+export const setDemoSearch = (q: string) => {
+  search = q;
+};
+
+export const useSearchParams = () => new URLSearchParams(search);
 export const useParams = () => ({});
 export const notFound = () => {
   throw new Error("notFound");

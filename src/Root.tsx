@@ -22,6 +22,11 @@ import { EndScene } from "./videos/create-class/scenes/EndScene";
 import { CreateClass } from "./videos/create-class/CreateClass";
 import { CREATE_CLASS_DURATION, SCENES as CC } from "./videos/create-class/timeline";
 import { EssayPhoto } from "./videos/attendance/EssayPhoto";
+import { Report } from "./videos/report/Report";
+import { REPORT_DURATION, SCENES as RP } from "./videos/report/timeline";
+import { ClassScene as RPClassScene, StudentsScene as RPStudentsScene } from "./videos/report/scenes/LinkScenes";
+import { ExportScene as RPExportScene, ZaloScene as RPZaloScene } from "./videos/report/scenes/PhotoScenes";
+import { HookScene as RPHookScene, ReportScene as RPReportScene } from "./videos/report/scenes/ReportScenes";
 import { Attendance } from "./videos/attendance/Attendance";
 import { ATTENDANCE_DURATION, SCENES as AT } from "./videos/attendance/timeline";
 import { DetailScene as ATDetailScene } from "./videos/attendance/scenes/DetailScene";
@@ -160,6 +165,16 @@ export const RemotionRoot = () => (
       <Composition id="AT-Open" component={ATOpenScene} width={1080} height={1920} fps={30} durationInFrames={AT.open.durationInFrames} defaultProps={{ style: AT.open.style }} />
       <Composition id="AT-Detail" component={ATDetailScene} width={1080} height={1920} fps={30} durationInFrames={AT.detail.durationInFrames} defaultProps={{ style: AT.detail.style }} />
       <Composition id="AT-Done" component={ATDoneScene} width={1080} height={1920} fps={30} durationInFrames={AT.done.durationInFrames} defaultProps={{ style: AT.done.style }} />
+    </Folder>
+    <Composition id="ParentReport" component={Report} width={1080} height={1920} fps={30} durationInFrames={REPORT_DURATION} defaultProps={{ music: false }} />
+    <Composition id="ParentReportWithMusic" component={Report} width={1080} height={1920} fps={30} durationInFrames={REPORT_DURATION} defaultProps={{ music: true }} />
+    <Folder name="ParentReportScenes">
+      <Composition id="RP-Hook" component={RPHookScene} width={1080} height={1920} fps={30} durationInFrames={RP.hook.durationInFrames} defaultProps={{ style: RP.hook.style }} />
+      <Composition id="RP-Export" component={RPExportScene} width={1080} height={1920} fps={30} durationInFrames={RP.export.durationInFrames} defaultProps={{ style: RP.export.style }} />
+      <Composition id="RP-Zalo" component={RPZaloScene} width={1080} height={1920} fps={30} durationInFrames={RP.zalo.durationInFrames} defaultProps={{ style: RP.zalo.style }} />
+      <Composition id="RP-Report" component={RPReportScene} width={1080} height={1920} fps={30} durationInFrames={RP.report.durationInFrames} defaultProps={{ style: RP.report.style }} />
+      <Composition id="RP-Class" component={RPClassScene} width={1080} height={1920} fps={30} durationInFrames={RP.class.durationInFrames} defaultProps={{ style: RP.class.style }} />
+      <Composition id="RP-Students" component={RPStudentsScene} width={1080} height={1920} fps={30} durationInFrames={RP.students.durationInFrames} defaultProps={{ style: RP.students.style }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />

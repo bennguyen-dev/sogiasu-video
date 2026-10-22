@@ -14,7 +14,7 @@ import { CLASS_COLOR, CLASS_NAME, classLessons, CREATED_API, STUDENTS } from "..
 export const CLASS_ID = "new-class";
 export const LESSON_ID = "new-class-0";
 const [MA, GH] = STUDENTS;
-const STUDENT_IDS = { ma: "student-minh-anh", gh: "student-gia-han" } as const;
+export const STUDENT_IDS = { ma: "student-minh-anh", gh: "student-gia-han" } as const;
 const ATTENDANCE_IDS = { ma: "attendance-minh-anh-0110", gh: "attendance-gia-han-0110" } as const;
 
 export const CONTENT = "Writing Task 2 - Opinion essay";

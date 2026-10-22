@@ -12,6 +12,8 @@
     "render:create-class:music": "node scripts/render.mjs CreateClassWithMusic create-class-music",
     "render:attendance": "node scripts/render.mjs FirstAttendance attendance-sfx",
     "render:attendance:music": "node scripts/render.mjs FirstAttendanceWithMusic attendance-music",
+    "render:report": "node scripts/render.mjs ParentReport report-sfx",
+    "render:report:music": "node scripts/render.mjs ParentReportWithMusic report-music",
     "typecheck": "tsc"
   },
   "keywords": [],

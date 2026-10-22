@@ -14,6 +14,7 @@ import { PhoneFrame, TUTORIAL_PHONE as L } from "../components/Phone";
 
 // the tutorial series' app screen: L.width × L.screenH css px, no bottom nav unless a scene asks for it
 export const SCREEN_H = L.screenH;
+export const SCREEN_W = L.width;
 const PHONE_W = L.width;
 const S = L.scale;
 import { clamp, ease } from "../motion";
