@@ -21,6 +21,11 @@ import { HookScene as CCHookScene, MonthScene, WeekScene } from "./videos/create
 import { EndScene } from "./videos/create-class/scenes/EndScene";
 import { CreateClass } from "./videos/create-class/CreateClass";
 import { CREATE_CLASS_DURATION, SCENES as CC } from "./videos/create-class/timeline";
+import { EssayPhoto } from "./videos/attendance/EssayPhoto";
+import { Attendance } from "./videos/attendance/Attendance";
+import { ATTENDANCE_DURATION, SCENES as AT } from "./videos/attendance/timeline";
+import { DetailScene as ATDetailScene } from "./videos/attendance/scenes/DetailScene";
+import { DoneScene as ATDoneScene, HookScene as ATHookScene, OpenScene as ATOpenScene } from "./videos/attendance/scenes/CalendarScenes";
 
 export const RemotionRoot = () => (
   <>
@@ -147,6 +152,17 @@ export const RemotionRoot = () => (
       <Composition id="CC-Week" component={WeekScene} width={1080} height={1920} fps={30} durationInFrames={CC.week.durationInFrames} defaultProps={{ style: CC.week.style }} />
       <Composition id="CC-Month" component={MonthScene} width={1080} height={1920} fps={30} durationInFrames={CC.month.durationInFrames} defaultProps={{ style: CC.month.style }} />
       <Composition id="CC-End" component={EndScene} width={1080} height={1920} fps={30} durationInFrames={CC.end.durationInFrames} defaultProps={{ style: CC.end.style }} />
+    </Folder>
+    <Composition id="FirstAttendance" component={Attendance} width={1080} height={1920} fps={30} durationInFrames={ATTENDANCE_DURATION} defaultProps={{ music: false }} />
+    <Composition id="FirstAttendanceWithMusic" component={Attendance} width={1080} height={1920} fps={30} durationInFrames={ATTENDANCE_DURATION} defaultProps={{ music: true }} />
+    <Folder name="AttendanceScenes">
+      <Composition id="AT-Hook" component={ATHookScene} width={1080} height={1920} fps={30} durationInFrames={AT.hook.durationInFrames} defaultProps={{ style: AT.hook.style }} />
+      <Composition id="AT-Open" component={ATOpenScene} width={1080} height={1920} fps={30} durationInFrames={AT.open.durationInFrames} defaultProps={{ style: AT.open.style }} />
+      <Composition id="AT-Detail" component={ATDetailScene} width={1080} height={1920} fps={30} durationInFrames={AT.detail.durationInFrames} defaultProps={{ style: AT.detail.style }} />
+      <Composition id="AT-Done" component={ATDoneScene} width={1080} height={1920} fps={30} durationInFrames={AT.done.durationInFrames} defaultProps={{ style: AT.done.style }} />
+    </Folder>
+    <Folder name="Assets">
+      <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />
     </Folder>
   </>
 );

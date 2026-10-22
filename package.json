@@ -10,6 +10,8 @@
     "render:music": "node scripts/render.mjs IntroWithMusic intro-music",
     "render:create-class": "node scripts/render.mjs CreateClass create-class-sfx",
     "render:create-class:music": "node scripts/render.mjs CreateClassWithMusic create-class-music",
+    "render:attendance": "node scripts/render.mjs FirstAttendance attendance-sfx",
+    "render:attendance:music": "node scripts/render.mjs FirstAttendanceWithMusic attendance-music",
     "typecheck": "tsc"
   },
   "keywords": [],
