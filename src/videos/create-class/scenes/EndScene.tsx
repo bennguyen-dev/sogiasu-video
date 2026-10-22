@@ -11,7 +11,15 @@ const Pop = ({ children, at, style }: { readonly children: React.ReactNode; read
 };
 
 // the series' sign-off: what this episode did, and where the next one picks up
-const EndSceneInner = () => {
+export const EndCard = ({
+  episode,
+  title,
+  next,
+}: {
+  readonly episode: string;
+  readonly title: React.ReactNode;
+  readonly next: { readonly episode: string; readonly title: string };
+}) => {
   const frame = useCurrentFrame();
   const drift = frame / 30;
 
@@ -66,7 +74,7 @@ const EndSceneInner = () => {
           <Img src={staticFile("logo.svg")} style={{ width: 140, height: 140, filter: "drop-shadow(0 30px 60px rgba(5,150,105,0.45))" }} />
         </Pop>
         <Pop at={8} style={{ fontSize: 52, fontWeight: 600, color: "#94a3b8" }}>
-          Tập 1 · Tạo lớp đầu tiên
+          {episode}
         </Pop>
         <Pop at={16} style={{ fontSize: 112, fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.05 }}>
           <span
@@ -77,9 +85,7 @@ const EndSceneInner = () => {
               color: "transparent",
             }}
           >
-            Xong lịch
-            <br />
-            cả tháng.
+            {title}
           </span>
         </Pop>
         <Pop at={34} style={{ marginTop: 30 }}>
@@ -92,8 +98,8 @@ const EndSceneInner = () => {
               color: "white",
             }}
           >
-            <div style={{ fontSize: 38, fontWeight: 600, color: "#cbd5e1" }}>Tập 2</div>
-            <div style={{ fontSize: 60, fontWeight: 800, letterSpacing: "-0.02em" }}>Điểm danh buổi đầu tiên →</div>
+            <div style={{ fontSize: 38, fontWeight: 600, color: "#cbd5e1" }}>{next.episode}</div>
+            <div style={{ fontSize: 60, fontWeight: 800, letterSpacing: "-0.02em" }}>{next.title} →</div>
           </div>
         </Pop>
         <Pop at={46} style={{ marginTop: 26 }}>
@@ -116,6 +122,20 @@ const EndSceneInner = () => {
     </>
   );
 };
+
+const EndSceneInner = () => (
+  <EndCard
+    episode="Tập 1 · Tạo lớp đầu tiên"
+    title={
+      <>
+        Xong lịch
+        <br />
+        cả tháng.
+      </>
+    }
+    next={{ episode: "Tập 2", title: "Điểm danh buổi đầu tiên" }}
+  />
+);
 
 export const EndScene = Interactive.create({
   Component: EndSceneInner,

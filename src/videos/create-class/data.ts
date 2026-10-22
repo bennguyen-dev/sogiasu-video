@@ -8,11 +8,11 @@ import { DEFAULT_COLOR_HEX } from "@/features/google-calendar/lib/gcal-colors";
 
 // a brand-new tutor (the demo account's name, nothing else) creating their first class on Mon 05/10
 export const TODAY = "2026-10-05";
-export const CLASS_NAME = "Toán 9 - Ôn thi vào 10";
+export const CLASS_NAME = "IELTS 5.5 - Lớp 9";
 export const CLASS_COLOR = "#33b679";
 export const STUDENTS = [
-  { name: "Minh Anh", price: 180_000 },
-  { name: "Gia Hân", price: 150_000 },
+  { name: "Minh Anh", price: 300_000 },
+  { name: "Gia Hân", price: 250_000 },
 ] as const;
 // Tue + Thu at the time the app pre-fills for a tapped weekday
 export const TUE = 2;

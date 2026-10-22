@@ -22,7 +22,7 @@ const POP_FROM = 10;
 const POP_EVERY = 6;
 
 // app/dashboard/calendar's page (a server component) laid out the same way
-const CalendarPage = () => {
+export const CalendarPage = () => {
   const t = useTranslations("calendar");
   return (
     <>
@@ -90,7 +90,7 @@ const WeekSceneInner = () => {
 
 // switch the real calendar to its month view before the first frame is captured; returns the scroll
 // (none if it already fits) that brings the whole month grid on screen
-const useMonthView = (page: HTMLDivElement | null) => {
+export const useMonthView = (page: HTMLDivElement | null) => {
   const [monthScroll, setMonthScroll] = useState<number | null>(null);
   useEffect(() => {
     if (!page) return;

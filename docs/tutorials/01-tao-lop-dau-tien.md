@@ -21,8 +21,8 @@
 ## Dữ liệu demo
 
 - Gia sư: Nguyễn Thu Hương, tài khoản mới (chưa có lớp nào). Hôm nay: **Thứ Hai 05/10/2026**.
-- Lớp **"Toán 9 - Ôn thi vào 10"**, màu Sage (xanh lá), học phí **Theo buổi học**.
-- Học sinh: **Minh Anh 180.000đ/buổi**, **Gia Hân 150.000đ/buổi**, cùng vào lớp từ **01/10**.
+- Lớp **"IELTS 5.5 - Lớp 9"**, màu Sage (xanh lá), học phí **Theo buổi học**.
+- Học sinh: **Minh Anh 300.000đ/buổi**, **Gia Hân 250.000đ/buổi**, cùng vào lớp từ **01/10**.
 - Lịch: **Thứ 3 + Thứ 5, 18:00-19:30**, từ **01/10 đến 01/11** → **9 buổi** (01, 06, 08, 13, 15, 20, 22, 27, 29/10).
 
 ## Kịch bản
@@ -45,7 +45,7 @@ Chữ: **Bước 1/3** / Đặt tên & chọn màu → **Học phí** / *3 cách
 
 | Lúc | Thao tác | Khoanh + bong bóng |
 |---|---|---|
-| 0:06 | Chạm ô Tên lớp, gõ "Toán 9 - Ôn thi vào 10" | - |
+| 0:06 | Chạm ô Tên lớp, gõ "IELTS 5.5 - Lớp 9" | - |
 | 0:07 | Mở bảng màu, chọn **Sage** | - |
 | 0:09 | - | Thẻ **Theo giờ**: "Theo giờ: buổi dạy 2 tiếng thì tính tiền 2 giờ" |
 | 0:11 | - | Thẻ **Theo buổi học**: "Theo buổi: điểm danh buổi nào, tính tiền buổi đó" |
@@ -63,11 +63,11 @@ Chữ: **Bước 2/3** / Thêm học sinh → **Học phí mỗi buổi** / *M�
 |---|---|---|
 | 0:23 | - | Dòng chú thích dưới "Học sinh trong lớp": "Ngày vào lớp quyết định em có mặt ở những buổi nào. Học từ đầu tháng thì chọn ngày 1" |
 | 0:26 | Cuộn tới thẻ học sinh 1 | Nút **Mới / Cũ**: "Mới: tạo học sinh mới · Cũ: chọn em đã có ở lớp khác" |
-| 0:29 | Gõ "Minh Anh", học phí **180.000** | - |
+| 0:29 | Gõ "Minh Anh", học phí **300.000** | - |
 | 0:30 | Mở lịch chọn ngày ở **Ngày vào lớp**, chọn **ngày 1** (làm thật) | - |
 | 0:32 | - | Nút **Thêm thông tin**: "Thêm email và SĐT phụ huynh, để mời học và gửi báo cáo" |
-| 0:35 | Bấm **Thêm học sinh** → hàng 2 tự có 180.000 + 01/10 | Học phí + ngày vào lớp của hàng 2: "Hàng mới tự chép học phí và ngày vào lớp của hàng trên" |
-| 0:38 | Gõ "Gia Hân", sửa học phí thành **150.000** | - |
+| 0:35 | Bấm **Thêm học sinh** → hàng 2 tự có 300.000 + 01/10 | Học phí + ngày vào lớp của hàng 2: "Hàng mới tự chép học phí và ngày vào lớp của hàng trên" |
+| 0:38 | Gõ "Gia Hân", sửa học phí thành **250.000** | - |
 | 0:40 | Cuộn cho thấy cả 2 giá | Khoanh 2 ô học phí (không bong bóng), chữ trên: *Mỗi em một giá* |
 | 0:41 | Bấm **Tiếp tục** | - |
 
@@ -84,7 +84,7 @@ Chữ: **Bước 3/3** / Chọn thứ & giờ học → **Lớp học từ đầ
 | 0:51 | Mở lịch ở **Ngày bắt đầu**, chọn **ngày 1** → 9 buổi; app hiện thông báo "1 buổi trước hôm nay sẽ không lên Google Calendar" | - |
 | 0:53 | Cuộn tới đồng bộ | Dòng **Đồng bộ Google Calendar**: "Kết nối Google để tự tạo link Meet, đưa lịch lên Google Calendar và mời học sinh qua email" |
 | 0:56 | Cuộn tới danh sách buổi | Hàng **Chọn tất cả (9/9)**: "Xem trước từng buổi. Bỏ tick buổi nghỉ, VD ngày lễ" |
-| 0:59 | Bấm **Tạo lớp + 9 buổi** → toast xanh *Đã tạo lớp "Toán 9 - Ôn thi vào 10" với 9 buổi học* | - |
+| 0:59 | Bấm **Tạo lớp + 9 buổi** → toast xanh *Đã tạo lớp "IELTS 5.5 - Lớp 9" với 9 buổi học* | - |
 
 ### 6. Lịch tuần (1:00 - 1:02)
 
