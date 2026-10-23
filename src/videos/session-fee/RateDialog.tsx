@@ -18,6 +18,7 @@ import { MoneyInput } from "@/shared/components/ui/money-input";
 import { PercentInput } from "@/shared/components/ui/percent-input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table";
 import type { EnrollmentDetail } from "@/features/enrollment/types";
+import { applyDiscount } from "@/features/fee/lib/discount";
 import { useFormatters } from "@/shared/hooks/use-formatters";
 import { DATE_TIME_FORMAT } from "@/shared/lib/date";
 import { cn, formatCurrency } from "@/shared/lib/utils";
@@ -30,6 +31,7 @@ export const RateDialog = ({
   history,
   price,
   effectiveFrom,
+  discount = null,
   hourly = false,
   student = "Minh Anh",
   className = CLASS_NAME,
@@ -38,11 +40,13 @@ export const RateDialog = ({
   readonly history: EnrollmentDetail["priceHistory"];
   readonly price: number | null;
   readonly effectiveFrom: string;
+  readonly discount?: number | null;
   readonly hourly?: boolean;
   readonly student?: string;
   readonly className?: string;
 }) => {
   const t = useTranslations("enrollment");
+  const tFee = useTranslations("fee");
   const tUi = useTranslations("ui");
   const { formatDate } = useFormatters();
   const today = format(new Date(), DATE_TIME_FORMAT.DEFAULT);
@@ -77,8 +81,16 @@ export const RateDialog = ({
                     return (
                       <TableRow key={ph.id} className={cn(isActive && "bg-muted/40")}>
                         <TableCell className="font-medium">
+                          {ph.discountPercent !== null && (
+                            <div className="mb-1 flex items-center gap-1.5 text-xs font-normal text-muted-foreground">
+                              <span className="line-through">{formatCurrency(ph.price)}</span>
+                              <Badge variant="success" size="sm">
+                                {tFee("discountChip", { percent: ph.discountPercent })}
+                              </Badge>
+                            </div>
+                          )}
                           <div className="flex items-center gap-2">
-                            {formatCurrency(ph.price)}
+                            {formatCurrency(ph.discountPercent !== null ? applyDiscount(ph.price, ph.discountPercent).amount : ph.price)}
                             {isActive && (
                               <Badge variant="success" size="sm">
                                 {t("priceDialog.activeRate")}
@@ -110,9 +122,9 @@ export const RateDialog = ({
                   </label>
                   <MoneyInput placeholder={t("priceDialog.feePlaceholder")} value={price} onChange={() => {}} />
                 </div>
-                <div className="grid gap-2">
+                <div className="grid gap-2" data-discount>
                   <label className="flex items-center gap-2 text-sm leading-none font-medium select-none">{t("discountField.label")}</label>
-                  <PercentInput value={null} onChange={() => {}} />
+                  <PercentInput value={discount} onChange={() => {}} />
                 </div>
                 <div className="grid gap-2" data-effective-from>
                   <label className="flex items-center gap-2 text-sm leading-none font-medium select-none">
@@ -127,6 +139,15 @@ export const RateDialog = ({
                 <Info />
                 <AlertTitle>{tUi("alert.info")}</AlertTitle>
                 <AlertDescription>
+                  {discount && price !== null ? (
+                    <p className="font-medium">
+                      {t(hourly ? "priceDialog.netPreviewHour" : "priceDialog.netPreview", {
+                        gross: formatCurrency(price),
+                        percent: discount,
+                        amount: formatCurrency(applyDiscount(price, discount).amount),
+                      })}
+                    </p>
+                  ) : null}
                   <p>{t("priceDialog.note")}</p>
                 </AlertDescription>
               </Alert>

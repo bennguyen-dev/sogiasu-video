@@ -24,6 +24,8 @@
     "render:hour-fee:music": "node scripts/render.mjs HourFeeWithMusic hour-fee-music",
     "render:course-fee": "node scripts/render.mjs CourseFee course-fee-sfx",
     "render:course-fee:music": "node scripts/render.mjs CourseFeeWithMusic course-fee-music",
+    "render:fee-adjust": "node scripts/render.mjs FeeAdjust fee-adjust-sfx",
+    "render:fee-adjust:music": "node scripts/render.mjs FeeAdjustWithMusic fee-adjust-music",
     "typecheck": "tsc"
   },
   "keywords": [],

@@ -44,6 +44,12 @@ import { COURSE_FEE_DURATION, SCENES as CF } from "./videos/course-fee/timeline"
 import { EndScene as CFEndScene, HookScene as CFHookScene, ModeScene as CFModeScene } from "./videos/course-fee/scenes/IntroScenes";
 import { AddScene as CFAddScene } from "./videos/course-fee/scenes/AddScene";
 import { ListScene as CFListScene, VoucherScene as CFVoucherScene } from "./videos/course-fee/scenes/FeeScenes";
+import { FeeAdjust } from "./videos/fee-adjust/FeeAdjust";
+import { FEE_ADJUST_DURATION, SCENES as FA } from "./videos/fee-adjust/timeline";
+import { EndScene as FAEndScene, HookScene as FAHookScene, VoucherScene as FAVoucherScene } from "./videos/fee-adjust/scenes/IntroScenes";
+import { DiscountScene as FADiscountScene } from "./videos/fee-adjust/scenes/DiscountScene";
+import { OverrideScene as FAOverrideScene } from "./videos/fee-adjust/scenes/OverrideScene";
+import { OtherFeeScene as FAOtherScene } from "./videos/fee-adjust/scenes/OtherFeeScene";
 import { FEES_DURATION, SCENES as FE } from "./videos/fees/timeline";
 import { CollectScene as FECollectScene, FeesScene as FEFeesScene, HistoryScene as FEHistoryScene, VoucherScene as FEVoucherScene } from "./videos/fees/scenes/FeeScenes";
 import { HookScene as FEHookScene, ZaloScene as FEZaloScene } from "./videos/fees/scenes/SendScenes";
@@ -250,6 +256,16 @@ export const RemotionRoot = () => (
       <Composition id="CF-List" component={CFListScene} width={1080} height={1920} fps={30} durationInFrames={CF.list.durationInFrames} defaultProps={{ style: CF.list.style }} />
       <Composition id="CF-Voucher" component={CFVoucherScene} width={1080} height={1920} fps={30} durationInFrames={CF.voucher.durationInFrames} defaultProps={{ style: CF.voucher.style }} />
       <Composition id="CF-End" component={CFEndScene} width={1080} height={1920} fps={30} durationInFrames={CF.end.durationInFrames} defaultProps={{ style: CF.end.style }} />
+    </Folder>
+    <Composition id="FeeAdjust" component={FeeAdjust} width={1080} height={1920} fps={30} durationInFrames={FEE_ADJUST_DURATION} defaultProps={{ music: false }} />
+    <Composition id="FeeAdjustWithMusic" component={FeeAdjust} width={1080} height={1920} fps={30} durationInFrames={FEE_ADJUST_DURATION} defaultProps={{ music: true }} />
+    <Folder name="FeeAdjustScenes">
+      <Composition id="FA-Hook" component={FAHookScene} width={1080} height={1920} fps={30} durationInFrames={FA.hook.durationInFrames} defaultProps={{ style: FA.hook.style }} />
+      <Composition id="FA-Discount" component={FADiscountScene} width={1080} height={1920} fps={30} durationInFrames={FA.discount.durationInFrames} defaultProps={{ style: FA.discount.style }} />
+      <Composition id="FA-Override" component={FAOverrideScene} width={1080} height={1920} fps={30} durationInFrames={FA.override.durationInFrames} defaultProps={{ style: FA.override.style }} />
+      <Composition id="FA-Other" component={FAOtherScene} width={1080} height={1920} fps={30} durationInFrames={FA.other.durationInFrames} defaultProps={{ style: FA.other.style }} />
+      <Composition id="FA-Voucher" component={FAVoucherScene} width={1080} height={1920} fps={30} durationInFrames={FA.voucher.durationInFrames} defaultProps={{ style: FA.voucher.style }} />
+      <Composition id="FA-End" component={FAEndScene} width={1080} height={1920} fps={30} durationInFrames={FA.end.durationInFrames} defaultProps={{ style: FA.end.style }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />
