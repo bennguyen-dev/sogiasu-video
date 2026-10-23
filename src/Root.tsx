@@ -50,6 +50,7 @@ import { CloseScene as AGCloseScene, MarkScene as AGMarkScene } from "./videos/a
 import { EndScene as AGEndScene } from "./videos/attendance-grid/scenes/EndScene";
 import { AttendanceGrid } from "./videos/attendance-grid/AttendanceGrid";
 import { ATTENDANCE_GRID_DURATION, SCENES as AG } from "./videos/attendance-grid/timeline";
+import { DashboardScene as RVDashboardScene } from "./videos/revenue/scenes/DashboardScene";
 import { OverviewScene as RVOverviewScene } from "./videos/revenue/scenes/OverviewScene";
 import { MonthsScene as RVMonthsScene } from "./videos/revenue/scenes/MonthsScene";
 import { EndScene as RVEndScene } from "./videos/revenue/scenes/EndScene";
@@ -295,6 +296,7 @@ export const RemotionRoot = () => (
     <Composition id="Revenue" component={Revenue} width={1080} height={1920} fps={30} durationInFrames={REVENUE_DURATION} defaultProps={{ music: false }} />
     <Composition id="RevenueWithMusic" component={Revenue} width={1080} height={1920} fps={30} durationInFrames={REVENUE_DURATION} defaultProps={{ music: true }} />
     <Folder name="RevenueScenes">
+      <Composition id="RV-Dashboard" component={RVDashboardScene} width={1080} height={1920} fps={30} durationInFrames={RV.dashboard.durationInFrames} defaultProps={{ style: RV.dashboard.style }} />
       <Composition id="RV-Overview" component={RVOverviewScene} width={1080} height={1920} fps={30} durationInFrames={RV.overview.durationInFrames} defaultProps={{ style: RV.overview.style }} />
       <Composition id="RV-Months" component={RVMonthsScene} width={1080} height={1920} fps={30} durationInFrames={RV.months.durationInFrames} defaultProps={{ style: RV.months.style }} />
       <Composition id="RV-End" component={RVEndScene} width={1080} height={1920} fps={30} durationInFrames={RV.end.durationInFrames} defaultProps={{ style: RV.end.style }} />

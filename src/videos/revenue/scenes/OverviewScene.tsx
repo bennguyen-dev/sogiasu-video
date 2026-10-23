@@ -192,8 +192,8 @@ const OverviewSceneInner = () => {
           background: "linear-gradient(#f1f5f9 80%, rgba(241,245,249,0))",
         }}
       />
-      <StepCaption eyebrow="Tháng này" from={-20} to={KPI_RINGS[0]}>
-        <span style={{ color: colors.emerald }}>thu được bao nhiêu?</span>
+      <StepCaption eyebrow="Xem kỹ hơn" from={-20} to={KPI_RINGS[0]}>
+        <span style={{ color: colors.emerald }}>ở trang Phân tích</span>
       </StepCaption>
       {KPI_STEPS.map((s, i) => (
         <StepCaption key={s.label} eyebrow={s.label} from={KPI_RINGS[i]} to={i < KPI_RINGS.length - 1 ? KPI_RINGS[i + 1] : ACTIVITY.move}>

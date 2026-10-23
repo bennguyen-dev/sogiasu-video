@@ -1,3 +1,4 @@
+import { DASHBOARD_LENGTH } from "./scenes/DashboardScene";
 import { OVERVIEW_LENGTH } from "./scenes/OverviewScene";
 import { MONTHS_LENGTH } from "./scenes/MonthsScene";
 
@@ -6,6 +7,7 @@ const INK = { backgroundColor: "#020618" };
 
 // scene lengths in frames, in play order
 const SCENE_LIST = [
+  ["dashboard", DASHBOARD_LENGTH, MIST],
   ["overview", OVERVIEW_LENGTH, MIST],
   ["months", MONTHS_LENGTH, MIST],
   ["end", 105, INK],

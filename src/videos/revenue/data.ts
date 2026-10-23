@@ -24,7 +24,11 @@ const lessonCount = (c: DemoClass, month: number) => {
 };
 const octoberCount = (c: DemoClass) => lessonCount(c, 10);
 const earlyCount = (c: DemoClass) => Array.from({ length: 8 }, (_, i) => lessonCount(c, i + 1)).reduce((t, n) => t + n, 0);
-const taught = (l: { id: string; endTime: string }) => l.id === OPEN_LESSON_ID || new Date(l.endTime).getTime() < TODAY_10;
+// this morning's Speaking 1-1 was taught but not closed yet: the dashboard's one unfinished lesson
+export const UNCHECKED_CLASS = CLASSES.find((c) => c.billing === "PER_HOUR")!;
+const UNCHECKED_ID = `${UNCHECKED_CLASS.id}-2026-11-12`;
+const taught = (l: { id: string; endTime: string }) =>
+  l.id === OPEN_LESSON_ID || (l.id !== UNCHECKED_ID && new Date(l.endTime).getTime() < TODAY_10);
 
 type Money = { oct: number; novPaid: number; novPending: number; forecast: number };
 
@@ -93,6 +97,49 @@ export const revenueByMonth = (): RevenuePoint[] => {
   return months.map((collected, i) => ({ bucket: `2026-${String(i + 1).padStart(2, "0")}`, collected }));
 };
 
+// the dashboard's cards on the same afternoon: this month's money as the analytics page counts it
+const owes = (c: DemoClass, s: DemoStudent) =>
+  c.billing !== "PER_COURSE" &&
+  s.name !== AS_IT_GOES &&
+  novemberLessons(c).some((l) => taught(l) && novAbsence(s.name, l.date)?.status !== "EXCUSED");
+const lessonCard = (c: DemoClass, l: ReturnType<typeof novemberLessons>[number]) => ({
+  id: l.id,
+  classId: c.id,
+  date: l.date,
+  startTime: new Date(l.startTime),
+  endTime: new Date(l.endTime),
+  meetLink: null,
+  status: taught(l) ? "COMPLETED" : "SCHEDULED",
+  isOnline: c.online,
+  attendances: taught(l) ? c.students.map(() => ({ status: "PRESENT" })) : [],
+  class: { name: c.name, color: c.color, enrollments: c.students.map(() => ({ joinedAt: new Date("2026-08-28T00:00:00+07:00") })) },
+});
+const lessonsOn = (from: string, to: string) =>
+  CLASSES.flatMap((c) => novemberLessons(c).filter((l) => l.date >= from && l.date <= to).map((l) => lessonCard(c, l))).sort(
+    (x, y) => x.startTime.getTime() - y.startTime.getTime(),
+  );
+// IELTS Foundation's November course has its last two lessons left
+export const LOW_CLASS = CLASSES.find((c) => c.billing === "PER_COURSE")!;
+
+const dashboardOverview = () => {
+  const nov = activity(false);
+  const ms = CLASSES.map(moneyOf);
+  return {
+    stats: {
+      totalStudents: CLASSES.reduce((t, c) => t + c.students.length, 0),
+      totalClasses: CLASSES.length,
+      monthlyScheduledCount: nov.reduce((t, p) => t + p.scheduledCount, 0),
+      monthlyCompletedCount: nov.reduce((t, p) => t + p.completedCount, 0),
+      monthlyCancelledCount: 0,
+    },
+    revenue: { monthlyRevenue: ms.reduce((t, m) => t + m.novPaid, 0) },
+    pendingFees: {
+      pendingFeeTotal: ms.reduce((t, m) => t + m.novPending, 0),
+      unpaidStudentsCount: CLASSES.flatMap((c) => c.students.filter((s) => owes(c, s))).length,
+    },
+  };
+};
+
 const ok = (data: unknown) => ({ success: true, data });
 const allMonths = (url: string) => !new URL(url, "http://x").searchParams.has("month");
 
@@ -101,6 +148,17 @@ export const REVENUE_API = {
   "/api/analytics/lesson-activity": (url: string) => ok(activity(allMonths(url))),
   "/api/analytics/revenue/by-month": () => ok(revenueByMonth()),
   "/api/classes?": () => ok(classesList()),
+  "/api/dashboard/overview": () => ok(dashboardOverview()),
+  "/api/dashboard/sessions": () => ok({ todaySessions: lessonsOn("2026-11-12", "2026-11-12"), upcomingSessions: lessonsOn("2026-11-13", "2026-11-19") }),
+  "/api/dashboard/alerts": () => ({
+    success: true,
+    data: lessonsOn("2026-11-12", "2026-11-12").filter((l) => l.id === UNCHECKED_ID),
+    pagination: { page: 1, limit: 5, total: 1, totalPages: 1 },
+  }),
+  "/api/dashboard/low-remaining-lessons": () =>
+    ok([{ class: { id: LOW_CLASS.id, name: LOW_CLASS.name, color: LOW_CLASS.color }, remainingCount: 2 }]),
+  "/api/profile": () =>
+    ok({ id: "demo-user", name: "Nguyễn Thu Hương", email: "huong@sogiasu.com", image: null, loginMethods: ["google"], createdAt: "2026-08-28T02:00:00.000Z" }),
 };
 
 // the class the potential beat points at: the most still owed this month
