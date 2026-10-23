@@ -18,6 +18,8 @@
     "render:fees:music": "node scripts/render.mjs MonthEndFeesWithMusic fees-music",
     "render:schedule": "node scripts/render.mjs WeeklySchedule schedule-sfx",
     "render:schedule:music": "node scripts/render.mjs WeeklyScheduleWithMusic schedule-music",
+    "render:session-fee": "node scripts/render.mjs SessionFee session-fee-sfx",
+    "render:session-fee:music": "node scripts/render.mjs SessionFeeWithMusic session-fee-music",
     "typecheck": "tsc"
   },
   "keywords": [],

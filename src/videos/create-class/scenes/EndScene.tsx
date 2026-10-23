@@ -14,10 +14,12 @@ const Pop = ({ children, at, style }: { readonly children: React.ReactNode; read
 export const EndCard = ({
   episode,
   title,
+  titleSize = 112,
   next,
 }: {
   readonly episode: string;
   readonly title: React.ReactNode;
+  readonly titleSize?: number;
   readonly next: { readonly episode: string; readonly title: string };
 }) => {
   const frame = useCurrentFrame();
@@ -76,7 +78,7 @@ export const EndCard = ({
         <Pop at={8} style={{ fontSize: 52, fontWeight: 600, color: "#94a3b8" }}>
           {episode}
         </Pop>
-        <Pop at={16} style={{ fontSize: 112, fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.05 }}>
+        <Pop at={16} style={{ fontSize: titleSize, fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.05 }}>
           <span
             style={{
               backgroundImage: `linear-gradient(90deg, ${colors.emeraldSoft}, ${colors.skySoft})`,

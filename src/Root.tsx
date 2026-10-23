@@ -28,6 +28,11 @@ import { Schedule } from "./videos/schedule/Schedule";
 import { SCHEDULE_DURATION, SCENES as SC } from "./videos/schedule/timeline";
 import { CancelScene as SCCancelScene, MakeupScene as SCMakeupScene, SendScene as SCSendScene, CANCEL_LENGTH as SC_CANCEL, MAKEUP_LENGTH as SC_MAKEUP, SHARE_LENGTH as SC_SHARE } from "./videos/schedule/scenes/ChangeScenes";
 import { CardsScene as SCCardsScene, HookScene as SCHookScene, WindowScene as SCWindowScene, CARDS_LENGTH as SC_CARDS, WINDOW_LENGTH as SC_WINDOW } from "./videos/schedule/scenes/ViewScenes";
+import { SessionFee } from "./videos/session-fee/SessionFee";
+import { SESSION_FEE_DURATION, SCENES as SF } from "./videos/session-fee/timeline";
+import { HookScene as SFHookScene, ModeScene as SFModeScene } from "./videos/session-fee/scenes/IntroScenes";
+import { CheckScene as SFCheckScene, ListScene as SFListScene } from "./videos/session-fee/scenes/FeeScenes";
+import { RateScene as SFRateScene } from "./videos/session-fee/scenes/RateScene";
 import { FEES_DURATION, SCENES as FE } from "./videos/fees/timeline";
 import { CollectScene as FECollectScene, FeesScene as FEFeesScene, HistoryScene as FEHistoryScene, VoucherScene as FEVoucherScene } from "./videos/fees/scenes/FeeScenes";
 import { HookScene as FEHookScene, ZaloScene as FEZaloScene } from "./videos/fees/scenes/SendScenes";
@@ -203,6 +208,15 @@ export const RemotionRoot = () => (
       <Composition id="SC-Makeup" component={SCMakeupScene} width={1080} height={1920} fps={30} durationInFrames={SC_MAKEUP} defaultProps={{ style: { backgroundColor: "#f1f5f9" } }} />
       <Composition id="SC-Send" component={SCSendScene} width={1080} height={1920} fps={30} durationInFrames={SC_SHARE} defaultProps={{ style: { backgroundColor: "#f1f5f9" } }} />
       <Composition id="SC-Cards" component={SCCardsScene} width={1080} height={1920} fps={30} durationInFrames={SC_CARDS} defaultProps={{ style: { backgroundColor: "#f1f5f9" } }} />
+    </Folder>
+    <Composition id="SessionFee" component={SessionFee} width={1080} height={1920} fps={30} durationInFrames={SESSION_FEE_DURATION} defaultProps={{ music: false }} />
+    <Composition id="SessionFeeWithMusic" component={SessionFee} width={1080} height={1920} fps={30} durationInFrames={SESSION_FEE_DURATION} defaultProps={{ music: true }} />
+    <Folder name="SessionFeeScenes">
+      <Composition id="SF-Hook" component={SFHookScene} width={1080} height={1920} fps={30} durationInFrames={SF.hook.durationInFrames} defaultProps={{ style: SF.hook.style }} />
+      <Composition id="SF-Mode" component={SFModeScene} width={1080} height={1920} fps={30} durationInFrames={SF.mode.durationInFrames} defaultProps={{ style: SF.mode.style }} />
+      <Composition id="SF-List" component={SFListScene} width={1080} height={1920} fps={30} durationInFrames={SF.list.durationInFrames} defaultProps={{ style: SF.list.style }} />
+      <Composition id="SF-Rate" component={SFRateScene} width={1080} height={1920} fps={30} durationInFrames={SF.rate.durationInFrames} defaultProps={{ style: SF.rate.style }} />
+      <Composition id="SF-Check" component={SFCheckScene} width={1080} height={1920} fps={30} durationInFrames={SF.check.durationInFrames} defaultProps={{ style: SF.check.style }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />
