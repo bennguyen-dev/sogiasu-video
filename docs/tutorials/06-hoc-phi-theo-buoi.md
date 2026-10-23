@@ -5,7 +5,7 @@
 |            |                                                                                          |
 | ---------- | ---------------------------------------------------------------------------------------- |
 | Nền tảng   | TikTok, Reels, YouTube Shorts (+ nhúng vào blog hướng dẫn)                               |
-| Khung      | Dọc 1080×1920, 30fps, ~49 giây (1477 frame), layout `TUTORIAL_PHONE` (411 px)            |
+| Khung      | Dọc 1080×1920, 30fps, ~54 giây (1629 frame), layout `TUTORIAL_PHONE` (411 px)            |
 | Render     | `yarn render:session-fee` (chỉ SFX) · `yarn render:session-fee:music` (có nhạc) → `out/` |
 | Âm thanh   | Không lời thoại. SFX cho mọi thao tác; bản có nhạc dùng chung nhạc nền                   |
 | Thông điệp | Mỗi buổi dạy xong tính 1 khoản. Đổi giá từ 1 ngày: buổi cũ giữ giá, đã thu không đổi     |
@@ -69,15 +69,23 @@ Chữ: **Tăng giá từ 01/11** / _chọn ngày bắt đầu áp dụng_
 
 Chữ: **Đã thu** / _không bị đổi_
 
-| Lúc  | Thao tác                                                                                                                                  | Khoanh + bong bóng                                      |
-| ---- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| 0:38 | Trang Học phí: Minh Anh "3 buổi · 1.050.000đ", mở **Chọn buổi**: 3 dòng 350.000đ                                                          | "3 buổi tháng 11 đã lên giá mới"                        |
+| Lúc  | Thao tác                                                                                                                                  | Khoanh + bong bóng                              |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| 0:38 | Trang Học phí: Minh Anh "3 buổi · 1.050.000đ", mở **Chọn buổi**: 3 dòng 350.000đ                                                          | "3 buổi tháng 11 đã lên giá mới"                |
 | 0:41 | Tab **Lịch sử thu** (mặc định tháng 11, trống Minh Anh) → bấm ô tháng, chọn **Tháng 10** → Minh Anh, thu ngày 31/10, 9 khoản · 2.700.000đ | "Buổi tháng 10 đã thu: vẫn 300.000đ, không đổi" |
 
-### 6. End card (0:45 - 0:49)
+### 6. Phiếu học phí (~0:45 - 0:51)
 
-| Hình          | Chữ                                                                                                                       | Âm               |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+Chữ: **Phiếu cuối tháng** / _tự lấy giá mới_
+
+| Lúc  | Thao tác                                                                                                             | Khoanh + bong bóng                                                                             |
+| ---- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 0:45 | Trang Học phí, thẻ Minh Anh → **Tạo phiếu học phí** → hộp Phiếu học phí, mẫu **Mùa thu** (như tập 4), cuộn tới phiếu | Phiếu: 3 buổi tháng 11 × 350.000đ = 1.050.000đ, có QR: "Phiếu tự lấy giá mới, QR đúng số tiền" |
+
+### 7. End card (0:45 - 0:49)
+
+| Hình          | Chữ                                                                                                                                | Âm               |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | Nền tối, logo | Tập 6 · Học phí theo buổi / **Tự động tính giá mới,<br>chính xác từng ngày.** / thẻ "Tập 7 · Học phí theo giờ →" / **sogiasu.com** | pop, impact, pop |
 
 ## Đã cân nhắc nhưng không đưa vào
@@ -107,6 +115,6 @@ Chữ: **Đã thu** / _không bị đổi_
 ## Lưu ý khi sửa
 
 - Hộp **Học phí theo buổi** (`RateDialog.tsx`) dựng lại markup của `SessionRateDialog` quanh giá trị do frame truyền vào: form của app nằm bên trong component nên không gõ giá / chọn ngày theo từng frame được. Ô tiền, ô giảm giá, ô chọn ngày (cả lịch bật ra), bảng lịch sử, khung ghi chú là component thật.
-- Phần tử bật ra sau lượt render (danh sách buổi sau Chọn buổi, lịch chọn ngày, ô chọn tháng) cần render thêm 1 lượt mới đo được: `useOpenCard` trong `FeeScenes.tsx`, `useRerenderWhen` trong `use-rerender.ts`.
-- Hộp / lịch đóng ngay ở cú chạm cuối nên vị trí chạm được giữ lại từ lần đo trước (`last` trong `RateScene.tsx`, `lastPrev` trong `FeeScenes.tsx`).
+- Cảnh chọn hình thức, cảnh kiểm tra (giá mới → Lịch sử thu tháng 10) và cảnh phiếu học phí dùng chung với tập 7 (và tập 8): `src/videos/fee-common/scenes.tsx` (`makeModeScene`, `makeCheckScene`, `makeVoucherScene`). Helper trang Học phí (`studentCardOf`, `useOpenCard`, `useRerenderWhen`…) ở `src/shared/tutorial/fee-page.ts`.
+- Hộp / lịch đóng ngay ở cú chạm cuối nên vị trí chạm được giữ lại từ lần đo trước (`last` trong `RateScene.tsx`, `lastPrev` trong `fee-common/scenes.tsx`).
 - Tab và tháng của trang Học phí đọc từ URL: cảnh kiểm tra đặt `setDemoSearch` theo frame trước khi trang đọc.
