@@ -28,6 +28,8 @@
     "render:fee-adjust:music": "node scripts/render.mjs FeeAdjustWithMusic fee-adjust-music",
     "render:attendance-grid": "node scripts/render.mjs AttendanceGrid attendance-grid-sfx",
     "render:attendance-grid:music": "node scripts/render.mjs AttendanceGridWithMusic attendance-grid-music",
+    "render:revenue": "node scripts/render.mjs Revenue revenue-sfx",
+    "render:revenue:music": "node scripts/render.mjs RevenueWithMusic revenue-music",
     "typecheck": "tsc"
   },
   "keywords": [],

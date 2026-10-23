@@ -30,7 +30,7 @@ const ABSENCES: Record<string, Record<number, Absence>> = {
   "Nguyễn Hoàng Anh": { 9: { status: "ABSENT", reason: null } },
   "Minh Quân": { 6: { status: "EXCUSED", reason: "Em có lịch thi ở trường" } },
 };
-const absenceOn = (student: string, date: string) =>
+export const absenceOn = (student: string, date: string) =>
   ABSENCES[student]?.[Number(date.slice(8))] ?? null;
 
 const iso = (date: string, hhmm: string) =>
@@ -45,7 +45,7 @@ type NovLesson = {
   startTime: string;
   endTime: string;
 };
-const novemberLessons = (c: DemoClass): NovLesson[] =>
+export const novemberLessons = (c: DemoClass): NovLesson[] =>
   Array.from(
     { length: 30 },
     (_, i) => `2026-11-${String(i + 1).padStart(2, "0")}`,

@@ -115,7 +115,7 @@ type Shot = { z: number; x: number; y: number };
 const WIDE: Shot = { z: 1, x: (TARGET.x - UI_X) / S, y: (TARGET.y - UI_Y) / S };
 const centre = (b: Box) => ({ x: b.x + b.w / 2, y: b.y + b.h / 2 });
 
-const Ring = ({
+export const Ring = ({
   box,
   at,
   end,
@@ -127,7 +127,7 @@ const Ring = ({
   readonly box: Box;
   readonly at: number;
   readonly end: number;
-  readonly label: string;
+  readonly label?: string;
   readonly color: string;
   readonly toScreen: (x: number, y: number) => { left: number; top: number };
   readonly above?: boolean;
@@ -168,6 +168,7 @@ const Ring = ({
           boxShadow: `0 0 0 12px ${color}33`,
         }}
       />
+      {label ? (
       <div
         style={{
           position: "absolute",
@@ -187,6 +188,7 @@ const Ring = ({
       >
         {label}
       </div>
+      ) : null}
     </div>
   );
 };
