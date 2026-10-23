@@ -31,8 +31,14 @@ import { CardsScene as SCCardsScene, HookScene as SCHookScene, WindowScene as SC
 import { SessionFee } from "./videos/session-fee/SessionFee";
 import { SESSION_FEE_DURATION, SCENES as SF } from "./videos/session-fee/timeline";
 import { HookScene as SFHookScene, ModeScene as SFModeScene } from "./videos/session-fee/scenes/IntroScenes";
-import { CheckScene as SFCheckScene, ListScene as SFListScene } from "./videos/session-fee/scenes/FeeScenes";
+import { CheckScene as SFCheckScene, ListScene as SFListScene, VoucherScene as SFVoucherScene } from "./videos/session-fee/scenes/FeeScenes";
 import { RateScene as SFRateScene } from "./videos/session-fee/scenes/RateScene";
+import { HourFee } from "./videos/hour-fee/HourFee";
+import { HOUR_FEE_DURATION, SCENES as HF } from "./videos/hour-fee/timeline";
+import { HookScene as HFHookScene, ModeScene as HFModeScene } from "./videos/hour-fee/scenes/IntroScenes";
+import { CheckScene as HFCheckScene, ListScene as HFListScene, VoucherScene as HFVoucherScene } from "./videos/hour-fee/scenes/FeeScenes";
+import { LessonScene as HFLessonScene } from "./videos/hour-fee/scenes/LessonScene";
+import { RateScene as HFRateScene } from "./videos/hour-fee/scenes/RateScene";
 import { FEES_DURATION, SCENES as FE } from "./videos/fees/timeline";
 import { CollectScene as FECollectScene, FeesScene as FEFeesScene, HistoryScene as FEHistoryScene, VoucherScene as FEVoucherScene } from "./videos/fees/scenes/FeeScenes";
 import { HookScene as FEHookScene, ZaloScene as FEZaloScene } from "./videos/fees/scenes/SendScenes";
@@ -217,6 +223,18 @@ export const RemotionRoot = () => (
       <Composition id="SF-List" component={SFListScene} width={1080} height={1920} fps={30} durationInFrames={SF.list.durationInFrames} defaultProps={{ style: SF.list.style }} />
       <Composition id="SF-Rate" component={SFRateScene} width={1080} height={1920} fps={30} durationInFrames={SF.rate.durationInFrames} defaultProps={{ style: SF.rate.style }} />
       <Composition id="SF-Check" component={SFCheckScene} width={1080} height={1920} fps={30} durationInFrames={SF.check.durationInFrames} defaultProps={{ style: SF.check.style }} />
+      <Composition id="SF-Voucher" component={SFVoucherScene} width={1080} height={1920} fps={30} durationInFrames={SF.voucher.durationInFrames} defaultProps={{ style: SF.voucher.style }} />
+    </Folder>
+    <Composition id="HourFee" component={HourFee} width={1080} height={1920} fps={30} durationInFrames={HOUR_FEE_DURATION} defaultProps={{ music: false }} />
+    <Composition id="HourFeeWithMusic" component={HourFee} width={1080} height={1920} fps={30} durationInFrames={HOUR_FEE_DURATION} defaultProps={{ music: true }} />
+    <Folder name="HourFeeScenes">
+      <Composition id="HF-Hook" component={HFHookScene} width={1080} height={1920} fps={30} durationInFrames={HF.hook.durationInFrames} defaultProps={{ style: HF.hook.style }} />
+      <Composition id="HF-Mode" component={HFModeScene} width={1080} height={1920} fps={30} durationInFrames={HF.mode.durationInFrames} defaultProps={{ style: HF.mode.style }} />
+      <Composition id="HF-Lesson" component={HFLessonScene} width={1080} height={1920} fps={30} durationInFrames={HF.lesson.durationInFrames} defaultProps={{ style: HF.lesson.style }} />
+      <Composition id="HF-List" component={HFListScene} width={1080} height={1920} fps={30} durationInFrames={HF.list.durationInFrames} defaultProps={{ style: HF.list.style }} />
+      <Composition id="HF-Rate" component={HFRateScene} width={1080} height={1920} fps={30} durationInFrames={HF.rate.durationInFrames} defaultProps={{ style: HF.rate.style }} />
+      <Composition id="HF-Check" component={HFCheckScene} width={1080} height={1920} fps={30} durationInFrames={HF.check.durationInFrames} defaultProps={{ style: HF.check.style }} />
+      <Composition id="HF-Voucher" component={HFVoucherScene} width={1080} height={1920} fps={30} durationInFrames={HF.voucher.durationInFrames} defaultProps={{ style: HF.voucher.style }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />
