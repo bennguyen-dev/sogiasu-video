@@ -26,6 +26,8 @@
     "render:course-fee:music": "node scripts/render.mjs CourseFeeWithMusic course-fee-music",
     "render:fee-adjust": "node scripts/render.mjs FeeAdjust fee-adjust-sfx",
     "render:fee-adjust:music": "node scripts/render.mjs FeeAdjustWithMusic fee-adjust-music",
+    "render:attendance-grid": "node scripts/render.mjs AttendanceGrid attendance-grid-sfx",
+    "render:attendance-grid:music": "node scripts/render.mjs AttendanceGridWithMusic attendance-grid-music",
     "typecheck": "tsc"
   },
   "keywords": [],

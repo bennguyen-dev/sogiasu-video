@@ -45,6 +45,11 @@ import { EndScene as CFEndScene, HookScene as CFHookScene, ModeScene as CFModeSc
 import { AddScene as CFAddScene } from "./videos/course-fee/scenes/AddScene";
 import { ListScene as CFListScene, VoucherScene as CFVoucherScene } from "./videos/course-fee/scenes/FeeScenes";
 import { FeeAdjust } from "./videos/fee-adjust/FeeAdjust";
+import { OverviewScene as AGOverviewScene } from "./videos/attendance-grid/scenes/OverviewScene";
+import { CloseScene as AGCloseScene, MarkScene as AGMarkScene } from "./videos/attendance-grid/scenes/PhoneScenes";
+import { EndScene as AGEndScene } from "./videos/attendance-grid/scenes/EndScene";
+import { AttendanceGrid } from "./videos/attendance-grid/AttendanceGrid";
+import { ATTENDANCE_GRID_DURATION, SCENES as AG } from "./videos/attendance-grid/timeline";
 import { FEE_ADJUST_DURATION, SCENES as FA } from "./videos/fee-adjust/timeline";
 import { EndScene as FAEndScene, HookScene as FAHookScene, VoucherScene as FAVoucherScene } from "./videos/fee-adjust/scenes/IntroScenes";
 import { DiscountScene as FADiscountScene } from "./videos/fee-adjust/scenes/DiscountScene";
@@ -266,6 +271,14 @@ export const RemotionRoot = () => (
       <Composition id="FA-Other" component={FAOtherScene} width={1080} height={1920} fps={30} durationInFrames={FA.other.durationInFrames} defaultProps={{ style: FA.other.style }} />
       <Composition id="FA-Voucher" component={FAVoucherScene} width={1080} height={1920} fps={30} durationInFrames={FA.voucher.durationInFrames} defaultProps={{ style: FA.voucher.style }} />
       <Composition id="FA-End" component={FAEndScene} width={1080} height={1920} fps={30} durationInFrames={FA.end.durationInFrames} defaultProps={{ style: FA.end.style }} />
+    </Folder>
+    <Composition id="AttendanceGrid" component={AttendanceGrid} width={1080} height={1920} fps={30} durationInFrames={ATTENDANCE_GRID_DURATION} defaultProps={{ music: false }} />
+    <Composition id="AttendanceGridWithMusic" component={AttendanceGrid} width={1080} height={1920} fps={30} durationInFrames={ATTENDANCE_GRID_DURATION} defaultProps={{ music: true }} />
+    <Folder name="AttendanceGridScenes">
+      <Composition id="AG-Overview" component={AGOverviewScene} width={1080} height={1920} fps={30} durationInFrames={AG.overview.durationInFrames} defaultProps={{ style: AG.overview.style }} />
+      <Composition id="AG-Mark" component={AGMarkScene} width={1080} height={1920} fps={30} durationInFrames={AG.mark.durationInFrames} defaultProps={{ style: AG.mark.style }} />
+      <Composition id="AG-Close" component={AGCloseScene} width={1080} height={1920} fps={30} durationInFrames={AG.close.durationInFrames} defaultProps={{ style: AG.close.style }} />
+      <Composition id="AG-End" component={AGEndScene} width={1080} height={1920} fps={30} durationInFrames={AG.end.durationInFrames} defaultProps={{ style: AG.end.style }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />
