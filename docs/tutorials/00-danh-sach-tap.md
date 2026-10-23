@@ -17,13 +17,14 @@
 | 8 | Học phí theo khóa | Thu tiền trọn gói theo khóa học: thêm khóa tháng 11 cho cả lớp → khóa tháng 10 chưa thu hiện Quá hạn → mục Học phí mỗi khóa một dòng → phiếu học phí | ✅ Đã dựng | [08-hoc-phi-theo-khoa.md](08-hoc-phi-theo-khoa.md) |
 | 9 | Giảm giá, sửa giá, phí khác | Gia Hân giảm 10% từ 01/11 → sửa giá buổi 07/11 (buổi học kết thúc sớm) → phí Giáo trình cho cả lớp → cả 3 hiện trên phiếu | ✅ Đã dựng | [09-giam-gia-sua-gia-phi-khac.md](09-giam-gia-sua-gia-phi-khac.md) |
 | 10 | Bảng điểm danh | Card nổi như intro: xem cả tháng mọi lớp, ai nghỉ ai vắng → về khung điện thoại: điểm danh 1 ô → chốt buổi ngay trên bảng | ✅ Đã dựng | [10-bang-diem-danh.md](10-bang-diem-danh.md) |
-| 11 | Xem doanh thu | Trang Phân tích: đã thu theo tháng, đã thu vs tiềm năng theo lớp, số buổi và giờ dạy | 📝 Ý tưởng | - |
+| 11 | Xem doanh thu | Card nổi: trang Phân tích tháng 11, 4 ô số liệu, buổi học theo lớp, đã thu vs tiềm năng → điện thoại: chọn "Tất cả" xem doanh thu từng tháng | ✅ Đã dựng | [11-xem-doanh-thu.md](11-xem-doanh-thu.md) |
+| 12 | Cài đặt và kết nối | Vòng nhanh tab Khác: Quản lý tệp, Cài đặt (cuộn tới thẻ ngân hàng), Kết nối Google, Gói và thanh toán (QR chuyển khoản), Hỗ trợ | 📋 Đã chốt kịch bản | [12-cai-dat-va-ket-noi.md](12-cai-dat-va-ket-noi.md) |
 
 Tập 4 gộp cả phiếu thu QR (trước tách 2 tập): thu tiền là một luồng liền mạch. Gắn tài khoản ngân hàng chỉ nhắc bằng 1 bong bóng; không quay lại băng chuyền mẫu phiếu và chat Zalo của intro.
 
 Tập 6-8: hình thức học phí chọn 1 lần lúc tạo lớp, không đổi được → mỗi tập mở bằng cảnh chọn hình thức (~2 giây), mỗi tập kết bằng cảnh phiếu học phí (mẫu Mùa thu như tập 4) rồi end card dẫn sang tập kế. Lớp demo lấy đúng hình thức trong dữ liệu intro: tập 6 lớp IELTS (theo buổi), tập 7 "IELTS Speaking 1-1" - Đỗ Khánh Linh (theo giờ), tập 8 "IELTS Foundation (khóa tháng)" - Bùi Thu Trang + 2 em thêm trong tập (theo khóa). Tập 9 dùng chung cho cả 3 hình thức.
 
-Thứ tự làm: 6 → 7 → 8 → 9 → 10 → 11. Tập 2 + tập 5 là điều kiện để bỏ tour (thay tour chi tiết buổi học và nút hướng dẫn ở lịch). Tập 3 + 4 là việc gia sư làm hằng tháng.
+Thứ tự làm: 6 → 7 → 8 → 9 → 10 → 11 → 12. Tập 12 là tập cuối của loạt chính. Tập 2 + tập 5 là điều kiện để bỏ tour (thay tour chi tiết buổi học và nút hướng dẫn ở lịch). Tập 3 + 4 là việc gia sư làm hằng tháng.
 
 ## Video ngắn "Làm sao để…" (sau 6 tập chính)
 
