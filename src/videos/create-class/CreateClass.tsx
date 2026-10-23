@@ -2,7 +2,7 @@ import { Track } from "remotion";
 import { MusicBed } from "../../shared/audio/MusicBed";
 import { END_IMPACT, SCENES } from "./timeline";
 import { HookScene, MonthScene, WeekScene } from "./scenes/CalendarScenes";
-import { ClassesScene } from "./scenes/ClassesScene";
+import { DashboardScene } from "./scenes/DashboardScene";
 import { EndScene } from "./scenes/EndScene";
 import { InfoScene } from "./scenes/InfoScene";
 import { ScheduleScene } from "./scenes/ScheduleScene";
@@ -16,7 +16,7 @@ export const CreateClass = ({ music }: { readonly music: boolean }) => (
     ) : null}
     <Track name="Scenes">
       <HookScene name="Hook" {...SCENES.hook} />
-      <ClassesScene name="Classes" {...SCENES.classes} />
+      <DashboardScene name="Dashboard" {...SCENES.dashboard} />
       <InfoScene name="Info" {...SCENES.info} />
       <StudentsScene name="Students" {...SCENES.students} />
       <ScheduleScene name="Schedule" {...SCENES.schedule} />

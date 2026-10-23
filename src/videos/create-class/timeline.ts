@@ -1,3 +1,5 @@
+import { DASHBOARD_LENGTH } from "./scenes/DashboardScene";
+
 const PAPER = { backgroundColor: "#f8fafc" };
 const MIST = { backgroundColor: "#f1f5f9" };
 const INK = { backgroundColor: "#020618" };
@@ -5,7 +7,7 @@ const INK = { backgroundColor: "#020618" };
 // scene lengths in frames, in play order; each scene ends a few frames after its last tap, so the cut is the tap's result
 const SCENE_LIST = [
   ["hook", 90, PAPER],
-  ["classes", 66, MIST],
+  ["dashboard", DASHBOARD_LENGTH, MIST],
   ["info", 530, MIST],
   ["students", 575, MIST],
   ["schedule", 528, MIST],

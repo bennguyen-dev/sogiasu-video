@@ -91,10 +91,22 @@ export const classLessons = (): CalendarLesson[] =>
 const PROFILE = { success: true, data: { name: "Nguyễn Thu Hương", email: "huong@sogiasu.com", image: null } };
 
 // a new account: no classes, no students, nothing on the calendar until the wizard is done
+const EMPTY_PAGE = { page: 1, limit: 15, total: 0, totalPages: 0 };
 export const NEW_ACCOUNT_API = {
   "/api/profile": () => PROFILE,
   "/api/billing/overview": () => ({ success: true, data: null }),
-  "/api/classes?": () => ({ success: true, data: [], pagination: { page: 1, limit: 15, total: 0, totalPages: 0 } }),
+  "/api/classes?": () => ({ success: true, data: [], pagination: EMPTY_PAGE }),
+  "/api/dashboard/overview": () => ({
+    success: true,
+    data: {
+      stats: { totalStudents: 0, totalClasses: 0, monthlyScheduledCount: 0, monthlyCompletedCount: 0, monthlyCancelledCount: 0 },
+      revenue: { monthlyRevenue: 0 },
+      pendingFees: { pendingFeeTotal: 0, unpaidStudentsCount: 0 },
+    },
+  }),
+  "/api/dashboard/sessions": () => ({ success: true, data: { todaySessions: [], upcomingSessions: [] } }),
+  "/api/dashboard/alerts": () => ({ success: true, data: [], pagination: EMPTY_PAGE }),
+  "/api/dashboard/low-remaining-lessons": () => ({ success: true, data: [] }),
 };
 
 export const CREATED_API = {

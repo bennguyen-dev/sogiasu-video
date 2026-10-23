@@ -13,7 +13,7 @@ import { LogoScene } from "./videos/intro/scenes/LogoScene";
 import { ReportScene } from "./videos/intro/scenes/ReportScene";
 import { VoucherScene } from "./videos/intro/scenes/VoucherScene";
 import { ZaloScene } from "./videos/intro/scenes/ZaloScene";
-import { ClassesScene } from "./videos/create-class/scenes/ClassesScene";
+import { DashboardScene } from "./videos/create-class/scenes/DashboardScene";
 import { InfoScene } from "./videos/create-class/scenes/InfoScene";
 import { StudentsScene } from "./videos/create-class/scenes/StudentsScene";
 import { ScheduleScene } from "./videos/create-class/scenes/ScheduleScene";
@@ -197,7 +197,7 @@ export const RemotionRoot = () => (
     <Composition id="CreateClassWithMusic" component={CreateClass} width={1080} height={1920} fps={30} durationInFrames={CREATE_CLASS_DURATION} defaultProps={{ music: true }} />
     <Folder name="CreateClassScenes">
       <Composition id="CC-Hook" component={CCHookScene} width={1080} height={1920} fps={30} durationInFrames={CC.hook.durationInFrames} defaultProps={{ style: CC.hook.style }} />
-      <Composition id="CC-Classes" component={ClassesScene} width={1080} height={1920} fps={30} durationInFrames={CC.classes.durationInFrames} defaultProps={{ style: CC.classes.style }} />
+      <Composition id="CC-Dashboard" component={DashboardScene} width={1080} height={1920} fps={30} durationInFrames={CC.dashboard.durationInFrames} defaultProps={{ style: CC.dashboard.style }} />
       <Composition id="CC-Info" component={InfoScene} width={1080} height={1920} fps={30} durationInFrames={CC.info.durationInFrames} defaultProps={{ style: CC.info.style }} />
       <Composition id="CC-Students" component={StudentsScene} width={1080} height={1920} fps={30} durationInFrames={CC.students.durationInFrames} defaultProps={{ style: CC.students.style }} />
       <Composition id="CC-Schedule" component={ScheduleScene} width={1080} height={1920} fps={30} durationInFrames={CC.schedule.durationInFrames} defaultProps={{ style: CC.schedule.style }} />
