@@ -10,7 +10,8 @@ import { calendarLessons } from "../demo/calendar-data";
 import { classesList, pendingFeesResponse, septemberGrid } from "../demo/september-data";
 import "./app.css";
 
-type MockRoutes = Record<string, () => unknown>;
+// a route may read the request url (query params) to shape its answer
+type MockRoutes = Record<string, (url: string) => unknown>;
 // mounted scenes' answers, newest last: the scene being cut to mounts before the one it replaces unmounts
 const sceneRoutes: { routes: MockRoutes }[] = [];
 
@@ -57,7 +58,7 @@ if (
       console.log("[mock-fetch]", init?.method ?? "GET", url);
       const own = sceneAnswer(url);
       const body = own
-        ? own()
+        ? own(url)
         : url.startsWith("/api/calendar?")
         ? { success: true, data: calendarLessons() }
         : url.startsWith("/api/attendance/monthly-grid")

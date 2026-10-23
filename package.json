@@ -16,6 +16,8 @@
     "render:report:music": "node scripts/render.mjs ParentReportWithMusic report-music",
     "render:fees": "node scripts/render.mjs MonthEndFees fees-sfx",
     "render:fees:music": "node scripts/render.mjs MonthEndFeesWithMusic fees-music",
+    "render:schedule": "node scripts/render.mjs WeeklySchedule schedule-sfx",
+    "render:schedule:music": "node scripts/render.mjs WeeklyScheduleWithMusic schedule-music",
     "typecheck": "tsc"
   },
   "keywords": [],

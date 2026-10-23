@@ -24,6 +24,10 @@ import { CREATE_CLASS_DURATION, SCENES as CC } from "./videos/create-class/timel
 import { EssayPhoto } from "./videos/attendance/EssayPhoto";
 import { Report } from "./videos/report/Report";
 import { Fees } from "./videos/fees/Fees";
+import { Schedule } from "./videos/schedule/Schedule";
+import { SCHEDULE_DURATION, SCENES as SC } from "./videos/schedule/timeline";
+import { CancelScene as SCCancelScene, MakeupScene as SCMakeupScene, SendScene as SCSendScene, CANCEL_LENGTH as SC_CANCEL, MAKEUP_LENGTH as SC_MAKEUP, SHARE_LENGTH as SC_SHARE } from "./videos/schedule/scenes/ChangeScenes";
+import { CardsScene as SCCardsScene, HookScene as SCHookScene, WindowScene as SCWindowScene, CARDS_LENGTH as SC_CARDS, WINDOW_LENGTH as SC_WINDOW } from "./videos/schedule/scenes/ViewScenes";
 import { FEES_DURATION, SCENES as FE } from "./videos/fees/timeline";
 import { CollectScene as FECollectScene, FeesScene as FEFeesScene, HistoryScene as FEHistoryScene, VoucherScene as FEVoucherScene } from "./videos/fees/scenes/FeeScenes";
 import { HookScene as FEHookScene, ZaloScene as FEZaloScene } from "./videos/fees/scenes/SendScenes";
@@ -189,6 +193,16 @@ export const RemotionRoot = () => (
       <Composition id="FE-Zalo" component={FEZaloScene} width={1080} height={1920} fps={30} durationInFrames={FE.zalo.durationInFrames} defaultProps={{ style: FE.zalo.style }} />
       <Composition id="FE-Collect" component={FECollectScene} width={1080} height={1920} fps={30} durationInFrames={FE.collect.durationInFrames} defaultProps={{ style: FE.collect.style }} />
       <Composition id="FE-History" component={FEHistoryScene} width={1080} height={1920} fps={30} durationInFrames={FE.history.durationInFrames} defaultProps={{ style: FE.history.style }} />
+    </Folder>
+    <Composition id="WeeklySchedule" component={Schedule} width={1080} height={1920} fps={30} durationInFrames={SCHEDULE_DURATION} defaultProps={{ music: false }} />
+    <Composition id="WeeklyScheduleWithMusic" component={Schedule} width={1080} height={1920} fps={30} durationInFrames={SCHEDULE_DURATION} defaultProps={{ music: true }} />
+    <Folder name="ScheduleScenes">
+      <Composition id="SC-Hook" component={SCHookScene} width={1080} height={1920} fps={30} durationInFrames={SC.hook.durationInFrames} defaultProps={{ style: SC.hook.style }} />
+      <Composition id="SC-Window" component={SCWindowScene} width={1080} height={1920} fps={30} durationInFrames={SC_WINDOW} defaultProps={{ style: { backgroundColor: "#f1f5f9" } }} />
+      <Composition id="SC-Cancel" component={SCCancelScene} width={1080} height={1920} fps={30} durationInFrames={SC_CANCEL} defaultProps={{ style: { backgroundColor: "#f1f5f9" } }} />
+      <Composition id="SC-Makeup" component={SCMakeupScene} width={1080} height={1920} fps={30} durationInFrames={SC_MAKEUP} defaultProps={{ style: { backgroundColor: "#f1f5f9" } }} />
+      <Composition id="SC-Send" component={SCSendScene} width={1080} height={1920} fps={30} durationInFrames={SC_SHARE} defaultProps={{ style: { backgroundColor: "#f1f5f9" } }} />
+      <Composition id="SC-Cards" component={SCCardsScene} width={1080} height={1920} fps={30} durationInFrames={SC_CARDS} defaultProps={{ style: { backgroundColor: "#f1f5f9" } }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />

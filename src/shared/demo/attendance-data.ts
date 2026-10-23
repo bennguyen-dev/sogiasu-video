@@ -46,6 +46,7 @@ export const roster = (s: RowState): RosterResult => ({
       student: { fullName: "Gia Hân", isShared: true, deletedAt: null },
       reason: null,
       studentFee: null,
+      departed: false,
       ...s,
     } satisfies RosterItem,
   ],

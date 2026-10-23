@@ -104,6 +104,7 @@ const rosterItem = (key: "ma" | "gh", name: string, price: number, row: DetailSt
   homeworkPercent: row.homeworkPercent,
   score: row.score,
   studentFee: completed && row.status !== AttendanceStatus.EXCUSED ? fee(key, price) : null,
+  departed: false,
 });
 
 export const rosterAt = (s: DetailState): RosterResult => {

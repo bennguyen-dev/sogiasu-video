@@ -3,7 +3,7 @@ import { calendarKeys } from "@/features/calendar/hooks/calendar-keys";
 import { DEMO_NOW } from "../app/frozen-clock";
 
 // the demo account's weekly timetable (docs/demo-seed/RESULT-2026-10-02-thu-huong.md), colors from APP_COLORS
-type DemoClass = {
+export type DemoClass = {
   name: string;
   color: string;
   students: number;
@@ -14,7 +14,7 @@ type DemoClass = {
   days: number[];
 };
 
-const CLASSES: DemoClass[] = [
+export const CLASSES: DemoClass[] = [
   { name: "Mít – Starters", color: "#f6bf26", students: 1, online: true, start: "14:00", end: "15:30", days: [0, 2] },
   { name: "Em Bảo – Movers", color: "#33b679", students: 1, online: true, start: "14:30", end: "16:00", days: [1, 4] },
   { name: "Nhóm Pre-Starters", color: "#f06292", students: 3, online: false, location: "Nhà cô giáo", start: "09:00", end: "10:30", days: [5, 6] },
