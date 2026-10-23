@@ -18,7 +18,7 @@
 | 9 | Giảm giá, sửa giá, phí khác | Gia Hân giảm 10% từ 01/11 → sửa giá buổi 07/11 (buổi học kết thúc sớm) → phí Giáo trình cho cả lớp → cả 3 hiện trên phiếu | ✅ Đã dựng | [09-giam-gia-sua-gia-phi-khac.md](09-giam-gia-sua-gia-phi-khac.md) |
 | 10 | Bảng điểm danh | Card nổi như intro: xem cả tháng mọi lớp, ai nghỉ ai vắng → về khung điện thoại: điểm danh 1 ô → chốt buổi ngay trên bảng | ✅ Đã dựng | [10-bang-diem-danh.md](10-bang-diem-danh.md) |
 | 11 | Xem doanh thu | Card nổi: trang Phân tích tháng 11, 4 ô số liệu, buổi học theo lớp, đã thu vs tiềm năng → điện thoại: chọn "Tất cả" xem doanh thu từng tháng | ✅ Đã dựng | [11-xem-doanh-thu.md](11-xem-doanh-thu.md) |
-| 12 | Cài đặt và kết nối | Vòng nhanh tab Khác: Quản lý tệp, Cài đặt (cuộn tới thẻ ngân hàng), Kết nối Google, Gói và thanh toán (QR chuyển khoản), Hỗ trợ | 📋 Đã chốt kịch bản | [12-cai-dat-va-ket-noi.md](12-cai-dat-va-ket-noi.md) |
+| 12 | Cài đặt và kết nối | Vòng nhanh tab Khác: Quản lý tệp (mở tới buổi 21/09 có tệp), Cài đặt (cuộn tới thẻ ngân hàng), Kết nối Google, Gói và thanh toán (bảng Free/Pro, mã NHA_GIAO_VN_20_11, gói năm, QR chuyển khoản), Hỗ trợ | ✅ Đã dựng | [12-cai-dat-va-ket-noi.md](12-cai-dat-va-ket-noi.md) |
 
 Tập 4 gộp cả phiếu thu QR (trước tách 2 tập): thu tiền là một luồng liền mạch. Gắn tài khoản ngân hàng chỉ nhắc bằng 1 bong bóng; không quay lại băng chuyền mẫu phiếu và chat Zalo của intro.
 
@@ -26,20 +26,18 @@ Tập 6-8: hình thức học phí chọn 1 lần lúc tạo lớp, không đổ
 
 Thứ tự làm: 6 → 7 → 8 → 9 → 10 → 11 → 12. Tập 12 là tập cuối của loạt chính. Tập 2 + tập 5 là điều kiện để bỏ tour (thay tour chi tiết buổi học và nút hướng dẫn ở lịch). Tập 3 + 4 là việc gia sư làm hằng tháng.
 
-## Video ngắn "Làm sao để…" (sau 6 tập chính)
+## Video ngắn "Làm sao để…" (sau 12 tập chính)
+
+Đã có trong tập 12 nên bỏ khỏi danh sách: gắn tài khoản ngân hàng, kết nối Google, lưu tài liệu buổi học, gói / nâng cấp. Trạng thái Vắng đã nhắc ở tập 10.
 
 | Chủ đề | Ghi chú |
 |---|---|
 | Thêm học sinh vào lớp đang chạy | Ngày vào lớp quyết định em có mặt ở buổi nào |
 | Học sinh nghỉ một thời gian | Tạm dừng (PAUSED) khác xoá thế nào |
 | Mở lại buổi đã chốt | Khoá khi phí đã thu |
-| Gắn tài khoản ngân hàng | Làm 1 lần trước khi tạo phiếu thu QR (tập 4) |
 | Phiếu thu hàng loạt | BulkVoucher, cho lớp đông học sinh |
 | Gộp phiếu anh chị em | Nhiều học sinh cùng nhà vào 1 phiếu (MergeDock) |
-| Kết nối Google | Meet tự động, mời học sinh qua Calendar, Google Drive |
-| Lưu tài liệu buổi học | Trang Lưu trữ, đính kèm vào buổi |
-| Trạng thái Vắng | Vắng vẫn tính tiền, chỉ Có phép mới miễn |
-| (tuỳ chọn) Gói / nâng cấp | Nếu muốn video phục vụ bán hàng |
+| Trạng thái Vắng | Vắng vẫn tính tiền, chỉ Có phép mới miễn (tập 10 đã nhắc qua; làm riêng nếu user vẫn hỏi) |
 
 ## Thế giới demo dùng chung (giữ xuyên suốt các tập)
 
@@ -56,7 +54,7 @@ Thứ tự làm: 6 → 7 → 8 → 9 → 10 → 11 → 12. Tập 12 là tập cu
 - Một luồng thao tác thật cho mỗi tập; giải thích bằng khoanh + bong bóng; thao tác user hay hỏi thì làm thật.
 - Giao diện là component thật của app, dữ liệu giả, không chạm DB.
 - **Không lặp lại cảnh của intro** (`docs/intro.md`): intro đã có điểm danh 1 chạm, báo cáo phụ huynh, bảng tháng, học phí, phiếu QR, Zalo, thống kê. Trùng tính năng thì được, trùng cú quay thì không.
-- Không nhắc giới hạn gói miễn phí trong video hướng dẫn.
+- Không nhắc giới hạn gói miễn phí trong video hướng dẫn. Ngoại lệ duy nhất: tập 12 quay bảng so sánh Free / Pro có sẵn trong trang Gói và thanh toán, không nói thêm gì về giới hạn ngoài bảng đó.
 - Mỗi tập kết bằng end card dẫn sang tập kế (`EndCard` trong `create-class/scenes/EndScene.tsx`).
 
 ## Việc còn lại ngoài video
