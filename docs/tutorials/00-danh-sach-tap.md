@@ -12,7 +12,7 @@
 | 3 | Gửi báo cáo cho phụ huynh | Xuất ảnh mỗi buổi thì ngày nào cũng phải gửi → gửi link 1 lần, phụ huynh tự xem nhận xét, bài tập, lịch học → lấy link trong lớp / từng học sinh → tắt chia sẻ | ✅ Đã dựng | [03-gui-bao-cao-phu-huynh.md](03-gui-bao-cao-phu-huynh.md) |
 | 4 | Thu học phí cuối tháng | Trang Học phí cộng sẵn → tạo phiếu QR (giới thiệu 5 tuỳ chọn, mẫu Mùa thu) → gửi phụ huynh → Đã thu tiền → Lịch sử thu, hoàn tác | ✅ Đã dựng | [04-thu-hoc-phi-cuoi-thang.md](04-thu-hoc-phi-cuoi-thang.md) |
 | 5 | Lịch dạy hằng tuần | Chỉnh khoảng giờ 9h-22h → đọc trạng thái (hoàn thành, chưa chốt, cần kiểm tra) → báo nghỉ → thêm buổi dạy bù → lọc lớp → gửi ảnh lịch tuần vào nhóm lớp | ✅ Đã dựng | [05-lich-day-hang-tuan.md](05-lich-day-hang-tuan.md) |
-| 6 | Học phí theo buổi | Mỗi buổi chốt tính 1 khoản → đổi giá từ 1 ngày: buổi cũ giữ giá, khoản đã thu không đổi, khoản chưa thu tự tính lại | 📝 Kịch bản nháp | [06-hoc-phi-theo-buoi.md](06-hoc-phi-theo-buoi.md) |
+| 6 | Học phí theo buổi | Mỗi buổi chốt tính 1 khoản → đổi giá từ 1 ngày: buổi cũ giữ giá, khoản đã thu không đổi, khoản chưa thu tự tính lại | ✅ Đã dựng | [06-hoc-phi-theo-buoi.md](06-hoc-phi-theo-buoi.md) |
 | 7 | Học phí theo giờ | Tiền 1 buổi = giá giờ × thời lượng (tính đúng phút, làm tròn đồng) → đổi giá giờ; buổi đã chốt muốn sửa giờ phải mở lại | 📝 Ý tưởng | - |
 | 8 | Học phí theo khóa | Thu trọn gói theo kỳ: tạo khóa (tên, số tiền, từ ngày, đến ngày), thêm cho cả lớp → Chờ thu / Quá hạn / Đã thu → kỳ sau nhập giá mới | 📝 Ý tưởng | - |
 | 9 | Giảm giá, sửa giá, phí khác | Giảm % cho 1 học sinh → sửa giá 1 buổi kèm lý do → phí khác cho cả lớp → cả 3 hiện trên phiếu thu gửi phụ huynh | 📝 Ý tưởng | - |
