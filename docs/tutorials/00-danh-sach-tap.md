@@ -16,7 +16,7 @@
 | 7 | Học phí theo giờ | Buổi dài ngắn khác nhau: tiền = số giờ × giá giờ, app tự nhân → tăng giá giờ từ 01/11: tháng 11 giá mới, tháng 10 đã thu giữ giá cũ → phiếu học phí | ✅ Đã dựng | [07-hoc-phi-theo-gio.md](07-hoc-phi-theo-gio.md) |
 | 8 | Học phí theo khóa | Thu tiền trọn gói theo khóa học: thêm khóa tháng 11 cho cả lớp → khóa tháng 10 chưa thu hiện Quá hạn → mục Học phí mỗi khóa một dòng → phiếu học phí | ✅ Đã dựng | [08-hoc-phi-theo-khoa.md](08-hoc-phi-theo-khoa.md) |
 | 9 | Giảm giá, sửa giá, phí khác | Gia Hân giảm 10% từ 01/11 → sửa giá buổi 07/11 (buổi học kết thúc sớm) → phí Giáo trình cho cả lớp → cả 3 hiện trên phiếu | ✅ Đã dựng | [09-giam-gia-sua-gia-phi-khac.md](09-giam-gia-sua-gia-phi-khac.md) |
-| 10 | Bảng điểm danh | Card nổi như intro: xem cả tháng mọi lớp, ai nghỉ ai vắng → về khung điện thoại: điểm danh 1 ô → chốt buổi ngay trên bảng | 📋 Đã chốt kịch bản | [10-bang-diem-danh.md](10-bang-diem-danh.md) |
+| 10 | Bảng điểm danh | Card nổi như intro: xem cả tháng mọi lớp, ai nghỉ ai vắng → về khung điện thoại: điểm danh 1 ô → chốt buổi ngay trên bảng | ✅ Đã dựng | [10-bang-diem-danh.md](10-bang-diem-danh.md) |
 | 11 | Xem doanh thu | Trang Phân tích: đã thu theo tháng, đã thu vs tiềm năng theo lớp, số buổi và giờ dạy | 📝 Ý tưởng | - |
 
 Tập 4 gộp cả phiếu thu QR (trước tách 2 tập): thu tiền là một luồng liền mạch. Gắn tài khoản ngân hàng chỉ nhắc bằng 1 bong bóng; không quay lại băng chuyền mẫu phiếu và chat Zalo của intro.
