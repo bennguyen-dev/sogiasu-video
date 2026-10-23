@@ -14,12 +14,12 @@
 | 5 | Lịch dạy hằng tuần | Chỉnh khoảng giờ 9h-22h → đọc trạng thái (hoàn thành, chưa chốt, cần kiểm tra) → báo nghỉ → thêm buổi dạy bù → lọc lớp → gửi ảnh lịch tuần vào nhóm lớp | ✅ Đã dựng | [05-lich-day-hang-tuan.md](05-lich-day-hang-tuan.md) |
 | 6 | Học phí theo buổi | Mỗi buổi chốt tính 1 khoản → đổi giá từ 1 ngày: buổi cũ giữ giá, khoản đã thu không đổi, khoản chưa thu tự tính lại | ✅ Đã dựng | [06-hoc-phi-theo-buoi.md](06-hoc-phi-theo-buoi.md) |
 | 7 | Học phí theo giờ | Buổi dài ngắn khác nhau: tiền = số giờ × giá giờ, app tự nhân → tăng giá giờ từ 01/11: tháng 11 giá mới, tháng 10 đã thu giữ giá cũ → phiếu học phí | ✅ Đã dựng | [07-hoc-phi-theo-gio.md](07-hoc-phi-theo-gio.md) |
-| 8 | Học phí theo khóa | Thu trọn gói theo kỳ: tạo khóa (tên, số tiền, từ ngày, đến ngày), thêm cho cả lớp → Chờ thu / Quá hạn / Đã thu → kỳ sau nhập giá mới | 📝 Ý tưởng | - |
+| 8 | Học phí theo khóa | Thu tiền trọn gói theo khóa học: thêm khóa tháng 11 cho cả lớp → khóa tháng 10 chưa thu hiện Quá hạn → mục Học phí mỗi khóa một dòng → phiếu học phí | ✅ Đã dựng | [08-hoc-phi-theo-khoa.md](08-hoc-phi-theo-khoa.md) |
 | 9 | Giảm giá, sửa giá, phí khác | Giảm % cho 1 học sinh → sửa giá 1 buổi kèm lý do → phí khác cho cả lớp → cả 3 hiện trên phiếu thu gửi phụ huynh | 📝 Ý tưởng | - |
 
 Tập 4 gộp cả phiếu thu QR (trước tách 2 tập): thu tiền là một luồng liền mạch. Gắn tài khoản ngân hàng chỉ nhắc bằng 1 bong bóng; không quay lại băng chuyền mẫu phiếu và chat Zalo của intro.
 
-Tập 6-8: hình thức học phí chọn 1 lần lúc tạo lớp, không đổi được → mỗi tập mở bằng cảnh chọn hình thức (~2 giây), mỗi tập kết bằng cảnh phiếu học phí (mẫu Mùa thu như tập 4) rồi end card dẫn sang tập kế. Lớp demo lấy đúng hình thức trong dữ liệu intro: tập 6 lớp IELTS (theo buổi), tập 7 "IELTS Speaking 1-1" - Đỗ Khánh Linh (theo giờ), tập 8 "IELTS Foundation (khóa tháng)" - Bùi Thu Trang (theo khóa). Tập 9 dùng chung cho cả 3 hình thức.
+Tập 6-8: hình thức học phí chọn 1 lần lúc tạo lớp, không đổi được → mỗi tập mở bằng cảnh chọn hình thức (~2 giây), mỗi tập kết bằng cảnh phiếu học phí (mẫu Mùa thu như tập 4) rồi end card dẫn sang tập kế. Lớp demo lấy đúng hình thức trong dữ liệu intro: tập 6 lớp IELTS (theo buổi), tập 7 "IELTS Speaking 1-1" - Đỗ Khánh Linh (theo giờ), tập 8 "IELTS Foundation (khóa tháng)" - Bùi Thu Trang + 2 em thêm trong tập (theo khóa). Tập 9 dùng chung cho cả 3 hình thức.
 
 Thứ tự làm: 6 → 7 → 8 → 9. Tập 2 + tập 5 là điều kiện để bỏ tour (thay tour chi tiết buổi học và nút hướng dẫn ở lịch). Tập 3 + 4 là việc gia sư làm hằng tháng.
 
