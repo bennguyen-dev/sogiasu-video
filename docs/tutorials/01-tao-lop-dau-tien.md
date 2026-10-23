@@ -1,11 +1,11 @@
 # Tập 1 - Tạo lớp đầu tiên
 
-> Kịch bản bản đã dựng (duyệt 20/10/2026). Code: `src/videos/create-class/`, timeline: `timeline.ts`.
+> Kịch bản bản đã dựng (duyệt 20/10/2026). Dựng lại 23/10: cảnh 2 đổi sang trang Tổng quan. Code: `src/videos/create-class/`, timeline: `timeline.ts`.
 
 | | |
 |---|---|
 | Nền tảng | TikTok, Reels, YouTube Shorts (+ nhúng vào blog hướng dẫn) |
-| Khung | Dọc 1080×1920, 30fps, ~69 giây (2080 frame) |
+| Khung | Dọc 1080×1920, 30fps, ~71 giây (2134 frame) |
 | Âm thanh | Không lời thoại. SFX cho mọi thao tác; bản có nhạc dùng chung nhạc nền với video intro |
 | Thông điệp | Nhập 1 lần, app tự xếp lịch cả tháng - kể cả các buổi đã dạy từ đầu tháng |
 | Render | `yarn render:create-class` (chỉ SFX) · `yarn render:create-class:music` (có nhạc) → `out/` |
@@ -33,11 +33,13 @@
 |---|---|---|
 | Lịch tháng 10 đã kín 9 buổi xanh lá, zoom nhẹ ra | **Xếp lịch cả tháng** / *chỉ trong 1 phút* | whoosh, impact nhẹ |
 
-### 2. Trang Lớp học trống (0:03 - 0:05)
+### 2. Trang Tổng quan của tài khoản mới (0:03 - 0:07)
 
 | Hình | Chữ | Âm |
 |---|---|---|
-| Điện thoại trượt lên, trang Lớp học trống "Chưa có lớp học nào", thanh điều hướng dưới sáng tab **Lớp**. Tay bấm **Tạo lớp đầu tiên** | **Lớp học trống?** / *Bắt đầu từ đây* | whoosh, click |
+| Điện thoại trượt lên, trang **Tổng quan** của tài khoản mới (thanh dưới sáng tab **Tổng quan**): lời chào, thẻ **"Bắt đầu với lớp học đầu tiên"** với 3 bước Tạo lớp → Thêm học sinh → Lên lịch buổi học, các thẻ số liệu còn trống. Khoanh thẻ, bong bóng "3 bước là xong lớp đầu tiên". Tay bấm **Tạo lớp đầu tiên** → vào Bước 1/3 | **Tài khoản mới?** / *Bắt đầu từ đây* | whoosh, tick, click |
+
+Ba bước trên thẻ trùng đúng 3 bước của wizard, nên các tiêu đề "Bước 1/3, 2/3, 3/3" phía sau nối tiếp thẻ này.
 
 ### 3. Bước 1/3 - Thông tin lớp (0:05 - 0:23)
 
