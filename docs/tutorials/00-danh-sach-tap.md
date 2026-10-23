@@ -11,12 +11,17 @@
 | 2 | Điểm danh buổi đầu tiên | Điểm danh, nhận xét, đính kèm, bấm "Đã dạy xong" → học phí tự tính | ✅ Đã dựng | [02-diem-danh-buoi-dau-tien.md](02-diem-danh-buoi-dau-tien.md) |
 | 3 | Gửi báo cáo cho phụ huynh | Xuất ảnh mỗi buổi thì ngày nào cũng phải gửi → gửi link 1 lần, phụ huynh tự xem nhận xét, bài tập, lịch học → lấy link trong lớp / từng học sinh → tắt chia sẻ | ✅ Đã dựng | [03-gui-bao-cao-phu-huynh.md](03-gui-bao-cao-phu-huynh.md) |
 | 4 | Thu học phí cuối tháng | Trang Học phí cộng sẵn → tạo phiếu QR (giới thiệu 5 tuỳ chọn, mẫu Mùa thu) → gửi phụ huynh → Đã thu tiền → Lịch sử thu, hoàn tác | ✅ Đã dựng | [04-thu-hoc-phi-cuoi-thang.md](04-thu-hoc-phi-cuoi-thang.md) |
-| 5 | Đọc lịch dạy | Màu, trạng thái (đồng hồ cam = chưa chốt), bấm buổi, thêm buổi lẻ, đổi kiểu xem, vào Meet | 📝 Ý tưởng | - |
-| 6 | Đổi học phí giữa chừng | Tăng giá từ 1 ngày, buổi cũ giữ giá cũ, phí đã thu không bị đổi | 📝 Ý tưởng | - |
+| 5 | Lịch dạy hằng tuần | Chỉnh khoảng giờ 9h-22h → đọc trạng thái (hoàn thành, chưa chốt, cần kiểm tra) → báo nghỉ → thêm buổi dạy bù → lọc lớp → gửi ảnh lịch tuần vào nhóm lớp | ✅ Đã dựng | [05-lich-day-hang-tuan.md](05-lich-day-hang-tuan.md) |
+| 6 | Học phí theo buổi | Mỗi buổi chốt tính 1 khoản → đổi giá từ 1 ngày: buổi cũ giữ giá, khoản đã thu không đổi, khoản chưa thu tự tính lại | 📝 Kịch bản nháp | [06-hoc-phi-theo-buoi.md](06-hoc-phi-theo-buoi.md) |
+| 7 | Học phí theo giờ | Tiền 1 buổi = giá giờ × thời lượng (tính đúng phút, làm tròn đồng) → đổi giá giờ; buổi đã chốt muốn sửa giờ phải mở lại | 📝 Ý tưởng | - |
+| 8 | Học phí theo khóa | Thu trọn gói theo kỳ: tạo khóa (tên, số tiền, từ ngày, đến ngày), thêm cho cả lớp → Chờ thu / Quá hạn / Đã thu → kỳ sau nhập giá mới | 📝 Ý tưởng | - |
+| 9 | Giảm giá, sửa giá, phí khác | Giảm % cho 1 học sinh → sửa giá 1 buổi kèm lý do → phí khác cho cả lớp → cả 3 hiện trên phiếu thu gửi phụ huynh | 📝 Ý tưởng | - |
 
 Tập 4 gộp cả phiếu thu QR (trước tách 2 tập): thu tiền là một luồng liền mạch. Gắn tài khoản ngân hàng chỉ nhắc bằng 1 bong bóng; không quay lại băng chuyền mẫu phiếu và chat Zalo của intro.
 
-Thứ tự làm: 5 → 6. Tập 2 + tập 5 là điều kiện để bỏ tour (thay tour chi tiết buổi học và nút hướng dẫn ở lịch). Tập 3 + 4 là việc gia sư làm hằng tháng.
+Tập 6-8: hình thức học phí chọn 1 lần lúc tạo lớp, không đổi được → mỗi tập mở bằng cảnh chọn hình thức (~2 giây), end card dẫn sang tập 9. Lớp demo: tập 6 lớp IELTS, tập 7 Gia Hân lớp 1-1 "Ôn thi vào 10", tập 8 lớp "Giao tiếp công sở". Tập 9 dùng chung cho cả 3 hình thức.
+
+Thứ tự làm: 6 → 7 → 8 → 9. Tập 2 + tập 5 là điều kiện để bỏ tour (thay tour chi tiết buổi học và nút hướng dẫn ở lịch). Tập 3 + 4 là việc gia sư làm hằng tháng.
 
 ## Video ngắn "Làm sao để…" (sau 6 tập chính)
 
@@ -24,8 +29,6 @@ Thứ tự làm: 5 → 6. Tập 2 + tập 5 là điều kiện để bỏ tour (
 |---|---|
 | Thêm học sinh vào lớp đang chạy | Ngày vào lớp quyết định em có mặt ở buổi nào |
 | Học sinh nghỉ một thời gian | Tạm dừng (PAUSED) khác xoá thế nào |
-| Học bù / học thử | Attendance MAKEUP / GUEST |
-| Huỷ buổi / dời lịch | Báo nghỉ buổi → báo cho học sinh qua Google Calendar |
 | Mở lại buổi đã chốt | Khoá khi phí đã thu |
 | Gắn tài khoản ngân hàng | Làm 1 lần trước khi tạo phiếu thu QR (tập 4) |
 | Phiếu thu hàng loạt | BulkVoucher, cho lớp đông học sinh |
