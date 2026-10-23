@@ -11,12 +11,10 @@ export const studentCardOf = (root: ParentNode, name: string) =>
     .filter((c) => c.textContent?.includes(name))
     .sort((a, b) => a.textContent!.length - b.textContent!.length)[0];
 
-// the Fees page card's "Chọn buổi" / "Thu gọn" toggle
+// the Fees page card's "Chọn buổi" / "Chọn kỳ" / "Thu gọn" toggle
+const PICK_LABELS: string[] = [vi.fee.card.selectSessions, vi.fee.card.selectCourses, vi.fee.card.collapse];
 export const pickButton = (card: HTMLElement) =>
-  [...card.querySelectorAll<HTMLElement>("button")].find((b) => {
-    const text = b.textContent?.trim();
-    return text === vi.fee.card.selectSessions || text === vi.fee.card.collapse;
-  });
+  [...card.querySelectorAll<HTMLElement>("button")].find((b) => PICK_LABELS.includes(b.textContent?.trim() ?? ""));
 const expanded = (card: HTMLElement | null | undefined) => (card ? pickButton(card)?.textContent?.trim() === vi.fee.card.collapse : null);
 
 // the card's lesson rows once opened, and the one dated `ddmm`

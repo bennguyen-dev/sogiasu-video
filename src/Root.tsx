@@ -39,6 +39,11 @@ import { HookScene as HFHookScene, ModeScene as HFModeScene } from "./videos/hou
 import { CheckScene as HFCheckScene, ListScene as HFListScene, VoucherScene as HFVoucherScene } from "./videos/hour-fee/scenes/FeeScenes";
 import { LessonScene as HFLessonScene } from "./videos/hour-fee/scenes/LessonScene";
 import { RateScene as HFRateScene } from "./videos/hour-fee/scenes/RateScene";
+import { CourseFee } from "./videos/course-fee/CourseFee";
+import { COURSE_FEE_DURATION, SCENES as CF } from "./videos/course-fee/timeline";
+import { EndScene as CFEndScene, HookScene as CFHookScene, ModeScene as CFModeScene } from "./videos/course-fee/scenes/IntroScenes";
+import { AddScene as CFAddScene } from "./videos/course-fee/scenes/AddScene";
+import { ListScene as CFListScene, VoucherScene as CFVoucherScene } from "./videos/course-fee/scenes/FeeScenes";
 import { FEES_DURATION, SCENES as FE } from "./videos/fees/timeline";
 import { CollectScene as FECollectScene, FeesScene as FEFeesScene, HistoryScene as FEHistoryScene, VoucherScene as FEVoucherScene } from "./videos/fees/scenes/FeeScenes";
 import { HookScene as FEHookScene, ZaloScene as FEZaloScene } from "./videos/fees/scenes/SendScenes";
@@ -235,6 +240,16 @@ export const RemotionRoot = () => (
       <Composition id="HF-Rate" component={HFRateScene} width={1080} height={1920} fps={30} durationInFrames={HF.rate.durationInFrames} defaultProps={{ style: HF.rate.style }} />
       <Composition id="HF-Check" component={HFCheckScene} width={1080} height={1920} fps={30} durationInFrames={HF.check.durationInFrames} defaultProps={{ style: HF.check.style }} />
       <Composition id="HF-Voucher" component={HFVoucherScene} width={1080} height={1920} fps={30} durationInFrames={HF.voucher.durationInFrames} defaultProps={{ style: HF.voucher.style }} />
+    </Folder>
+    <Composition id="CourseFee" component={CourseFee} width={1080} height={1920} fps={30} durationInFrames={COURSE_FEE_DURATION} defaultProps={{ music: false }} />
+    <Composition id="CourseFeeWithMusic" component={CourseFee} width={1080} height={1920} fps={30} durationInFrames={COURSE_FEE_DURATION} defaultProps={{ music: true }} />
+    <Folder name="CourseFeeScenes">
+      <Composition id="CF-Hook" component={CFHookScene} width={1080} height={1920} fps={30} durationInFrames={CF.hook.durationInFrames} defaultProps={{ style: CF.hook.style }} />
+      <Composition id="CF-Mode" component={CFModeScene} width={1080} height={1920} fps={30} durationInFrames={CF.mode.durationInFrames} defaultProps={{ style: CF.mode.style }} />
+      <Composition id="CF-Add" component={CFAddScene} width={1080} height={1920} fps={30} durationInFrames={CF.add.durationInFrames} defaultProps={{ style: CF.add.style }} />
+      <Composition id="CF-List" component={CFListScene} width={1080} height={1920} fps={30} durationInFrames={CF.list.durationInFrames} defaultProps={{ style: CF.list.style }} />
+      <Composition id="CF-Voucher" component={CFVoucherScene} width={1080} height={1920} fps={30} durationInFrames={CF.voucher.durationInFrames} defaultProps={{ style: CF.voucher.style }} />
+      <Composition id="CF-End" component={CFEndScene} width={1080} height={1920} fps={30} durationInFrames={CF.end.durationInFrames} defaultProps={{ style: CF.end.style }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />
