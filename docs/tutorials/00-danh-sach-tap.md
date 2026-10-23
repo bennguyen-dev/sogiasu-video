@@ -28,16 +28,17 @@ Thứ tự làm: 6 → 7 → 8 → 9 → 10 → 11 → 12. Tập 12 là tập cu
 
 ## Video ngắn "Làm sao để…" (sau 12 tập chính)
 
-Đã có trong tập 12 nên bỏ khỏi danh sách: gắn tài khoản ngân hàng, kết nối Google, lưu tài liệu buổi học, gói / nâng cấp. Trạng thái Vắng đã nhắc ở tập 10.
+Đã có trong tập 12 nên bỏ khỏi danh sách: gắn tài khoản ngân hàng, kết nối Google, lưu tài liệu buổi học, gói / nâng cấp. Trạng thái Vắng đã nhắc ở tập 10, không làm riêng.
 
-| Chủ đề | Ghi chú |
-|---|---|
-| Thêm học sinh vào lớp đang chạy | Ngày vào lớp quyết định em có mặt ở buổi nào |
-| Học sinh nghỉ một thời gian | Tạm dừng (PAUSED) khác xoá thế nào |
-| Mở lại buổi đã chốt | Khoá khi phí đã thu |
-| Phiếu thu hàng loạt | BulkVoucher, cho lớp đông học sinh |
-| Gộp phiếu anh chị em | Nhiều học sinh cùng nhà vào 1 phiếu (MergeDock) |
-| Trạng thái Vắng | Vắng vẫn tính tiền, chỉ Có phép mới miễn (tập 10 đã nhắc qua; làm riêng nếu user vẫn hỏi) |
+Gộp các chủ đề nhỏ thành 3 video, mỗi video ~25-35 giây trên điện thoại:
+
+| # | Video | Nội dung | Trạng thái |
+|---|---|---|---|
+| A | Học sinh trong lớp: thêm, tạm nghỉ, xoá | **Thêm học sinh** với **Ngày vào lớp** lùi về trước (em được thêm vào các buổi đã hoàn thành) → chuyển một em sang **Tạm nghỉ** (gỡ khỏi các buổi sắp tới, chuyển lại Đang học thì thêm lại) → **Xoá khỏi lớp** (hộp xác nhận gợi ý chọn Tạm nghỉ nếu chỉ nghỉ một thời gian) | 📝 Ý tưởng |
+| B | Buổi học: thêm, sửa nhiều, xoá nhiều, mở lại | Lớp đã có: **Tạo buổi học** hàng loạt với **Gợi ý lịch học** → sửa một buổi rồi áp dụng cho các buổi tương tự sắp tới → **Chọn** nhiều buổi rồi **Xoá {n} buổi** → **Mở lại buổi học** đã chốt (đã thu tiền thì phải hoàn tác thu trước) | 📝 Ý tưởng |
+| C | Học phí: tạo nhiều phiếu, gộp phiếu anh chị em | Trang Học phí: **Tạo nhiều phiếu** (xuất phiếu hàng loạt, chọn học sinh và bố cục ảnh) → **Gộp phiếu** để anh chị em cùng nhà vào một phiếu QR | 📝 Ý tưởng |
+
+Thứ tự làm: A → B → C. Kịch bản chi tiết viết riêng từng file như các tập chính.
 
 ## Thế giới demo dùng chung (giữ xuyên suốt các tập)
 
