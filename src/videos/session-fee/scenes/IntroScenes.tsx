@@ -1,11 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
 import { continueRender, delayRender, Interactive, interpolate, useCurrentFrame } from "remotion";
 import ClassDetailPage from "@/features/class/pages/ClassDetailPage";
-import ClassField from "@/features/class/components/ClassField";
 import { enrollmentKeys } from "@/features/enrollment/hooks/enrollment-keys";
-import { Form } from "@/shared/components/ui/form";
-import { messages } from "@/shared/i18n/messages.generated";
 import { useMockApi } from "../../../shared/app/AppProviders";
 import { useDemoNow } from "../../../shared/app/frozen-clock";
 import { setDemoSearch } from "../../../shared/app/stubs/next-navigation";
@@ -13,22 +9,16 @@ import { Sfx } from "../../../shared/audio/sfx";
 import { StepCaption } from "../../../shared/tutorial/StepCaption";
 import { clamp, ease } from "../../../shared/motion";
 import { colors } from "../../../shared/theme";
-import { AppScreen, type Box, Explain, newClient, pageBox, SCREEN_H, scrollAt, useMeasure } from "../../../shared/tutorial/AppScreen";
+import { AppScreen, newClient, pageBox, useMeasure } from "../../../shared/tutorial/AppScreen";
+import { makeModeScene } from "../../fee-common/scenes";
 import { EndCard } from "../../create-class/scenes/EndScene";
-import { WizardFooter, WizardPage } from "../../create-class/WizardPage";
-import { CLASS_COLOR, CLASS_NAME, classValues } from "../../create-class/data";
+import { BillingMode } from "@prisma/client";
+import { CLASS_COLOR, CLASS_NAME } from "../../create-class/data";
 import { SESSION_FEE_API, TODAY_6 } from "../data";
-
-const { form: f } = messages.vi.class;
 
 // the class page's student cards answer from this flag; the scene rendering sets it
 let raised = false;
 const API = SESSION_FEE_API(() => raised);
-
-export const studentCardOf = (root: ParentNode, name: string) =>
-  [...root.querySelectorAll<HTMLElement>("[data-slot=card]")]
-    .filter((c) => c.textContent?.includes(name))
-    .sort((a, b) => a.textContent!.length - b.textContent!.length)[0];
 
 // the class page on its Students tab; flipping `isRaised` refetches the cards, as the app's own mutation does
 export const useClassPage = (isRaised: boolean) => {
@@ -78,68 +68,16 @@ const HookSceneInner = () => {
 };
 
 // 1 · the billing mode, picked once when the class is made
-const SESSION = [14, 76] as const;
-const LOCKED = [84, 146] as const;
-export const MODE_LENGTH = 160;
-const VISIBLE_H = SCREEN_H - 68;
-
-const ModeSceneInner = () => {
-  useDemoNow(TODAY_6);
-  useMockApi(API);
-  const frame = useCurrentFrame();
-  const pageRef = useRef<HTMLDivElement>(null);
-  const [client] = useState(newClient);
-  const form = useForm({ defaultValues: classValues(CLASS_NAME, CLASS_COLOR) });
-  const t = useMeasure<{ session: Box; course: Box; locked: Box }>(() => {
-    const page = pageRef.current;
-    if (!page) return null;
-    const card = (mode: string) => pageBox(page, page.querySelector(`button[value=${mode}]`)?.closest(".rounded-md.border"));
-    const box = {
-      session: card("PER_SESSION"),
-      course: card("PER_COURSE"),
-      locked: pageBox(page, [...page.querySelectorAll("p")].find((p) => p.textContent === f.billingModeHint)),
-    };
-    return Object.values(box).every(Boolean) ? (box as { session: Box; course: Box; locked: Box }) : null;
-  });
-  const scroll = t ? scrollAt(frame, [[0, Math.max(0, t.course.y + t.course.h + 16 - VISIBLE_H)]]) : 0;
-  const beat = { frame, scroll };
-
-  return (
-    <>
-      <Sfx role="whoosh" at={2} volume={0.4} />
-      <Sfx role="tick" at={SESSION[0] + 2} volume={0.6} />
-      <Sfx role="tick" at={LOCKED[0] + 2} volume={0.6} />
-      <StepCaption eyebrow="Học phí theo buổi" from={0}>
-        <span style={{ color: colors.emerald }}>chọn lúc tạo lớp</span>
-      </StepCaption>
-      <AppScreen
-        client={client}
-        pathname="/dashboard/classes/new"
-        scroll={scroll}
-        pageRef={pageRef}
-        fixed={<WizardFooter step={0} />}
-        overlay={
-          <>
-            <Explain {...beat} from={SESSION[0]} to={SESSION[1]} box={t?.session} side="above">
-              Theo buổi: dạy xong buổi nào, tính tiền buổi đó
-            </Explain>
-            <Explain {...beat} from={LOCKED[0]} to={LOCKED[1]} box={t?.locked} color="#d97706">
-              Chọn 1 lần lúc tạo lớp, sau này không đổi được
-            </Explain>
-          </>
-        }
-      >
-        <WizardPage step={0}>
-          <Form {...form}>
-            <div className="space-y-4">
-              <ClassField control={form.control} />
-            </div>
-          </Form>
-        </WizardPage>
-      </AppScreen>
-    </>
-  );
-};
+const useModeApp = () => useClassPage(false);
+export const ModeScene = makeModeScene({
+  useApp: useModeApp,
+  mode: BillingMode.PER_SESSION,
+  className: CLASS_NAME,
+  color: CLASS_COLOR,
+  title: "Học phí theo buổi",
+  hint: "Theo buổi: dạy xong buổi nào, tính tiền buổi đó",
+  hintSide: "above",
+});
 
 const EndSceneInner = () => (
   <EndCard
@@ -158,5 +96,4 @@ const EndSceneInner = () => (
 
 const schema = { ...Interactive.backgroundSchema };
 export const HookScene = Interactive.create({ Component: HookSceneInner, layout: "absolute-fill", schema });
-export const ModeScene = Interactive.create({ Component: ModeSceneInner, layout: "absolute-fill", schema });
 export const EndScene = Interactive.create({ Component: EndSceneInner, layout: "absolute-fill", schema });

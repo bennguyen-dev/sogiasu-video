@@ -2,7 +2,7 @@ import { Track } from "remotion";
 import { MusicBed } from "../../shared/audio/MusicBed";
 import { END_IMPACT, SCENES } from "./timeline";
 import { EndScene, HookScene, ModeScene } from "./scenes/IntroScenes";
-import { CheckScene, ListScene } from "./scenes/FeeScenes";
+import { CheckScene, ListScene, VoucherScene } from "./scenes/FeeScenes";
 import { RateScene } from "./scenes/RateScene";
 
 // Tutorial 6 · Per-session fees: one charge per lesson taught, a price change from a date, collected fees untouched
@@ -17,6 +17,7 @@ export const SessionFee = ({ music }: { readonly music: boolean }) => (
       <ListScene name="List" {...SCENES.list} />
       <RateScene name="Rate" {...SCENES.rate} />
       <CheckScene name="Check" {...SCENES.check} />
+      <VoucherScene name="Voucher" {...SCENES.voucher} />
       <EndScene name="End" {...SCENES.end} />
     </Track>
   </>

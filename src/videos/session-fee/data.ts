@@ -4,7 +4,9 @@ import type { EnrollmentDetail, EnrollmentListItem, EnrollmentPrice } from "@/fe
 import type { StudentFeeSummary, StudentSessionFee } from "@/features/fee/types";
 import { CLASS_COLOR, CLASS_NAME, CREATED_API, LESSON_DATES, STUDENTS } from "../create-class/data";
 import { CLASS_ID, STUDENT_IDS } from "../attendance/data";
-import { historyResponse } from "../fees/data";
+import type { VoucherOptionsInput } from "@/features/payment/types";
+import { buildTransferReference, ddmm } from "@/features/payment/lib/transfer-ref";
+import { BANK, buildVoucher, historyResponse, PRO } from "../fees/data";
 
 // tutorial 6: Thu 12/11 afternoon. October is paid (tutorial 4); November so far is 03/11, the 07/11 make-up and 10/11
 export const TODAY_6 = new Date("2026-11-12T15:30:00+07:00").getTime();
@@ -102,8 +104,27 @@ const monthOf = (url: string) => {
   return from ? new Date(Date.parse(from) + 86_400_000).toISOString().slice(0, 7) : "";
 };
 
+export const ISSUE_6 = "2026-11-12";
+export const TRANSFER_6 = buildTransferReference([MA.name], ddmm(ISSUE_6));
+export const VOUCHER_OPTIONS_6: VoucherOptionsInput = {
+  templateId: "autumn",
+  useQr: true,
+  transferRef: TRANSFER_6,
+  hideSessionDetails: false,
+  showComments: false,
+  comment: "",
+  includeReport: false,
+  reportFrom: "2026-11-01",
+  reportTo: ISSUE_6,
+};
+// Minh Anh's November at the new price, as the voucher lists it
+export const voucher6 = (o: Pick<VoucherOptionsInput, "hideSessionDetails" | "showComments" | "comment">) =>
+  buildVoucher({ name: MA.name, sessions: sessions("ma", NOVEMBER, NEW_PRICE), hourFees: [], courseFees: [], otherFees: [] }, ISSUE_6, TRANSFER_6, o);
+
 export const SESSION_FEE_API = (raised: () => boolean) => ({
   ...CREATED_API,
+  "/api/billing/overview": () => ok(PRO),
+  "/api/bank-account": () => ok(BANK),
   "/api/classes/new-class/enrollments": () => page([enrollment("ma", maHistory(raised())), enrollment("gh", ghHistory)]),
   "/api/classes/new-class": () => ok(klass),
   "/api/fees/pending": () => pendingResponse(raised()),

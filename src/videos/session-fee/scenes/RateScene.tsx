@@ -23,8 +23,8 @@ import {
 } from "../../../shared/tutorial/AppScreen";
 import { maHistory, NEW_PRICE, NOVEMBER, RAISE_FROM } from "../data";
 import { RateDialog } from "../RateDialog";
-import { useRerenderWhen } from "../use-rerender";
-import { studentCardOf, useClassPage } from "./IntroScenes";
+import { useClassPage } from "./IntroScenes";
+import { studentCardOf, useRerenderWhen } from "../../../shared/tutorial/fee-page";
 
 const { vi } = messages;
 const e = vi.enrollment;

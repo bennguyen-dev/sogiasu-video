@@ -218,7 +218,7 @@ export const BANK = {
 };
 
 // the demo account is on Pro: every template exports, no brand line on the voucher
-const PRO = {
+export const PRO = {
   plan: "PRO",
   reason: "PAID",
   source: "SUBSCRIPTION",
@@ -230,37 +230,39 @@ const PRO = {
   qrTemplateIds: null,
 };
 
-export const voucherView = (
-  o: Pick<
-    VoucherOptionsInput,
-    "hideSessionDetails" | "showComments" | "comment"
-  >,
+type VoucherStudent = Parameters<typeof toVoucherView>[0]["students"][number];
+
+// a voucher for one student's fees, as PaymentQRDialog builds it (Pro: no brand line)
+export const buildVoucher = (
+  student: VoucherStudent,
+  issueDate: string,
+  transferRef: string,
+  o: Pick<VoucherOptionsInput, "hideSessionDetails" | "showComments" | "comment">,
 ) =>
   toVoucherView({
-    students: [
-      {
-        name: MA.name,
-        sessions: MINH_ANH.sessions,
-        hourFees: [],
-        courseFees: [],
-        otherFees: [],
-      },
-    ],
+    students: [student],
     options: {
-      issueDate: ISSUE_DATE,
+      issueDate,
       hideSessionDetails: o.hideSessionDetails,
-      comment:
-        o.showComments && o.comment.trim() ? o.comment.trim() : undefined,
+      comment: o.showComments && o.comment.trim() ? o.comment.trim() : undefined,
       showBrand: false,
       payment: {
         bankBin: BANK.bankBin,
         bankName: BANK.bankName,
         accountNumber: BANK.accountNumber,
         accountName: BANK.accountName,
-        transferRef: normalizeAddInfo(TRANSFER_REF),
+        transferRef: normalizeAddInfo(transferRef),
       },
     },
   });
+
+export const voucherView = (o: Pick<VoucherOptionsInput, "hideSessionDetails" | "showComments" | "comment">) =>
+  buildVoucher(
+    { name: MA.name, sessions: MINH_ANH.sessions, hourFees: [], courseFees: [], otherFees: [] },
+    ISSUE_DATE,
+    TRANSFER_REF,
+    o,
+  );
 
 export const reportImageHtml = (templateId: QrTemplateId) =>
   renderReportCard(reportStudents()[0], getReportAccent(templateId));

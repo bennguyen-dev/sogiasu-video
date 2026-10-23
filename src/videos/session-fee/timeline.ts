@@ -1,5 +1,5 @@
-import { MODE_LENGTH } from "./scenes/IntroScenes";
-import { CHECK_LENGTH, LIST_LENGTH } from "./scenes/FeeScenes";
+import { CHECK_LENGTH, MODE_LENGTH, VOUCHER_LENGTH } from "../fee-common/scenes";
+import { LIST_LENGTH } from "./scenes/FeeScenes";
 import { RATE_LENGTH } from "./scenes/RateScene";
 
 const PAPER = { backgroundColor: "#f8fafc" };
@@ -13,6 +13,7 @@ const SCENE_LIST = [
   ["list", LIST_LENGTH, MIST],
   ["rate", RATE_LENGTH, MIST],
   ["check", CHECK_LENGTH, MIST],
+  ["voucher", VOUCHER_LENGTH, MIST],
   ["end", 105, INK],
 ] as const;
 

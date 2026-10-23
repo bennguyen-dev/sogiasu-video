@@ -20,22 +20,24 @@ import { STUDENT_IDS } from "../attendance/data";
 import { STUDENTS } from "../create-class/data";
 import { reportStudents, voucherView } from "./data";
 
-const NAMES = { [STUDENT_IDS.ma]: STUDENTS[0].name };
-
 // PaymentQRDialog's markup around a form the scene owns: the app debounces the comment and reads its sticky
 // options from localStorage, neither of which a frame-by-frame render can hold still. Options, preview and
 // report card are the app's own components
 export const VoucherDialog = ({
   open,
   form,
+  student = { id: STUDENT_IDS.ma, name: STUDENTS[0].name },
+  view: viewOf = voucherView,
 }: {
   readonly open: boolean;
   readonly form: UseFormReturn<VoucherOptionsInput>;
+  readonly student?: { readonly id: string; readonly name: string };
+  readonly view?: typeof voucherView;
 }) => {
   const t = useTranslations("payment");
   const voucherRef = useRef<HTMLDivElement>(null);
   const values = form.watch();
-  const view = voucherView(values);
+  const view = viewOf(values);
   const templateId = values.templateId as QrTemplateId;
   const files = values.includeReport ? 2 : 1;
 
@@ -44,7 +46,7 @@ export const VoucherDialog = ({
       <DynamicModalContent className="md:max-w-6xl" data-voucher-dialog>
         <DynamicModalHeader>
           <DynamicModalTitle className="leading-snug">
-            {t("qrDialog.title")} · {STUDENTS[0].name}
+            {t("qrDialog.title")} · {student.name}
           </DynamicModalTitle>
         </DynamicModalHeader>
         <div>
@@ -74,8 +76,8 @@ export const VoucherDialog = ({
                   bankStatus="ready"
                   control={form.control}
                   trigger={form.trigger}
-                  studentIds={[STUDENT_IDS.ma]}
-                  studentNames={NAMES}
+                  studentIds={[student.id]}
+                  studentNames={{ [student.id]: student.name }}
                   view={view}
                   allowedTemplateIds={null}
                 />

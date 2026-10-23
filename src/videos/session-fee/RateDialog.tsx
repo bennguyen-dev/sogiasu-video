@@ -23,18 +23,24 @@ import { DATE_TIME_FORMAT } from "@/shared/lib/date";
 import { cn, formatCurrency } from "@/shared/lib/utils";
 import { CLASS_NAME } from "../create-class/data";
 
-// SessionRateDialog's markup around values the frame hands in: its react-hook-form lives inside it,
+// SessionRateDialog's (or HourRateDialog's) markup around values the frame hands in: its react-hook-form lives inside it,
 // so typing the price and picking the date can't be driven per frame on the real one
 export const RateDialog = ({
   open,
   history,
   price,
   effectiveFrom,
+  hourly = false,
+  student = "Minh Anh",
+  className = CLASS_NAME,
 }: {
   readonly open: boolean;
   readonly history: EnrollmentDetail["priceHistory"];
   readonly price: number | null;
   readonly effectiveFrom: string;
+  readonly hourly?: boolean;
+  readonly student?: string;
+  readonly className?: string;
 }) => {
   const t = useTranslations("enrollment");
   const tUi = useTranslations("ui");
@@ -46,8 +52,8 @@ export const RateDialog = ({
     <DynamicModal open={open}>
       <DynamicModalContent onOpenAutoFocus={(e) => e.preventDefault()} data-rate-dialog>
         <DynamicModalHeader>
-          <DynamicModalTitle>{t("priceDialog.title")}</DynamicModalTitle>
-          <DynamicModalDescription>{t("dialog.subtitle", { student: "Minh Anh", class: CLASS_NAME })}</DynamicModalDescription>
+          <DynamicModalTitle>{t(hourly ? "priceDialog.titleHour" : "priceDialog.title")}</DynamicModalTitle>
+          <DynamicModalDescription>{t("dialog.subtitle", { student, class: className })}</DynamicModalDescription>
         </DynamicModalHeader>
         <form className="min-w-0 space-y-4" onSubmit={(e) => e.preventDefault()}>
           <div>
@@ -57,7 +63,7 @@ export const RateDialog = ({
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>{t("priceDialog.colPrice")}</TableHead>
+                    <TableHead>{t(hourly ? "priceDialog.colPriceHour" : "priceDialog.colPrice")}</TableHead>
                     <TableHead>{t("priceDialog.colEffectiveFrom")}</TableHead>
                     <TableHead>{t("priceDialog.colEnd")}</TableHead>
                     <TableHead className="w-0" />
@@ -99,7 +105,7 @@ export const RateDialog = ({
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <div className="grid gap-2" data-price>
                   <label className="flex items-center gap-2 text-sm leading-none font-medium select-none">
-                    {t("priceDialog.feePerSession")}
+                    {t(hourly ? "priceDialog.feePerHour" : "priceDialog.feePerSession")}
                     <span className="text-destructive">*</span>
                   </label>
                   <MoneyInput placeholder={t("priceDialog.feePlaceholder")} value={price} onChange={() => {}} />
