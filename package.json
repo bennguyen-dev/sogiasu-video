@@ -30,6 +30,8 @@
     "render:attendance-grid:music": "node scripts/render.mjs AttendanceGridWithMusic attendance-grid-music",
     "render:revenue": "node scripts/render.mjs Revenue revenue-sfx",
     "render:revenue:music": "node scripts/render.mjs RevenueWithMusic revenue-music",
+    "render:settings": "node scripts/render.mjs Settings settings-sfx",
+    "render:settings:music": "node scripts/render.mjs SettingsWithMusic settings-music",
     "typecheck": "tsc"
   },
   "keywords": [],

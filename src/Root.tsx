@@ -55,6 +55,13 @@ import { MonthsScene as RVMonthsScene } from "./videos/revenue/scenes/MonthsScen
 import { EndScene as RVEndScene } from "./videos/revenue/scenes/EndScene";
 import { Revenue } from "./videos/revenue/Revenue";
 import { REVENUE_DURATION, SCENES as RV } from "./videos/revenue/timeline";
+import { HookScene as STHookScene, SupportScene as STSupportScene } from "./videos/settings/scenes/MenuScenes";
+import { FilesScene as STFilesScene } from "./videos/settings/scenes/FilesScene";
+import { ConnectScene as STConnectScene, ProfileScene as STProfileScene } from "./videos/settings/scenes/PagesScenes";
+import { BillingScene as STBillingScene } from "./videos/settings/scenes/BillingScene";
+import { EndScene as STEndScene } from "./videos/settings/scenes/EndScene";
+import { Settings } from "./videos/settings/Settings";
+import { SETTINGS_DURATION, SCENES as ST } from "./videos/settings/timeline";
 import { FEE_ADJUST_DURATION, SCENES as FA } from "./videos/fee-adjust/timeline";
 import { EndScene as FAEndScene, HookScene as FAHookScene, VoucherScene as FAVoucherScene } from "./videos/fee-adjust/scenes/IntroScenes";
 import { DiscountScene as FADiscountScene } from "./videos/fee-adjust/scenes/DiscountScene";
@@ -291,6 +298,17 @@ export const RemotionRoot = () => (
       <Composition id="RV-Overview" component={RVOverviewScene} width={1080} height={1920} fps={30} durationInFrames={RV.overview.durationInFrames} defaultProps={{ style: RV.overview.style }} />
       <Composition id="RV-Months" component={RVMonthsScene} width={1080} height={1920} fps={30} durationInFrames={RV.months.durationInFrames} defaultProps={{ style: RV.months.style }} />
       <Composition id="RV-End" component={RVEndScene} width={1080} height={1920} fps={30} durationInFrames={RV.end.durationInFrames} defaultProps={{ style: RV.end.style }} />
+    </Folder>
+    <Composition id="Settings" component={Settings} width={1080} height={1920} fps={30} durationInFrames={SETTINGS_DURATION} defaultProps={{ music: false }} />
+    <Composition id="SettingsWithMusic" component={Settings} width={1080} height={1920} fps={30} durationInFrames={SETTINGS_DURATION} defaultProps={{ music: true }} />
+    <Folder name="SettingsScenes">
+      <Composition id="ST-Hook" component={STHookScene} width={1080} height={1920} fps={30} durationInFrames={ST.hook.durationInFrames} defaultProps={{ style: ST.hook.style }} />
+      <Composition id="ST-Files" component={STFilesScene} width={1080} height={1920} fps={30} durationInFrames={ST.files.durationInFrames} defaultProps={{ style: ST.files.style }} />
+      <Composition id="ST-Profile" component={STProfileScene} width={1080} height={1920} fps={30} durationInFrames={ST.profile.durationInFrames} defaultProps={{ style: ST.profile.style }} />
+      <Composition id="ST-Connect" component={STConnectScene} width={1080} height={1920} fps={30} durationInFrames={ST.connect.durationInFrames} defaultProps={{ style: ST.connect.style }} />
+      <Composition id="ST-Billing" component={STBillingScene} width={1080} height={1920} fps={30} durationInFrames={ST.billing.durationInFrames} defaultProps={{ style: ST.billing.style }} />
+      <Composition id="ST-Support" component={STSupportScene} width={1080} height={1920} fps={30} durationInFrames={ST.support.durationInFrames} defaultProps={{ style: ST.support.style }} />
+      <Composition id="ST-End" component={STEndScene} width={1080} height={1920} fps={30} durationInFrames={ST.end.durationInFrames} defaultProps={{ style: ST.end.style }} />
     </Folder>
     <Folder name="Assets">
       <Composition id="EssayPhoto" component={EssayPhoto} width={1200} height={1600} fps={30} durationInFrames={1} />

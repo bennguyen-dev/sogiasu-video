@@ -26,6 +26,8 @@ Config.overrideWebpackConfig((config) =>
         "@/shared/components/ui/popover$": local("src/shared/app/stubs/popover.tsx"),
         "@/shared/components/ui/dialog$": local("src/shared/app/stubs/dialog.tsx"),
         "@/shared/components/ui/dropdown-menu$": local("src/shared/app/stubs/dropdown-menu.tsx"),
+        "@/shared/components/ui/sheet$": local("src/shared/app/stubs/sheet.tsx"),
+        "@/shared/hooks/use-mobile$": local("src/shared/app/stubs/use-mobile.ts"),
         "@": path.join(APP, "src"),
         // one React for Remotion and the app's components, or hooks break
         react: local("node_modules/react"),
